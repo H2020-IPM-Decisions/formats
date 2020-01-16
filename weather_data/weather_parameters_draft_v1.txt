@@ -1,0 +1,78 @@
+Table of weather parameters:
+Every parameter also has a unit. Must be defined in the table
+## 1000-series = temperature
+   1001 = Instantaneous temperature at 2m (Celcius)
+   1002 = Mean air temperature at 2m
+   1003 = Minimum air temperature at 2m
+   1004 = Maximum air temperature at 2m
+   1011 = Instantaneous temperature at 10m
+   1012 = Mean air temperature at 10m
+   1013 = Minimum air temperature at 10m
+   1014 = Maximum air temperature at 10m
+   1021 = Instantaneous temperature in canopy
+   1022 = Mean air temperature in canopy
+   1023 = Minimum air temperature in canopy
+   1024 = Maximum air temperature in canopy
+
+   1101 = Instantaneous temperature at -5cm (Celcius)
+   1102 = Mean temperature at -5cm
+   1103 = Minimum temperature at -5cm
+   1104 = Maximum temperature at -5cm
+   1111 = Instantaneous temperature at -10cm (Celcius)
+   1112 = Mean temperature at -10cm
+   1113 = Minimum temperature at -10cm
+   1114 = Maximum temperature at -10cm
+   1121 = Instantaneous temperature at -20cm (Celcius)
+   1122 = Mean temperature at -20cm
+   1123 = Minimum temperature at -20cm
+   1124 = Maximum temperature at -20cm
+   1131 = Instantaneous temperature at -30cm (Celcius)
+   1132 = Mean temperature at -30cm
+   1133 = Minimum temperature at -30cm
+   1134 = Maximum temperature at -30cm
+   1141 = Instantaneous temperature at -40cm (Celcius)
+   1142 = Mean temperature at -40cm
+   1143 = Minimum temperature at -40cm
+   1144 = Maximum temperature at -40cm
+   1151 = Instantaneous temperature at -50cm (Celcius)
+   1152 = Mean temperature at -50cm
+   1153 = Minimum temperature at -50cm
+   1154 = Maximum temperature at -50cm
+
+
+## 2000-series = precipitation (mm)
+   2001 = Precipitation
+
+
+## 3000-series = humidity
+   3001 = Instantaneous RH at 2m (%)
+   3002 = Mean RH at 2m
+   3003 = Minimum RH at 2m
+   3004 = Maximum RH at 2m
+   3011 = Instantaneous RH at 10m
+   3012 = Mean RH at 10m
+   3013 = Minimum RH at 10m
+   3014 = Maximum RH at 10m
+   3021 = Instantaneous RH in canopy
+   3022 = Mean RH in canopy
+   3023 = Minimum RH in canopy
+   3024 = Maximum RH in canopy
+
+   3101 = Leaf wetness in 2m (minutes/hour)
+   3102 = Leaf wetness in canopy
+   3103 = Leaf wetness in grass
+
+## 4000-series = wind
+   4001 = Wind direction at 2m (degrees 0-360)
+   4002 = Instantaneous wind speed at 2m
+   4003 = Mean wind speed at 2m
+   4004 = Max wind speed at 2m
+   4005 = Min wind speed at 2m
+   4011 = Wind direction at 2m (degrees 0-360)
+   4012 = Instantaneous wind speed at 2m
+   4013 = Mean wind speed at 2m
+   4014 = Max wind speed at 2m
+   4015 = Min wind speed at 2m
+
+## 5000-series = radiation
+   5001 = Solar radiation (Q0) (W/sqm)
