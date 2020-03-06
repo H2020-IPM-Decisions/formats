@@ -20,6 +20,8 @@ Languages:
 # They should have their separate list entry
 # We use EPPO codes (https://gd.eppo.int/)
 # for pests and crops
+# We use these parameters/codes for weather data: 
+# https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v1.txt
 DSS_models:
 - DSS_model_name: "Carrot rust fly temperature model"
   Pests: 
@@ -28,17 +30,41 @@ DSS_models:
   - DAUCS # EPPO code for carrot
   Type_of_decision: "Short-term tactical"
   Type_of_output: "Risk indication"
-  Description_URL: "https://www.vips-landbruk.no/forecasts/models/NAERSTADMO/"
+  Description_URL: "https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/"
   Description: |
     The warning system model «Carrot rust fly temperature» is based on a Finnish temperature-based model (Markkula et al, 1998; Tiilikkala & Ojanen, 1999; Markkula et al, 2000). The model determines the start of the flight period for the 1st and 2nd generation of carrot rust fly based on accumuleted degree-days (day-degrees) over a base temperature of 5,0 °C. VIPS uses the model for the 1st generation only. 
     Standard air temperature (temperature measured 2 m above ground) is used in the model. Degree-days are defined for this model as the sum of the difference between a base temperature of 5,0 °C and the mean temperature for all days with a temperature >5,0 °C, in other words (daily mean temperature – 5,0 °C) from 1 March (beginning when the ground has thawed).
   Input:
    Weather: # TODO: weather parameter codes
-   - parameter_code: "TM" # E.g. mean temperature
+   - parameter_code: 1001 # = Mean temp at 2 mLookup
      sampling_frequency: "Day" # The least detail accepted (higher frequencies can aggregate to lower)
+  How_to_run:
+    Type: ONTHEFLY
+    Endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run
+# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    Input_template: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^PSILARTEMP$"},
+          "configParameters" {
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string"},
+              "calculationStart": {"type": "date-time"},
+              "calculationEnd": {"type": "date-time"}
+            }
+          },
+          "weatherData": {
+            "type": "object",
+            "properties": {
+              
+            }
+          }
+        }
 ###########
 - DSS_model_name: "Nærstad model"
-  Pests: 
+  Pests:
   - PHYTIN # EPPO code for Potato late blight (Phytophthora infestans)
   Crops:
   - SOLTU # EPPO code for potato
@@ -49,21 +75,42 @@ DSS_models:
     The model is based on several years of experiments where trap plants have been placed next to a potato field infected with late blight. Infections on these plants have been correlated with weather conditions the day of exposure, and this is the data the model is based on. The model predicts if there are favourable conditions for spore production and the following spread, survival and infection of these spores. The model produces an infection risk, and a value of 2.5 corresponds to one spot of late blight on each trap plant exposed. This value of 2.5 is the threshold where the model issues a warning.
   Input:
    Weather: # TODO: weather parameter codes, frequency codes and unit codes
-   - parameter_code: "TM" # E.g. mean temperature
+   - parameter_code: 1001 # = Mean temp at 2m measured in Celcius.
      sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "Celcius"
-   - parameter_code: "RR" # Precipitation
+   - parameter_code: 2001 # Precipitation measured in mm. 
      sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "mm"
-   - parameter_code: "Q0" # Global radiation
+   - parameter_code: 5001 # Global radiation in W/sqm. 
      sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "W/square meter"
-   - parameter_code: "UM" # Relative humidity
+   - parameter_code: 3002 # Relative humidity at 2m in % 
      sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "%"
-   - parameter_code: "BT" # Leaf wetness
+   - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
      sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "min/hour"
+  How_to_run:
+    Type: ONTHEFLY
+    Endpoint: https://coremanager.vips.nibio.no/models/NAERSTADMO/run
+# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    Input_template: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^NAERSTADMO$"},
+          "configParameters" {
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string"},
+              "calculationStart": {"type": "date-time"},
+              "calculationEnd": {"type": "date-time"}
+            }
+          },
+          "weatherData": {
+            "type": "object",
+            "properties": {
+              
+            }
+          }
+        }
+
+
 #####
 - DSS_model_name: "Septoria apiicola model"
   Pests: 
@@ -83,39 +130,44 @@ DSS_models:
     It is generally assumed that this model has additional relevance for Septoria petroselini in parsley.
   Input:
    Weather: # TODO: weather parameter codes, frequency codes and unit codes
-   - parameter_code: "BT" # Leaf wetness
-     sampling_frequency: "Hour" # The least detail accepted (higher frequencies can aggregate to lower)
-     unit: "min/hour"
-   - parameter_code: "Wet day" 
-     sampling_frequency: "Day"
-     unit: "true/false"
-   field_observation:
+   - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
+     sampling_frequency: "Hour"
+   Field_observation:
     species: SEPTAP
-    unit: "present/not present"
   How_to_run:
     Type: ONTHEFLY
     Endpoint: https://coremanager.vips.nibio.no/models/SEPAPIICOL/run
+# The input template should adhere to the JSON Schema standard: https://json-schema.org/
     Input_template: |
       {
-        "loginInfo":{
-          "username":__USER_NAME|string__,
-          "password":__PASSWORD|string__
-        },
-        "modelId":"SEPAPIICOL",
-        "configParameters":{
-          "timeZone":__TIME_ZONE|string_,
-          "startDateGrowth":__START_DATE_GROWTH|date__,
-          "endDateCalculation":__END_DATE_CALCULATION|date__,
-          "pestObservations":__PEST_OBSERVATIONS|array_of--
-            {
-              "timeOfObservation":__TIME_OF_OBSERVATION|dateTimeISO8601__,
-              "observationData":{ "species": "SEPTAP" }
-              }			
+        "type":"object",
+        
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^SEPAPIICOL$"},
+          "configParameters" {
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string"},
+              "startDateGrowth": {"type": "date"},
+              "endDateCalculation": {"type": "date"},
+              "pestObservations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "timeOfObservation": {"type": "date-time"},
+                    "species":{"type": "string", "pattern": "^[A-Z0-9]{5,6}$"}
+                  }
+                }
+              }
             }
-          --
-          ,
-          "weatherData":__WEATHER_DATA|ipm_decisions_weather_data__
+          },
+          "weatherData": {
+            "type": "object",
+            "properties": {
+              
+            }
+          }
         }
-      }
-      
+
 

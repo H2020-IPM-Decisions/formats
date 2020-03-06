@@ -1,0 +1,204 @@
+# Table of weather parameters:
+# Every parameter also has a unit. Must be defined in the table
+## 1000-series = temperature
+- id: 1001 
+  name: Instantaneous temperature at 2m 
+  unit: Celcius
+- id: 1002
+  name: Mean air temperature at 2m
+  unit: Celcius
+- id: 1003
+  name: Minimum air temperature at 2m
+  unit: Celcius
+- id: 1004
+  name: Maximum air temperature at 2m
+  unit: Celcius
+- id: 1011
+  name: Instantaneous temperature at 10m
+  unit: Celcius
+- id: 1012
+name: Mean air temperature at 10m
+  unit: Celcius
+- id: 1013
+  name: Minimum air temperature at 10m
+  unit: Celcius
+- id: 1014
+  name: Maximum air temperature at 10m
+  unit: Celcius
+- id: 1021
+  name: Instantaneous temperature in canopy
+  unit: Celcius
+- id: 1022
+  name: Mean air temperature in canopy
+  unit: Celcius
+- id: 1023
+  name: Minimum air temperature in canopy
+  unit: Celcius
+- id: 1024
+  name: Maximum air temperature in canopy
+  unit: Celcius
+#
+- id: 1101
+  name: Instantaneous temperature at -5cm (Celcius)
+  unit: Celcius
+- id: 1102
+  name: Mean temperature at -5cm
+  unit: Celcius
+- id: 1103
+  name: Minimum temperature at -5cm
+  unit: Celcius
+- id: 1104
+  name: Maximum temperature at -5cm
+  unit: Celcius
+- id: 1111
+  name: Instantaneous temperature at -10cm (Celcius)
+  unit: Celcius
+- id: 1112
+  name: Mean temperature at -10cm
+  unit: Celcius
+- id: 1113
+  name: Minimum temperature at -10cm
+  unit: Celcius
+- id: 1114
+  name: Maximum temperature at -10cm
+  unit: Celcius
+- id: 1121
+  name: Instantaneous temperature at -20cm (Celcius)
+  unit: Celcius
+- id: 1122
+  name: Mean temperature at -20cm
+  unit: Celcius
+- id: 1123
+  name: Minimum temperature at -20cm
+  unit: Celcius
+- id: 1124
+  name: Maximum temperature at -20cm
+  unit: Celcius
+- id: 1131
+  name: Instantaneous temperature at -30cm (Celcius)
+  unit: Celcius
+- id: 1132
+  name: Mean temperature at -30cm
+  unit: Celcius
+- id: 1133
+  name: Minimum temperature at -30cm
+  unit: Celcius
+- id: 1134
+  name: Maximum temperature at -30cm
+  unit: Celcius
+- id: 1141
+  name: Instantaneous temperature at -40cm (Celcius)
+  unit: Celcius
+- id: 1142
+  name: Mean temperature at -40cm
+  unit: Celcius
+- id: 1143
+  name: Minimum temperature at -40cm
+  unit: Celcius
+- id: 1144
+  name: Maximum temperature at -40cm
+  unit: Celcius
+- id: 1151
+  name: Instantaneous temperature at -50cm (Celcius)
+  unit: Celcius
+- id: 1152
+  name: Mean temperature at -50cm
+  unit: Celcius
+- id: 1153
+  name: Minimum temperature at -50cm
+  unit: Celcius
+- id: 1154
+  name: Maximum temperature at -50cm
+  unit: Celcius
+
+
+## 2000-series = precipitation (mm)
+- id: 2001
+  name: Precipitation
+  unit: mm
+
+
+## 3000-series = humidity
+- id: 3001
+  name: Instantaneous RH at 2m (%)
+  unit: %
+- id: 3002
+  name: Mean RH at 2m
+  unit: %
+- id: 3003
+  name: Minimum RH at 2m
+  unit: %
+- id: 3004
+  name: Maximum RH at 2m
+  unit: %
+- id: 3011
+  name: Instantaneous RH at 10m
+  unit: %
+- id: 3012
+  name: Mean RH at 10m
+  unit: %
+- id: 3013
+  name: Minimum RH at 10m
+  unit: %
+- id: 3014
+  name: Maximum RH at 10m
+  unit: %
+- id: 3021
+  name: Instantaneous RH in canopy
+  unit: %
+- id: 3022
+  name: Mean RH in canopy
+  unit: %
+- id: 3023
+  name: Minimum RH in canopy
+  unit: %
+- id: 3024
+  name: Maximum RH in canopy
+  unit: %
+
+- id: 3101
+  name: Leaf wetness in 2m (minutes/hour)
+  unit: minutes/hour
+- id: 3102
+  name: Leaf wetness in canopy
+  unit: minutes/hour
+- id: 3103
+  name: Leaf wetness in grass
+  unit: minutes/hour
+
+## 4000-series = wind
+- id: 4001
+  name: Wind direction at 2m (degrees 0-360)
+  unit: degrees
+- id: 4002
+  name: Instantaneous wind speed at 2m
+  unit: m/s
+- id: 4003
+  name: Mean wind speed at 2m
+  unit: m/s
+- id: 4004
+  name: Max wind speed at 2m
+  unit: m/s
+- id: 4005
+  name: Min wind speed at 2m
+  unit: m/s
+- id: 4011
+  name: Wind direction at 2m (degrees 0-360)
+  unit: degrees
+- id: 4012
+  name: Instantaneous wind speed at 2m
+  unit: m/s
+- id: 4013
+  name: Mean wind speed at 2m
+  unit: m/s
+- id: 4014
+  name: Max wind speed at 2m
+  unit: m/s
+- id: 4015
+  name: Min wind speed at 2m
+  unit: m/s
+
+## 5000-series = radiation
+- id: 5001
+  name: Solar radiation (Q0) (W/sqm)
+  unit: W/sqm
