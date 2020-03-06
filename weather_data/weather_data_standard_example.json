@@ -9,7 +9,7 @@
 		"longitude": 14.3711, "_comment": "WGS84 decimal degrees",
 		"latitude": 67.2828,
 		"altitude": 70.0,
-		"_comment": "Data is organized chronologically in series, one row for each time step."
+		"_comment": "Data is organized chronologically in series, one row for each time step.",
 		"data": [
 			[0.8, 84.7, 0.4, 9.1],
 			[1.0, 88.2, 0.0, 9.4],
