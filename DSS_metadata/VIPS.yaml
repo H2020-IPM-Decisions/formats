@@ -56,10 +56,7 @@ DSS_models:
             }
           },
           "weatherData": {
-            "type": "object",
-            "properties": {
-              
-            }
+            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
           }
         }
 ###########
@@ -103,10 +100,7 @@ DSS_models:
             }
           },
           "weatherData": {
-            "type": "object",
-            "properties": {
-              
-            }
+            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
           }
         }
 
@@ -163,10 +157,7 @@ DSS_models:
             }
           },
           "weatherData": {
-            "type": "object",
-            "properties": {
-              
-            }
+            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
           }
         }
 
