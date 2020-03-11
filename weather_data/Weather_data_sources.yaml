@@ -1,0 +1,151 @@
+# TEST YAML sample of weather datasource meta data to be used by the plaform
+# (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
+---
+Datasources:
+  - 
+    Datasource_name: "Met Norway Locationforecast"
+    Description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
+    Public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
+    Endpoint: "https://ipmdecisions.nibio.no/WeatherService/rest/forecasts/yr/"
+    Temporal:
+      - 0 # 0 = no historical. 1 = historical (TODO: Need more detail, like "only current year/growing season"?)
+      - 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+    Spatial: |- 
+      {"type": "Sphere"}
+    Parameters:
+      - Common:
+         - 1001 # Instantaneous temperature at 2m (Celcius)
+         - 3001 # Instantaneous RH at 2m (%)
+         - 2001 # Precipitation (mm)
+         - 4002 # Instantaneous wind speed at 2m
+  -
+    Datasource_name: "Landbruksmeteorologisk tjeneste"
+    Description: "Weather station network covering major agricultural areas of Norway"
+    Public URL: "https://lmt.nibio.no/"
+    Endpoint: "https://lmt.nibio.no/services/rest/vips/getdata/" # This endpoint is VIPS compatible only for now
+    Temporal:
+      - -1 # 0 = no historical. 1 = historical (TODO: Need more detail, like "only current year/growing season"?)
+      - 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+    # If the resource is a gridded service, the Spatial property is a polygon
+    # If the resource is a FeatureCollection of points, this is a weather station network of at least 1 and an indefinite number of stations
+    # NOTE TO SELF: USED THIS QUERY TO GENERATE THE Points from LMT
+    #    SELECT 
+    #    CASE WHEN altitude IS NULL THEN
+    #    '{"type": "Feature", "geometry": {"type": "Point", "coordinates": ['|| longitude ||','|| latitude ||']}, "properties": {"name": "'|| name || '"}},'
+    #    ELSE
+    #    '{"type": "Feature", "geometry": {"type": "Point", "coordinates": ['|| longitude ||','|| latitude ||','|| altitude ||']}, "properties": {"name": "'|| name || '"}},'
+    #    END
+    #    FROM public.weatherstation
+    #    WHERE country_id='NOR'
+    #    AND weatherstation_id > 0
+    #    AND latitude IS NOT NULL AND LONGITUDE IS NOT NULL
+    Spatial: |- 
+      {
+        "type": "FeatureCollection",
+        "features": [
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0244,60.54933,155]}, "properties": {"name": "Åsnes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.85057,59.6879,80]}, "properties": {"name": "Darbu"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.75063,60.46116,34]}, "properties": {"name": "Djønno"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.99453,62.12793,690]}, "properties": {"name": "Folldal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.55906,60.35575,245]}, "properties": {"name": "Gran"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.40297,61.40506,80]}, "properties": {"name": "Høyheimsvik"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.02859,59.4175,105]}, "properties": {"name": "Bø"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.57805,59.22684,41]}, "properties": {"name": "Gjerpen"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.21189,59.38223,94]}, "properties": {"name": "Gvarv"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.556,60.43029,18]}, "properties": {"name": "Hesthamar"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.56252,61.05454,50]}, "properties": {"name": "Ljøsne"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.95383,59.6625,8]}, "properties": {"name": "Etne"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.522554,58.340071,10]}, "properties": {"name": "Landvik"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.6937,60.943,162]}, "properties": {"name": "Moelv"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0349,60.4699,154]}, "properties": {"name": "Grue"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.58946,59.0157,5]}, "properties": {"name": "Randaberg"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.2174697,60.3371063,12.905]}, "properties": {"name": "Kvam"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.862209,61.179943,45]}, "properties": {"name": "Njøs"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.40478,59.60272,4]}, "properties": {"name": "Svelvik"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.18148,61.78584,25]}, "properties": {"name": "Sandane"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.42527,63.94244,59]}, "properties": {"name": "Mære"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96187,58.9878,20]}, "properties": {"name": "Brunlanes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.57052,60.2542,19]}, "properties": {"name": "Nå"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.55,58.7,20]}, "properties": {"name": "Orre"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.3593076,61.1498682,260]}, "properties": {"name": "Rena"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.27512,59.16827,50]}, "properties": {"name": "Sandefjord"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.62133,60.25028,105]}, "properties": {"name": "Sekse"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.43896664028258,60.1358081886593,140]}, "properties": {"name": "Sigdal-Nedre Eggedal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.716463,63.026787,140]}, "properties": {"name": "Meldal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.93651,61.15988,26]}, "properties": {"name": "Slinde"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.28288,68.64825,14]}, "properties": {"name": "Sortland"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.39205,59.55416,10]}, "properties": {"name": "Svelvik syd"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.15267,61.72274,599]}, "properties": {"name": "Leirflaten"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.20298,60.80264,182]}, "properties": {"name": "Ilseng"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.48659,62.6112,557]}, "properties": {"name": "Oppdal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.836755,62.862927,294]}, "properties": {"name": "Rennebu"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.65078,58.76053,90]}, "properties": {"name": "Særheim"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.28132,59.27891,83]}, "properties": {"name": "Søve"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.65381,60.31853,13.378]}, "properties": {"name": "Ullensvang"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.9284391,60.56173,42]}, "properties": {"name": "Ulvik"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.06302,61.12183,527]}, "properties": {"name": "Løken"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.23923,59.38081,39]}, "properties": {"name": "Ramnes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.3769148,63.1042499]}, "properties": {"name": "Rindal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.12513,59.04641,19]}, "properties": {"name": "Tjølling"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04221,59.31936,45]}, "properties": {"name": "Øsaker"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.81449,59.31893,12]}, "properties": {"name": "Tomb"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2397447,62.9284518]}, "properties": {"name": "Soknedal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.75427,59.39805,35]}, "properties": {"name": "Rygge"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.62687,62.10944,478]}, "properties": {"name": "Alvdal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.1872,61.45822,184]}, "properties": {"name": "Fåvang"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [30.04085,69.45513,27.343]}, "properties": {"name": "Pasvik"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.64268513,60.37924842,40]}, "properties": {"name": "Hauso"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.39985,59.86859,185]}, "properties": {"name": "Flesberg"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.69298,63.56502,18]}, "properties": {"name": "Frosta"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25878,61.22468,375]}, "properties": {"name": "Gausdal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.90946,69.65381,12]}, "properties": {"name": "Holt"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [14.45155,67.28465,26]}, "properties": {"name": "Vågønes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.1018,67.2764,20]}, "properties": {"name": "Valnesfjord"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.78595,61.87228,60]}, "properties": {"name": "Loen"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.22339,59.6162,35]}, "properties": {"name": "Sande"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.29737,63.34038,44]}, "properties": {"name": "Skjetlein"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.01885,64.51035,32]}, "properties": {"name": "Skogmo"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.04428,61.29272,12]}, "properties": {"name": "Fureneset"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.39634,65.55085,80]}, "properties": {"name": "Grane"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.14992,59.22995,43]}, "properties": {"name": "Hjelmeland"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.80569,60.77324,129]}, "properties": {"name": "Kise"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96877,59.21653,25]}, "properties": {"name": "Kvelde"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.21713,62.28815,34]}, "properties": {"name": "Linge"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.53293,69.26051,5]}, "properties": {"name": "Målselv"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.87994,63.48795,28]}, "properties": {"name": "Kvithamar"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25962,59.79084,38]}, "properties": {"name": "Lier"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.04668,58.13463,4]}, "properties": {"name": "Lyngdal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.313199,61.299413,8]}, "properties": {"name": "Ornes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.97007,63.58569,23]}, "properties": {"name": "Rissa"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.925521,60.238677,138]}, "properties": {"name": "Sokna"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.68956,62.98474,5]}, "properties": {"name": "Surnadal"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.42553,65.82951,10]}, "properties": {"name": "Tjøtta"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.89166,59.76152,15]}, "properties": {"name": "Hokksund"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39342,60.1268,162]}, "properties": {"name": "Årnes"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.781989,59.660468,94]}, "properties": {"name": "Ås", "optionalParams":[3101,5001]}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.768903,59.66855,96]}, "properties": {"name": "Åsbakken"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.52845,61.20294,15]}, "properties": {"name": "Balestrand"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.582,59.886,129]}, "properties": {"name": "Bjørkelangen"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.0989653,59.4886853,70]}, "properties": {"name": "Hof"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2661,60.14032,126]}, "properties": {"name": "Hønefoss"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39042,59.38824,102]}, "properties": {"name": "Rakkestad"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.09144,60.25378,172]}, "properties": {"name": "Roverud"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.18623,62.91341,23]}, "properties": {"name": "Tingvoll"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.86952,60.70024,262]}, "properties": {"name": "Apelsvoll"}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.97765,59.97758,143]}, "properties": {"name": "Skjetten"}},
+        ]
+      }
+    # These are the parameters that all stations in the network have. Additional parameters must be stated in the properties of the spatial
+    Parameters:
+      # TODO Complete this list
+      - Common:
+         - 1002 # Mean temperature at 2m (Celcius)
+         - 1003 # Minimum temperature at 2m (Celcius)
+         - 1004 # Maximum temperature at 2m (Celcius)
+         - 3001 # Instantaneous RH at 2m (%)
+         - 2001 # Precipitation (mm)
+      - Optional:
+         - 3101 # Leaf wetness duration at 2m (minutes/time unit)
+         - 5001 # Solar radiation (W/sqm)
