@@ -42,7 +42,7 @@ DSS_models:
     Type: ONTHEFLY
     Endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_template: |
+    Input_schema: |
       {
         "type":"object",
         "properties": {
@@ -86,7 +86,7 @@ DSS_models:
     Type: ONTHEFLY
     Endpoint: https://coremanager.vips.nibio.no/models/NAERSTADMO/run
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_template: |
+    Input_schema: |
       {
         "type":"object",
         "properties": {
@@ -132,7 +132,7 @@ DSS_models:
     Type: ONTHEFLY
     Endpoint: https://coremanager.vips.nibio.no/models/SEPAPIICOL/run
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_template: |
+    Input_schema: |
       {
         "type":"object",
         
