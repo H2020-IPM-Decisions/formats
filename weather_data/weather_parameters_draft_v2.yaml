@@ -2,7 +2,7 @@
 # Every parameter also has a unit. Must be defined in the table
 ## 1000-series = temperature
 - id: 1001 
-  name: Instantaneous temperature at 2m 
+  name: Instantaneous air temperature at 2m 
   unit: Celcius
 - id: 1002
   name: Mean air temperature at 2m
