@@ -7,6 +7,7 @@ Datasources:
     Description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
     Public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
     Endpoint: "https://ipmdecisions.nibio.no/WeatherService/rest/forecasts/yr/"
+    Needs_data_control: false
     Temporal:
       - 0 # 0 = no historical. 1 = historical (TODO: Need more detail, like "only current year/growing season"?)
       - 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
@@ -24,7 +25,8 @@ Datasources:
     Datasource_name: "Landbruksmeteorologisk tjeneste"
     Description: "Weather station network covering major agricultural areas of Norway"
     Public_URL: "https://lmt.nibio.no/"
-    Endpoint: "http://lmtservices/rest/ipmdecisions/getdata/" 
+    Endpoint: "http://lmtservices/rest/ipmdecisions/getdata/"
+    Needs_data_control: true
     Temporal:
       - -1 # 0 = no historical. 1 = historical (TODO: Need more detail, like "only current year/growing season"?)
       - 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
