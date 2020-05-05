@@ -49,7 +49,7 @@ For pests and crops We use these parameters/codes for weather data: <https://git
 
 ## 3 graphical comparison of VIPS OpenAlea crop2ML models
 
-![Getting Started](./VIPS-crop2ml_openalea.jpg)
+![Getting Started](./VIPS-cropmodel_openalea_files/images/VIPS-crop2ml_openalea.jpg)
 
 **html link:**
 file:///C:/Users/mlabadie/Documents/Travail/Cirad/IPM-Project/formats/DSS_metadata/VIPS-crop2ml_openalea.html
