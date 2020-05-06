@@ -80,7 +80,6 @@ The information was found on the following sites:
 | Description     | Title, Authors, Institution, Reference, Abstract |
 |                 |                                                  |
 
-
 #### 4.1.3 OpenAlea
 
 | OpenAlea-element | Openalea-description                    |
