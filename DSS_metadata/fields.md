@@ -118,6 +118,7 @@ The information was found on the following sites:
 || min, max, default, uri|
 ||inputtype (variable, parameter)|
 | Outputs | A list of outputs defining the processes involved, the variables whose dynamics we want to observe. |
+|ModelComposition|Model (name,filename), Link( input link (target, source), internallink (target, source), outputlink(source, target)|
 | Initialization | A process used to attribute an initial value to the state, rate and auxiliary variables. |
 ||name, language, filename|
 | Function | A service called by an atomic or composite model for a specific action. |
