@@ -1,6 +1,11 @@
-# Fields
+# Model representation : Metadata and Fields
+
+Description of the representation of formats for Model in VIPS, OpenAlea and Crop2ML.
+VIPPS is designed to represent DSS, OpenAlea is more general, and Crop2ML focus on cropo model.
 
 ## 1. General information about DSS
+
+A DSS is represented as a set of models and meta-information.
 
 - [ ] DSS_id:
 - [ ] DSS_name:
@@ -47,11 +52,11 @@ For pests and crops We use these parameters/codes for weather data: <https://git
     - [ ] Content_type:
     - [ ] Input_schema:
 
-## 3 graphical comparison of VIPS OpenAlea crop2ML models
+## Graphical comparison of VIPS, OpenAlea, and Crop2ML models
 
 ![Getting Started](./VIPS-crop2ml_openalea.jpg)
 
-## 4. Comparison table VIPS OpenAlea, cropm2ML
+## 4. Comparison table VIPS, OpenAlea, cropm2ML
 
 The information was found on the following sites:
 
@@ -61,11 +66,17 @@ The information was found on the following sites:
 
 ### 4.1 Global information / Meta-information
 
+#### Some definitions
+
+- **Package** / **DSS**: A package (or a DSS) represents a container of **Models** with meta-information.
+- **Model**: a computational unit that implement a given contract with explicit inputs and outputs.
+
 #### 4.1.1 VIPS
+
 
 | VIPS-element      | VIPS-description                                                                   |
 |-------------------|------------------------------------------------------------------------------------|
-| DSS_id            | model identifiant                                                                  |
+| DSS_id            | package identifiant                                                                  |
 | DSS_name          | model name                                                                         |
 | public_URL        | url to plateform access                                                            |
 | contact_email     | contact mail                                                                       |
