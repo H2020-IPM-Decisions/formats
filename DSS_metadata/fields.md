@@ -71,12 +71,24 @@ The information was found on the following sites:
 - **Package** / **DSS**: A package (or a DSS) represents a container of **Models** with meta-information.
 - **Model**: a computational unit that implement a given contract with explicit inputs and outputs.
 
+#### DSS Description
+
+|VIPS             | OpenAlea    | Description                                                                       |
+|-----------------|-------------|-----------------------------------------------------------------------------------|
+|DSS_id           | package     | package identifiant                                                               |
+|DSS_name         | name        | model name                                                                        |
+|public_URL       | url         | url to plateform access                                                           |
+|contact_email    | authors     | contact mail                                                                      |
+|login_requierment| X           | boolean                                                                           |
+|DSS_owner        | Insititutes | Owner description equivalent to institute (name, contry, adress,postal code, city)|
+|languages        | X           | plateform language                                                                |
+
 #### 4.1.1 VIPS
 
 
 | VIPS-element      | VIPS-description                                                                   |
 |-------------------|------------------------------------------------------------------------------------|
-| DSS_id            | package identifiant                                                                  |
+| DSS_id            | package identifiant                                                                |
 | DSS_name          | model name                                                                         |
 | public_URL        | url to plateform access                                                            |
 | contact_email     | contact mail                                                                       |
