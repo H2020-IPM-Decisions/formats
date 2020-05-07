@@ -5,6 +5,7 @@
 	"timeEnd": "2020-03-15T06:00:00Z",
 	"interval": 3600, "_comment": "Time interval is given in seconds",
 	"weatherParameters": [1001, 3001, 2001, 4002], "_comment" :" Refer to external table of parameter Ids. Ids define what and where, e.g. mean temp at 2m",
+	"QC": [0, 5, 0, -1], "_comment": "User alert - a text alert describe reason for QC concerns. Bitmap of failed tests.",
 	"locationWeatherData": [{
 		"longitude": 14.3711, "_comment": "WGS84 decimal degrees",
 		"latitude": 67.2828,
