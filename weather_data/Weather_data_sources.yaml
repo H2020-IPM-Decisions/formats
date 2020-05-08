@@ -27,7 +27,7 @@ Datasources:
     Datasource_name: "Landbruksmeteorologisk tjeneste"
     Description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
     Public_URL: "https://lmt.nibio.no/"
-    Endpoint: "http://ipmdecisions.nibio.no/LMTServices/rest/ipmdecisions/getdata/"
+    Endpoint: "https://ipmdecisions.nibio.no/LMTServices/rest/ipmdecisions/getdata/"
     Needs_data_control: true
     Temporal:
       Historic: #  
