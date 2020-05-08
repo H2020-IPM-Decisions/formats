@@ -3,7 +3,7 @@
 Description of the representation of formats for Model in VIPS, OpenAlea and Crop2ML.
 VIPPS is designed to represent DSS, OpenAlea is more general, and Crop2ML focus on cropo model.
 
-## 1. General information about DSS
+## General information about DSS
 
 A DSS is represented as a set of models and meta-information.
 
@@ -20,7 +20,7 @@ A DSS is represented as a set of models and meta-information.
   - [ ] city:
   - [ ] Languages:
 
-## 2. Specific model description
+## Specific model description about DSS
 
 There may be many DSS models per DSS
 
@@ -56,7 +56,7 @@ For pests and crops We use these parameters/codes for weather data: <https://git
 
 ![Getting Started](./VIPS-crop2ml_openalea.jpg)
 
-## 4. Comparison table VIPS, OpenAlea, cropm2ML
+## Comparison table VIPS, OpenAlea, cropm2ML
 
 The information was found on the following sites:
 
@@ -73,26 +73,113 @@ The information was found on the following sites:
 
 #### DSS Description
 
-|VIPS             | OpenAlea    | Description                                                                       |
-|-----------------|-------------|-----------------------------------------------------------------------------------|
-|DSS_id           | package     | package identifiant                                                               |
-|DSS_name         | name        | model name                                                                        |
-|public_URL       | url         | url to plateform access                                                           |
-|contact_email    | authors     | contact mail                                                                      |
-|login_requierment| X           | boolean                                                                           |
-|DSS_owner        | Insititutes | Owner description equivalent to institute (name, contry, adress,postal code, city)|
-|languages        | X           | plateform language                                                                |
+| selected name | VIPS              | OpenAlea   | Crop2ML                                            | Description                                                                          |
+|---------------|-------------------|------------|----------------------------------------------------|--------------------------------------------------------------------------------------|
+|               | DSS_id            | package    | Model_id                                           | package identifier                                                                   |
+|               | DSS_name          | name       | name                                               | package name                                                                         |
+|               | public_URL        | url        |                                                    | url to platform access                                                               |
+|               | contact_email     | authors    | authors                                            | contact mail                                                                         |
+|               | login_requirement | X          | X                                                  | boolean                                                                              |
+|               | DSS_owner         | Institutes | Institution                                        | Owner description equivalent to institute (name, country, address,postal code, city) |
+|               | languages         | X          |                                                    | platform language                                                                    |
+|               | X                 | alias      | X                                                  | Alias for compatibility                                                              |
+|               | X                 | X          | version                                            | package version                                                                      |
+|               | X                 | X          | release                                            |                                                                                      |
+|               | X                 | X          | base language                                      | code source language                                                                 |
+|               | X                 | X          | Licence                                            | package licence                                                                      |
+|               | X                 | X          | References                                         | Publication                                                                          |
+|               | X                 | X          |                                                    |                                                                                      |
+|               | DSS_model_name    |            | title                                              | model name                                                                           |
+|               | DSS_model_id      |            | model_id                                           | model identifier                                                                     |
+|               | pests             |            |                                                    | name (EPPO code)                                                                     |
+|               | crops             |            |                                                    | name (EPPO code)                                                                     |
+|               | type_of_decision  |            |                                                    | Short-term tactical                                                                  |
+|               | type_of_output    |            | output                                             |                                                                                      |
+|               | Description_URL   |            |                                                    | url for model                                                                        |
+|               | Description       |            | abstract                                           | short model description                                                              |
+|               | Input             |            | Input                                              |                                                                                      |
+|               | How_to_run        |            | Algorithme, initialisation, fonction, parameterset |                                                                                      |
+|               |         |            | Testeset |                                                                                      |
+
+>[!NOTE]
+>Je pense qu'il y a plein de chose qui peuvent être enlever comme input How_to_run ect qui sont repris dans un tableau plus bas
+
+#### DSS INPUT
+
+| selected name | VIPS                       | OpenAlea | Crop2ML           | Description                                                                 |
+|---------------|----------------------------|----------|-------------------|-----------------------------------------------------------------------------|
+|               | weather, field_observation |          | variablecategory  | indicate the type of variable (state, a rate or an “auxiliary”) variable    |
+|               | parameter code             |          | name              | for DSS name of variable, unit, mean                                        |
+|               | interval                   |          |                   |                                                                             |
+|               | spiecies                   |          |                   | name EPPO                                                                   |
+|               |                            |          | description       | short description of input                                                  |
+|               |                            |          | parametercategory | indicate the type of parameter (constant, species, soil and genotypic       |
+|               |                            |          | datatype          | indication of the type of variable STRING, STRING LIST, STRING ARRAY ect... |
+|               |                            |          | min, max          | range of value                                                              |
+|               |                            |          | unit              | unit Ontology developed by WUR                                              |
+|               |                            |          | uri               |                                                                             |
+|               |                            |          | input_type        | indication of type of input (parameter or variable)                         |
+
+#### DSS Output
+
+| selected name | VIPS             | OpenAlea | Crop2ML     | Description                     |
+|---------------|------------------|----------|-------------|---------------------------------|
+|               | type_of_output   |          |             | type of output (Risk indicator) |
+|               | type_of_decision |          |             | type of output (Risk indicator) |
+|               |                  | name     | name        |                                 |
+|               |                  |          | description |                                 |
+|               |                  |          | min         | min value                       |
+|               |                  |          | max         | max value                       |
+|               |                  |          | uri         |                                 |
+
+#### DSS how_to_run/Algoritme-initialisation-Function
+
+| selected name | VIPS         | OpenAlea    | Crop2ML        | Description                                          |
+|---------------|--------------|-------------|----------------|------------------------------------------------------|
+|               | type         |             |                |                                                      |
+|               | Endpoint     |             |                | url                                                  |
+|               | form_method  |             |                | post or get                                          |
+|               | content_type |             |                | application/json                                     |
+|               | input_schema |             |                |                                                      |
+|               |              |             | Algorithme     | name, language, filename                             |
+|               |              |             | Initialisation | name, language, filename                             |
+|               |              | node module |                | name of the python module containing fonction/ class |
+|               |              | node class  |                | name of the component function/class                 |
+
+>[!NOTE]
+>Faut il detailler algorithme et initialisation à part?
+
+#### DSS Parameterset
+
+| selected name | VIPS | OpenAlea | Crop2ML     | Description                 |
+|---------------|------|----------|-------------|-----------------------------|
+|               |      |          | name        | name of parameterset        |
+|               |      |          | description | description of parameterset |
+|               |      |          | uri         |                             |
+|               |      |          | param       | name and value of parameter |
+
+#### DSS Testset
+
+| selected name | VIPS | OpenAlea | Crop2ML      | Description                                       |
+|---------------|------|----------|--------------|---------------------------------------------------|
+|               |      |          | name         |                                                   |
+|               |      |          | parameterset |                                                   |
+|               |      |          | description  |                                                   |
+|               |      |          | uri          |                                                   |
+|               |      |          | Test         | inputvalue (name), output value (name, precision) |
+
+>[!CAUTION]
+>A partir de la il s'agit des anciens tableau je pense que l'on pourra les supprimer
 
 #### 4.1.1 VIPS
 
-
 | VIPS-element      | VIPS-description                                                                   |
 |-------------------|------------------------------------------------------------------------------------|
-| DSS_id            | package identifiant                                                                |
+| DSS_id            | package identifiers                                                                |
 | DSS_name          | model name                                                                         |
-| public_URL        | url to plateform access                                                            |
+| public_URL        | url to platform access                                                            |
 | contact_email     | contact mail                                                                       |
-| login_requierment | boolean                                                                            |
+| login_requirement | boolean                                                                            |
 | DSS_owner         | Owner description equivalent to institute (name, contry, adress,postal code, city) |
 | languages         | plateform language                                                                 |
 
@@ -112,6 +199,19 @@ The information was found on the following sites:
 | python modules   |                                         |
 
 ### 4.2 Model/package informations
+
+| VIPS-element     | VIPS-description                                                                                                                              |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| DSS_model_name   | name                                                                                                                                          |
+| DSS_model_id     | id model                                                                                                                                      |
+| pests            | name EPPO code for pest                                                                                                                       |
+| crops            | name EPPO code for crops                                                                                                                      |
+| type_of_decision | short time technical                                                                                                                          |
+| type_of_output   | risk indicator                                                                                                                                |
+| Description_URL  | URL contains model descriptions, Interpretation status, technical usage (todo), sample configuration                                          |
+| Description      | Model decription (abstract)                                                                                                                   |
+| Input            | Input variable (weather, field observation) and parameter (for weather: parameter code, interval, for field observation: spiecies EPPO code?) |
+| How_to_run       | type ?, Endpoint (url), Form_method (get or post), content_type (json application), input_schema                                              |
 
 #### 4.2.1 VIPS
 
