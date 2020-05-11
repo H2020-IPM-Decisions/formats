@@ -2,17 +2,16 @@
 # (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
 # General info about the DSS
-DSS_id: VIPS
-DSS_name: VIPS
-Public_URL: https://www.vips-landbruk.no/
-Contact_email: berit.nordskog@nibio.no
-Login_required: false
-DSS_Owner: 
+id: no.nibio.vips/2.0
+name: VIPS
+url: https://www.vips-landbruk.no/
+organization: 
  name: NIBIO
  country: Norway
  address: Postboks 115
  postal_code: "1431"
  city: Ås
+ email: berit.nordskog@nibio.no
 Languages:
 - Norwegian
 - English
@@ -23,25 +22,37 @@ Languages:
 # for pests and crops
 # We use these parameters/codes for weather data: 
 # https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v1.txt
-DSS_models:
-- DSS_model_name: Carrot rust fly temperature model
-  DSS_model_id: PSILARTEMP
-  Pests: 
+models:
+- name: Carrot rust fly temperature model
+  id: PSILARTEMP/0.9
+  authors: 
+  - name: Berit Nordskog
+    email: berit.nordskog@nibio.no
+    organization: NIBIO
+  - name: Foo Bar
+    email: foo.bar@syngenta.com
+    organization: Syngenta
+  pests: 
   - PSILRO # EPPO code for carrot rust fly
-  Crops:
+  crops:
   - DAUCS # EPPO code for carrot
+  keywords: foo, bar, mechanistic, regression, 
   Type_of_decision: Short-term tactical
   Type_of_output: Risk indication
   Description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
   Description: |
     The warning system model «Carrot rust fly temperature» is based on a Finnish temperature-based model (Markkula et al, 1998; Tiilikkala & Ojanen, 1999; Markkula et al, 2000). The model determines the start of the flight period for the 1st and 2nd generation of carrot rust fly based on accumuleted degree-days (day-degrees) over a base temperature of 5,0 °C. VIPS uses the model for the 1st generation only. 
     Standard air temperature (temperature measured 2 m above ground) is used in the model. Degree-days are defined for this model as the sum of the difference between a base temperature of 5,0 °C and the mean temperature for all days with a temperature >5,0 °C, in other words (daily mean temperature – 5,0 °C) from 1 March (beginning when the ground has thawed).
+  citation: # Optional. Use the DOI as identifier (list)
   Input:
    Weather: # TODO: 
    - parameter_code: 1002 # = Mean air temp at 2m
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
-  How_to_run:
+  How_to_run: # "Execution"
     Type: ONTHEFLY
+??? WEB service protocol ????
+??? How to manage changes in model without lots of code repeats ???
+?? Template to generate data ??? 
     Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/PSILARTEMP/run/ipmd
     Form_method: post # Could be get or post
     Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
@@ -146,7 +157,7 @@ DSS_models:
    Field_observation:
     species: SEPTAP
   How_to_run:
-    Type: ONTHEFLY
+    Type: ONTHEFLY # [ONTHEFLY, BATCH, TICKET]
     Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/SEPAPIICOL/run/ipmd
     Form_method: post # Could be get or post
     Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
