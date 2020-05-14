@@ -6,7 +6,7 @@ Datasources:
     Datasource_name: "Met Norway Locationforecast"
     Description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
     Public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
-    Endpoint: "https://ipmdecisions.nibio.no/WeatherService/rest/forecasts/yr/"
+    Endpoint: "https://ipmdecisions.nibio.no/weather/rest/forecasts/yr/"
     Needs_data_control: false
     Temporal:
       Historic: #  
@@ -27,7 +27,7 @@ Datasources:
     Datasource_name: "Landbruksmeteorologisk tjeneste"
     Description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
     Public_URL: "https://lmt.nibio.no/"
-    Endpoint: "https://ipmdecisions.nibio.no/LMTServices/rest/ipmdecisions/getdata/"
+    Endpoint: "https://ipmdecisions.nibio.no/lmtservices/rest/ipmdecisions/getdata/"
     Needs_data_control: true
     Temporal:
       Historic: #  
