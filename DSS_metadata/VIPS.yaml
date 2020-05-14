@@ -57,12 +57,12 @@ models:
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id (Must be PSILARTEMP)", "value":"PSILARTEMP"},
+          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id", "default":"PSILARTEMP", "description":"Must be PSILARTEMP"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
               "timeStart": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
@@ -115,7 +115,7 @@ models:
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^NAERSTADMO$", "title": "Model Id (Must be NAERSTADMO)"},
+          "modelId": {"type": "string", "pattern":"^NAERSTADMO$", "title": "Model Id (Must be NAERSTADMO)", "default":"NAERSTADMO"},
           "configParameters": {
             "type": "object",
             "title":"Configuration parameters",
@@ -166,17 +166,17 @@ models:
    field_observation:
     species: 
     - SEPTAP # EPPO Code
-  How_to_run:
-    Type: ONTHEFLY # [ONTHEFLY, BATCH, TICKET]
-    Endpoint: https://ipmdecisions.nibio.no/vipscore/models/SEPAPIICOL/run/ipmd
-    Form_method: post # Could be get or post
-    Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+  execution:
+    type: ONTHEFLY # [ONTHEFLY, BATCH, TICKET]
+    endpoint: https://ipmdecisions.nibio.no/vipscore/models/SEPAPIICOL/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_schema: |
+    input_schema: |
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^SEPAPIICOL$", "title": "Model Id (Must be SEPAPIICOL)"},
+          "modelId": {"type": "string", "pattern":"^SEPAPIICOL$", "title": "Model Id (Must be SEPAPIICOL)", "default":"SEPAPIICOL"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
@@ -186,14 +186,14 @@ models:
               "endDateCalculation": {"type": "string", "format":"date", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
                 "type": "array",
-                "items" {
+                "items": {
                   "$ref": "https://ipmdecisions.nibio.no/dss/rest/schema/fieldobservation"
                 }
               },
               "fieldObservationQuantifications": {
                 "type": "array",
-                "items" {
-                  "anyOf": [
+                "items": {
+                  "oneOf": [
                     {
                       "$ref": "#/definitions/fieldObs_SEPTAP"
                     }
@@ -207,7 +207,7 @@ models:
             "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
           }
         },
-        "required": ["modelId","configParameters"]
+        "required": ["modelId","configParameters"],
         "definitions": {
           "fieldObs_SEPTAP": {"title": "Septoria apiicola quantification", "properties": {"observed":{"title":"observed", "type":"boolean"}}}
         }
