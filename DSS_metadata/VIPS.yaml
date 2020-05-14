@@ -2,18 +2,18 @@
 # (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
 # General info about the DSS
-DSS_id: VIPS
-DSS_name: VIPS
-Public_URL: https://www.vips-landbruk.no/
-Contact_email: berit.nordskog@nibio.no
-Login_required: false
-DSS_Owner: 
+id: no.nibio.vips
+version: 2.0
+name: VIPS
+url: https://www.vips-landbruk.no/
+organization: 
  name: NIBIO
  country: Norway
  address: Postboks 115
  postal_code: "1431"
  city: Ås
-Languages:
+ email: berit.nordskog@nibio.no
+languages:
 - Norwegian
 - English
 # From here on we get model specific
@@ -22,67 +22,79 @@ Languages:
 # We use EPPO codes (https://gd.eppo.int/)
 # for pests and crops
 # We use these parameters/codes for weather data: 
-# https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v1.txt
-DSS_models:
-- DSS_model_name: Carrot rust fly temperature model
-  DSS_model_id: PSILARTEMP
-  Pests: 
+# https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml
+models:
+- name: Carrot rust fly temperature model
+  id: PSILARTEMP
+  version: 1.0
+  authors: # List of the model authors
+  - name: Berit Nordskog
+    email: berit.nordskog@nibio.no
+    organization: NIBIO
+  pests: 
   - PSILRO # EPPO code for carrot rust fly
-  Crops:
+  crops:
   - DAUCS # EPPO code for carrot
-  Type_of_decision: Short-term tactical
-  Type_of_output: Risk indication
-  Description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
-  Description: |
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
+  description: |
     The warning system model «Carrot rust fly temperature» is based on a Finnish temperature-based model (Markkula et al, 1998; Tiilikkala & Ojanen, 1999; Markkula et al, 2000). The model determines the start of the flight period for the 1st and 2nd generation of carrot rust fly based on accumuleted degree-days (day-degrees) over a base temperature of 5,0 °C. VIPS uses the model for the 1st generation only. 
     Standard air temperature (temperature measured 2 m above ground) is used in the model. Degree-days are defined for this model as the sum of the difference between a base temperature of 5,0 °C and the mean temperature for all days with a temperature >5,0 °C, in other words (daily mean temperature – 5,0 °C) from 1 March (beginning when the ground has thawed).
-  Input:
-   Weather: # TODO: 
+  citation: null # Optional. Use the DOI as identifier (list)
+  input:
+   weather: 
    - parameter_code: 1002 # = Mean air temp at 2m
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
-  How_to_run:
-    Type: ONTHEFLY
-    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/PSILARTEMP/run/ipmd
-    Form_method: post # Could be get or post
-    Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_schema: |
+    input_schema: |
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id (Must be PSILARTEMP)", "value":"PSILARTEMP"},
+          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id", "default":"PSILARTEMP", "description":"Must be PSILARTEMP"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
               "timeStart": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
       }
     # Definition of the result parameters specific for this DSS model
-    Output:  FOOBAR
+    output:  FOOBAR
 ###########
-- DSS_model_name: Nærstad model
-  DSS_model_id: NAERSTADMO
-  Pests:
+- name: Nærstad model
+  id: NAERSTADMO
+  version: 1.0
+  authors: # List of the model authors
+  - name: Ragnhild Nærstad
+    email: ragnhild.naerstad@syngenta.com
+    organization: Syngenta
+  pests:
   - PHYTIN # EPPO code for Potato late blight (Phytophthora infestans)
-  Crops:
+  crops:
   - SOLTU # EPPO code for potato
-  Type_of_decision: Short-term tactical
-  Type_of_output: Risk indication
-  Description_URL: https://www.vips-landbruk.no/forecasts/models/NAERSTADMO/ 
-  Description: |
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/NAERSTADMO/ 
+  description: |
     The model is based on several years of experiments where trap plants have been placed next to a potato field infected with late blight. Infections on these plants have been correlated with weather conditions the day of exposure, and this is the data the model is based on. The model predicts if there are favourable conditions for spore production and the following spread, survival and infection of these spores. The model produces an infection risk, and a value of 2.5 corresponds to one spot of late blight on each trap plant exposed. This value of 2.5 is the threshold where the model issues a warning.
-  Input:
-   Weather: # TODO: weather parameter codes, frequency codes and unit codes
+  input:
+   weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 1002 # = Mean temp at 2m measured in Celcius.
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 2001 # Precipitation measured in mm. 
@@ -93,17 +105,17 @@ DSS_models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
-  How_to_run:
-    Type: ONTHEFLY
-    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/NAERSTADMO/run/ipmd
-    Form_method: post # Could be get or post
-    Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+  execution:
+    type: ONTHEFLY
+    endpoint: https://ipmdecisions.nibio.no/vipscore/models/NAERSTADMO/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_schema: |
+    input_schema: |
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^NAERSTADMO$", "title": "Model Id (Must be NAERSTADMO)"},
+          "modelId": {"type": "string", "pattern":"^NAERSTADMO$", "title": "Model Id (Must be NAERSTADMO)", "default":"NAERSTADMO"},
           "configParameters": {
             "type": "object",
             "title":"Configuration parameters",
@@ -115,23 +127,31 @@ DSS_models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
       }
 
 #####
-- DSS_model_name: Septoria apiicola model
-  DSS_model_id: SEPAPIICOL
-  Pests: 
+- name: Septoria apiicola model
+  id: SEPAPIICOL
+  version: 1.0
+  authors: # List of the model authors
+  - name: Berit Nordskog
+    email: berit.nordskog@nibio.no
+    organization: NIBIO
+  - name: Arne Hermansen
+    email: arne.hermansen@nibio.no
+    organization: NIBIO
+  pests: 
   - SEPTAP # EPPO code
-  Crops:
+  crops:
   - APUGD # EPPO code for celery
-  Type_of_decision: Short-term tactical
-  Type_of_output: Risk indication
-  Description_URL: https://www.vips-landbruk.no/forecasts/models/SEPAPIICOL/
-  Description: |
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/SEPAPIICOL/
+  description: |
     This model is based on a calculation of how leaf wetness periods influence infection of celery by Septoria apiicola in susceptible host plants.
     
     Forecasts of infection risk are given after a minimum of 12 consecutive hours of leaf wetness. The wet periods are calculated from sensors placed 30 cm above ground. If such a sensor is not available, data from leaf wetness sensors placed 2 m above ground are used.
@@ -139,23 +159,24 @@ DSS_models:
     The model is developed in Michigan, USA and published by Lacy, 1994.
     
     It is generally assumed that this model has additional relevance for Septoria petroselini in parsley.
-  Input:
-   Weather: # TODO: weather parameter codes, frequency codes and unit codes
+  input:
+   weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
      interval: 3600
-   Field_observation:
-    species: SEPTAP
-  How_to_run:
-    Type: ONTHEFLY
-    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/SEPAPIICOL/run/ipmd
-    Form_method: post # Could be get or post
-    Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+   field_observation:
+    species: 
+    - SEPTAP # EPPO Code
+  execution:
+    type: ONTHEFLY # [ONTHEFLY, BATCH, TICKET]
+    endpoint: https://ipmdecisions.nibio.no/vipscore/models/SEPAPIICOL/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    Input_schema: |
+    input_schema: |
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^SEPAPIICOL$", "title": "Model Id (Must be SEPAPIICOL)"},
+          "modelId": {"type": "string", "pattern":"^SEPAPIICOL$", "title": "Model Id (Must be SEPAPIICOL)", "default":"SEPAPIICOL"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
@@ -163,25 +184,33 @@ DSS_models:
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
               "startDateGrowth": {"type": "string", "format":"date", "title": "Start date of growth (YYYY-MM-DD)"},
               "endDateCalculation": {"type": "string", "format":"date", "title": "End date of calculation (YYYY-MM-DD)"},
-              "pestObservations": {
-                "title" : "Pest observations",
+              "fieldObservations": {
                 "type": "array",
                 "items": {
-                  "type": "object",
-                  "properties": {
-                    "timeOfObservation": {"type":"string", "format": "date-time", "title":"Time of observation (e.g. 2018-11-13T20:20:39+00:00)"},
-                    "species":{"type": "string", "pattern": "^[A-Z0-9]{5,6}$", "title":"EPPO Code for species (Should be SEPTAP)"}
-                  }
+                  "$ref": "https://ipmdecisions.nibio.no/dss/rest/schema/fieldobservation"
+                }
+              },
+              "fieldObservationQuantifications": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/fieldObs_SEPTAP"
+                    }
+                  ]
                 }
               }
             },
             "required": ["timeZone","startDateGrowth","endDateCalculation"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/WeatherService/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
           }
         },
-        "required": ["modelId","configParameters"]
+        "required": ["modelId","configParameters"],
+        "definitions": {
+          "fieldObs_SEPTAP": {"title": "Septoria apiicola quantification", "properties": {"observed":{"title":"observed", "type":"boolean"}}}
+        }
       }
 
 
