@@ -75,7 +75,7 @@ models:
         "required": ["modelId","configParameters"]
       }
     # Definition of the result parameters specific for this DSS model
-    output:  FOOBAR
+  output:  FOOBAR
 ###########
 - name: Nærstad model
   id: NAERSTADMO
@@ -185,12 +185,14 @@ models:
               "startDateGrowth": {"type": "string", "format":"date", "title": "Start date of growth (YYYY-MM-DD)"},
               "endDateCalculation": {"type": "string", "format":"date", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
+                "title": "Field observations",
                 "type": "array",
                 "items": {
                   "$ref": "https://ipmdecisions.nibio.no/dss/rest/schema/fieldobservation"
                 }
               },
               "fieldObservationQuantifications": {
+                "title": "Field observation quantifications",
                 "type": "array",
                 "items": {
                   "oneOf": [
