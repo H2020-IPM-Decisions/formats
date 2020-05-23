@@ -46,7 +46,7 @@
     "timeStart",
     "timeEnd",
     "interval",
-    "weatherParameters"
+    "resultParameters"
   ],
   "definitions": {
     "LocationResult": {
@@ -54,17 +54,17 @@
       "additionalProperties": false,
       "properties": {
         "longitude": {
-          "type": "number",
+          "type": ["number","null"],
           "description": "The longitude of the location. Decimal degrees (WGS84)",
           "title": "Longitude (WGS84)"
         },
         "latitude": {
-          "type": "number",
+          "type": ["number","null"],
           "description": "The latitude of the location. Decimal degrees (WGS84)",
           "title": "Latitude (WGS84)"
         },
         "altitude": {
-          "type": "number",
+          "type": ["number","null"],
           "description": "The altitude of the location. Measured in meters",
           "title": "Altitude (Meters)"
         },
@@ -90,3 +90,4 @@
     }
   }
 }
+
