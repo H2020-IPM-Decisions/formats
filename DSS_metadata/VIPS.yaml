@@ -59,7 +59,7 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
   execution: 
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd
+    endpoint: http://vipscore/models/PSILARTEMP/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -85,7 +85,18 @@ models:
         "required": ["modelId","configParameters"]
       }
     # Definition of the result parameters specific for this DSS model
-  output:  FOOBAR
+  output: 
+    warning_status_interpretation: |-
+      Green warning indicates that the flight period has not yet begun.
+      Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+      Red warning indicates peak flight period.
+      Grey warning indicates that the flight period of the 1st generation is over.
+      Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMDD5C
+        title: Accumulated day degrees
+        description: The accumulated day degrees with a base temperature of 5 degrees celcius
 ###########
 - name: Nærstad model
   id: NAERSTADMO
@@ -142,7 +153,17 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
-
+  output: 
+    warning_status_interpretation: |-
+      Risk < 1 = no warning (Green)
+      Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+      Risk > 2,5 = warning issued (Red)
+      When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: RISK
+        title: Calculated risk value
+        description: null
 #####
 - name: Septoria apiicola model
   id: SEPAPIICOL
@@ -224,5 +245,17 @@ models:
           "fieldObs_SEPTAP": {"title": "Septoria apiicola quantification", "properties": {"observed":{"title":"observed", "type":"boolean"}}}
         }
       }
-
+  output: 
+    warning_status_interpretation: |-
+      Green = No risk of infection.
+      Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+      Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: WET_DAY
+        title: Was this a wet day
+        description: Based on leaf wetness measurements
+      - id: PEST_OBSERVED
+        title: Has the pest been observed in or near the field, or in the nearby region
+        description: Without this, the warning status will never exceed yellow status
 
