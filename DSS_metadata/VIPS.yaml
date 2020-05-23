@@ -59,7 +59,7 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
   execution: 
     type: ONTHEFLY
-    endpoint: http://vipscore/models/PSILARTEMP/run/ipmd
+    endpoint: https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
