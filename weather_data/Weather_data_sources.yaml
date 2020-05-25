@@ -6,7 +6,7 @@ datasources:
     name: "Met Norway Locationforecast"
     description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
     public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
-    endpoint: "https://ipmdecisions.nibio.no/weather/rest/forecasts/yr/"
+    endpoint: "https://ipmdecisions.nibio.no/weather/rest/weatheradapter/yr/"
     needs_data_control: false
     temporal:
       historic: #  
