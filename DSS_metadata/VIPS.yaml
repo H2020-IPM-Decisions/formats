@@ -50,7 +50,6 @@ models:
     # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
     countries:
       - NOR
-      - SWE
     # Optionally, use a custom polygon
     geoJSON: |-
       {}
@@ -115,6 +114,17 @@ models:
   description_URL: https://www.vips-landbruk.no/forecasts/models/NAERSTADMO/ 
   description: |
     The model is based on several years of experiments where trap plants have been placed next to a potato field infected with late blight. Infections on these plants have been correlated with weather conditions the day of exposure, and this is the data the model is based on. The model predicts if there are favourable conditions for spore production and the following spread, survival and infection of these spores. The model produces an infection risk, and a value of 2.5 corresponds to one spot of late blight on each trap plant exposed. This value of 2.5 is the threshold where the model issues a warning.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+      - SWE
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
   input:
    weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 1002 # = Mean temp at 2m measured in Celcius.
@@ -191,6 +201,16 @@ models:
     The model is developed in Michigan, USA and published by Lacy, 1994.
     
     It is generally assumed that this model has additional relevance for Septoria petroselini in parsley.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
   input:
    weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
