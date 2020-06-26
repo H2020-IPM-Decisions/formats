@@ -1,6 +1,8 @@
 {
   "@context":{
-    
+
+    "type": "@type",
+    "id": "@id",
     "schema":"http://www.schema.org/",
     "codemeta":"https://codemeta.github.io/terms/",
     
@@ -31,7 +33,7 @@
     "releaseNotes":{"@id":"schema:releaseNotes"},
     "softwareHelp": { "@id": "schema:softwareHelp"},
     "citation":{"@id":"schema:citation"},
-    "countriesNotSupported":{"@id":"countriesNotSupported"}
+    "countriesNotSupported":{"@id":"countriesNotSupported"},
     
     "issueTracker": {"@id":"codemeta:issueTracker"},
     "developmentStatus":{"@id":"codemeta:developmentStatus"},
