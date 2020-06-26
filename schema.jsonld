@@ -1,0 +1,47 @@
+{
+  "@context":{
+    
+    "schema":"http://www.schema.org/",
+    "codemeta":"https://codemeta.github.io/terms/",
+    
+    "Organization":{"@id":"schema:Organization"},
+    "Person":{"@id":"schema:Person"},
+    "softwareApplication":{"@id":"schema:softwareApplication"},
+
+    "identifier":{"@id":"schema:identifier"},
+    "name":{"@id":"schema:name"},
+    "codeRepository":{"@id":"schema:codeRepository"},
+    "programmingLanguage":{"@id":"schema:codeRepository"},
+    "applicationCategory":{"@id":"schema:applicationCategory"},
+    "operatingSystem":{"@id":"schema:operatingSystem"},
+    "softwareRequirements":{"@id":"schema:softwareRequirements"},
+    "keywords":{"@id":"schema:keywords"},
+    "dateCreated":{"@id":"schema:dateCreated"},
+    "dateModified":{"@id":"schema:dateModified"},
+    "version":{"@id":"schema:version"},
+    "license":{"@id":"schema:licence"},
+    "description":{"@id":"schema:description"},	
+    "downloadUrl":{"@id":"schema:downloadUrl"},
+    "author": { "@id": "schema:author"},
+    "maintainer":{"@id":"schema:maintainer"},
+    "email":{"@id":"schema:email"},
+    "affiliation": { "@id": "schema:affiliation"},
+    "runtimePlatform": { "@id": "schema:runtimePlatform"},
+    "installUrl": { "@id": "schema:installUrl"},
+    "releaseNotes":{"@id":"schema:releaseNotes"},
+    "softwareHelp": { "@id": "schema:softwareHelp"},
+    "citation":{"@id":"schema:citation"},
+    "countriesNotSupported":{"@id":"countriesNotSupported"}
+    
+    "issueTracker": {"@id":"codemeta:issueTracker"},
+    "developmentStatus":{"@id":"codemeta:developmentStatus"},
+    "buildInstructions":{"@id":"codemeta:buildInstructions"},
+    "contIntegration":{"@id":"codemeta:contIntegration"},
+    "embargoDate":{"@id":"codemeta:embargoDate"},
+    "referencePublication":{"@id":"codemeta:referencePublication"},
+    "readme":{"@id":"codemeta:readme"},
+    "funding": { "@id": "codemeta:funding" },
+    "softwareSuggestions":{"@id":"codemetasoftwareSuggestions"}
+
+  }
+}
