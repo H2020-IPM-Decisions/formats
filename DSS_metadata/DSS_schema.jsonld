@@ -1,0 +1,23 @@
+{
+    "@context":{
+        "schema": "http://www.schema.org",
+         
+ 
+        "id":{"@id":"schema:identifier"},
+        "name":{"@id": "schema:name"},
+        "version":{"@id": "schema:version"},
+        "url":{"@id":"schema:url"},
+
+        "organization":{"@id":"schema:Organization"},
+        "address":{"@id":"schema:address"},
+        "country":{"@id":"schema:Country"},
+        "postal_code":{"@id":"schema:postalCode"},
+        "city":{"@id":"schema:City"},
+        "email":{"@id":"schema:email"},
+
+        "languages":{"@id":"schema: availableLanguage","@container": "@list"},
+
+        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"Model"}
+      
+    }
+}

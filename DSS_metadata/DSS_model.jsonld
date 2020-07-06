@@ -1,0 +1,27 @@
+{
+    "@context":{
+        "schema": "http://schema.org/",
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
+        
+        "@type":"ipm:models",
+        "id":{"@id":"schema:identifier"},
+        "name": {"@id":"schema:name"},
+        "version":{"@id":"schema:version"},
+        
+        "Person":{"@id":"schema:Person"},
+        "authors":{"@id":"schema:author"},
+        "email":{"@id":"schema:email"},
+        "organization":{"@id":"schema:affiliation"},
+        
+        "pests":{"@id":"ipm:pests","@container":"@list"},
+        "crops":{"@id":"ipm:crops","@container":"@list"},
+        "Keywords":{"@id":"schema:Keywords"},
+        "type_of_decision":{"@id":"ipm:type_of_decision"},
+        "type_of_output":{"@id":"ipm:type_of_output"},
+        "url":{"@id":"schema:url"},
+        "description":{"@id":"schema:description"},
+        "citation":{"@id":"schema:citation"},
+        "valid_spatial":{"@id":"schema:CountriesSupported"}
+
+    }
+}
