@@ -42,15 +42,15 @@ DSS_models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
   How_to_run:
     Type: ONTHEFLY
-    Endpoint: http://vipscore/models/PSILARTEMP/run/ipmd
+    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/PSILARTEMP/run/ipmd
     Form_method: post # Could be get or post
     Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     Input_schema: |
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id (Must be PSILARTEMP)"},
+          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id (Must be PSILARTEMP)", "value":"PSILARTEMP"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
@@ -67,6 +67,8 @@ DSS_models:
         },
         "required": ["modelId","configParameters"]
       }
+    # Definition of the result parameters specific for this DSS model
+    Output:  FOOBAR
 ###########
 - DSS_model_name: Nærstad model
   DSS_model_id: NAERSTADMO
@@ -93,7 +95,7 @@ DSS_models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
   How_to_run:
     Type: ONTHEFLY
-    Endpoint: http://vipscore/models/NAERSTADMO/run/ipmd
+    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/NAERSTADMO/run/ipmd
     Form_method: post # Could be get or post
     Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -145,7 +147,7 @@ DSS_models:
     species: SEPTAP
   How_to_run:
     Type: ONTHEFLY
-    Endpoint: http://vipscore/models/SEPAPIICOL/run/ipmd
+    Endpoint: https://ipmdecisions.nibio.no/VIPSCore/models/SEPAPIICOL/run/ipmd
     Form_method: post # Could be get or post
     Content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
