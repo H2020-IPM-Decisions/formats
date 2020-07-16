@@ -1,9 +1,13 @@
 {
     "@context":{
         "schema": "http://schema.org/",
-        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md/",
         
-        "@type":"ipm:models",
+
+        "@type":"DSS_Model",
+
+        "type":"@type",
+
         "id":{"@id":"schema:identifier"},
         "name": {"@id":"schema:name"},
         "version":{"@id":"schema:version"},
@@ -21,7 +25,25 @@
         "url":{"@id":"schema:url"},
         "description":{"@id":"schema:description"},
         "citation":{"@id":"schema:citation"},
-        "valid_spatial":{"@id":"schema:CountriesSupported"}
+        "valid_spatial":{"@id":"schema:CountriesSupported"},
+
+        "input":{"@id":"ipm:input"},
+        "weather":{"@id":"ipm:weather","@container":"@list", "@type":"Dataset"},
+        "parameter_code":{"@id":"ipm:parameter_code"},
+        "interval":{"@id":"ipm:interval"},
+        "execution":{"@id":"ipm:execution"},
+        "endpoint":{"@id":"ipm:endpoint"},
+        "form_method":{"@id":"ipm:form_method"},
+        "content_type":{"@id":"ipm:content_type"},
+        "input_schema":{"@id":"ipm:input_schema"},
+        "output":{"@id":"ipm:output"},
+        "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
+        "result_parameters":{"@id":"ipm:result_parameters"},
+        "title":{"@id":"ipm:title"}
+
+
+
+
 
     }
 }

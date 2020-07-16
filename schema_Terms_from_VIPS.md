@@ -1,5 +1,19 @@
-# Properties description can be issue from schema
+# Json-LD Documentation
 
+## Sources documentations
+
+Json-ld: <https://json-ld.org/>
+Json-ld documentation: <https://json-ld.org/learn.html>
+schema: <http://www.schema.org>
+
+## JSON-LD Context creation
+
+1. DSS_schema context (VIPS): DSS_schema.jsonld
+2. DSS_model context: DSS_model.jsonld
+
+## Terms definition
+
+### Properties description can be issue from schema
 
 | properties | Type | reference | description |
 |--|--|--|--|
@@ -21,11 +35,12 @@
 | url | URL | schema:url | schema:Thing | URL of the item. |
 | version | Number or Text | schema:version | The version of the CreativeWork embodied by a specified resource. |
 
-# Properties description can be issue from ipmdecision
+### Properties description can be issue from ipmdecision
+
 | properties | Type | reference | description |
 |--|--|--|--|
 | citation | URL | ipmdecision:citation | List of DOI about model |
-| content_type |  | ipmdecision:form_method | Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data |
+| content_type |  | ipmdecision:form_method | Regular forms: application/x-www-form-urlencoded , Regular forms with files: multipart/form-data |
 | crops | List | ipmdecision:crops | list of crop using EPPO code. See code on <https://gd.eppo.int/> |
 | description_URL | URL | ipmdecision:description_URL | url of documentation about model |
 | endpoint | URL | ipmdecision:endpoint | URL where your service can be accessed by a client application. |
@@ -33,7 +48,7 @@
 | form_method | Text | ipmdecision:form_method | The formmethod attribute specifies which HTTP method to use when sending the form-data,The form-data can be sent as URL variables (with method="get") or as HTTP post (with method="post") definition trouvé dans <https://www.w3schools.com/tags/att_button_formmethod.asp> |
 | input_schema | schema | ipmdecision:input_format | The input template should adhere to the JSON Schema standard: <https://json-schema.org/> |
 | intput | Input | ipmdecision:input | datatype input in the model |
-| models | model | ipmdecision:models | model Catalog with their description |
+| DSS_Model | DSS_Model | ipmdecision:DSS_Model | model Catalog with their descriptions |
 | output |  | ipmdecision:output | Definition of the result parameters specific for this DSS model |
 | parameter_code | Number | ipmdecision:parameter_code | is an identifier for described variable parameter_code id is on <https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/> |
 | pests | List | ipmdecision:pests | list of a pest using EPPO code See code on <https://gd.eppo.int/> |
@@ -43,11 +58,15 @@
 | valid_spatial | valid_spatial | ipmdecision:valid_spatial | spatial validation of model |
 | warning_status_interpretation | Text | ipmdecision:warning_status_interpretation | Definition of the warning_station_interpretation specific for this DSS model |
 | weather | Datatype | ipmdecision:weather | weather data for parameter_code is described in <https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml> |
+| interval | INT | ipmdecision:interval | Sampling interval in second |
+| title | Text|ipmdecision:title|Title of the graph or parameter|
 
->[!NOTE] 
+>[!NOTE]
 >I'm not sure about the property for:
+>
 > * id
 > * languages
 > * valid_spatial
 >
 >Problem with organization first describe organization et in author describe affiliation
+> Datatype: schema

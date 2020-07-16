@@ -1,6 +1,6 @@
 {
     "@context":{
-        "schema": "http://www.schema.org",
+        "schema": "http://www.schema.org/",
          
  
         "id":{"@id":"schema:identifier"},
@@ -17,7 +17,7 @@
 
         "languages":{"@id":"schema: availableLanguage","@container": "@list"},
 
-        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"Model"}
+        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"DSS_Model"}
       
     }
 }
