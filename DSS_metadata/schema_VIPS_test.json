@@ -1,0 +1,42 @@
+{
+    "@context":[
+        "https://raw.githubusercontent.com/mlabadie/formats/master/DSS_metadata/DSS_schema.jsonld/",
+        "https://raw.githubusercontent.com/mlabadie/formats/master/DSS_metadata/DSS_model.jsonld/"],
+    
+    "id":"no.nibio.vips",
+    "name":"VIPS",
+    "version":"2.0",
+    "url":"https://www.vips-landbruk.no/",
+    "organization":{
+        "@type":"Organization",
+        "name":"NIBIO",
+        "address":"Postboks 115",
+        "country": "Norway",
+        "postal_code":"1431",
+        "city":"Ås",
+        "email": "berit.nordskog@nibio.no",
+        "url": "https://www.nibio.no/"
+    },
+    "languages": "Norwegian, English",
+    "DSS_Model":[{
+        "@type":"Model",
+        "id":"PSILARTEMP",
+        "name": "Carrot rust fly temperature model",
+        "version":"1.0",
+        "authors":{
+            "@type":"Person",
+            "name":"Berit Nordskog",
+            "email": "berit.nordskog@nibio.no",
+            "organization": "NIBIO"
+        },
+        "pests": "PSILRO",
+        "crops": "DAUCS",
+        "keywords":"foo, bar, mechanistic, regression",
+        "type_of_decision":"Short-term tactical",
+        "type_of_output":"Risk indication",
+        "url":"https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/",
+        "description": "The warning system model «Carrot rust fly temperature» is based on a Finnish temperature-based model (Markkula et al, 1998; Tiilikkala & Ojanen, 1999; Markkula et al, 2000). The model determines the start of the flight period for the 1st and 2nd generation of carrot rust fly based on accumulated degree-days (day-degrees) over a base temperature of 5,0 °C. VIPS uses the model for the 1st generation only.Standard air temperature (temperature measured 2 m above ground) is used in the model. Degree-days are defined for this model as the sum of the difference between a base temperature of 5,0 °C and the mean temperature for all days with a temperature >5,0 °C, in other words (daily mean temperature – 5,0 °C) from 1 March (beginning when the ground has thawed).",
+        "citation":null,
+        "valid_spatial":"NOR"
+    }]
+}
