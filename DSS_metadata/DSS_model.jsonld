@@ -1,3 +1,4 @@
+<script type="application/ld+json">
 {
     "@context":{
         "schema": "http://schema.org/",
@@ -40,10 +41,6 @@
         "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
         "result_parameters":{"@id":"ipm:result_parameters"},
         "title":{"@id":"ipm:title"}
-
-
-
-
-
     }
 }
+</script>
