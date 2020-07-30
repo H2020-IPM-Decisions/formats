@@ -1,7 +1,7 @@
 {
     "@context":[
-        "https://raw.githubusercontent.com/mlabadie/formats/master/DSS_metadata/DSS_schema.jsonld/",
-        "https://raw.githubusercontent.com/mlabadie/formats/master/DSS_metadata/DSS_model.jsonld/"],
+        "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_schema.jsonld",
+        "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_schema.jsonld"],
     
     "id":"no.nibio.vips",
     "name":"VIPS",
