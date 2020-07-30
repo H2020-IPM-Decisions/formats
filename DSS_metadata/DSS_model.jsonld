@@ -1,7 +1,7 @@
 {
     "@context":{
         "schema": "http://schema.org/",
-        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md/",
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
         
 
         "@type":"DSS_Model",
