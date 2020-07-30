@@ -1,4 +1,3 @@
-<script type="application/ld+json">
 {
     "@context":{
         "schema": "http://schema.org/",
@@ -43,4 +42,3 @@
         "title":{"@id":"ipm:title"}
     }
 }
-</script>
