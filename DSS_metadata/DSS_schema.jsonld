@@ -27,7 +27,7 @@
         "url":{"@id":"schema:url"},
         "description":{"@id":"schema:description"},
         "citation":{"@id":"schema:citation"},
-        "valid_spatial":{"@id":"schema:CountriesSupported"},
+        "valid_spatial":{"@id":"schema:CountriesSupported"}
       
     }
 }
