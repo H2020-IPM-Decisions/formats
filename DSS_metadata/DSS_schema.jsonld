@@ -18,7 +18,7 @@
 
         "languages":{"@id":"schema:availableLanguage","@container": "@list"},
 
-        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"DSS_Model"}
+        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"DSS_Model"},
         "pests":{"@id":"ipm:pests","@container":"@list"},
         "crops":{"@id":"ipm:crops","@container":"@list"},
         "Keywords":{"@id":"schema:Keywords"},
