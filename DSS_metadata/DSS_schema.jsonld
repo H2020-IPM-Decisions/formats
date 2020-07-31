@@ -7,14 +7,14 @@
  
         "id":{"@id":"schema:identifier","@type":"@id"},
         "name":{"@id": "schema:name"},
-        "version":{"@id": "schema:version","@type":"@id"},
+        "version":{"@id": "schema:version"},
         "url":{"@id":"schema:url"},
-        "organization":{"@id":"schema:Organization","@type":"@id"},
+        "organization":{"@id":"schema:Organization","@type":"schema:Organization"},
         "address":{"@id":"schema:address"},
         "country":{"@id":"schema:Country"},
         "postal_code":{"@id":"schema:postalCode"},
         "city":{"@id":"schema:City"},
-        "email":{"@id":"schema:email","@type":"@id"},
+        "email":{"@id":"schema:email"},
         "languages":{"@id":"schema:availableLanguage"},
 
         "DSS_Model":{"@id":"ipm:models"}    
