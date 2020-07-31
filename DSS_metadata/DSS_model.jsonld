@@ -5,49 +5,49 @@
         "xsd":"http://www.w3.org/2001/XMLSchema#",        
         
         "DSS_Model":{
-
             "@id":"ipm:DSS_model",
             "@type":"DSS_Model",
-            "@container":"@list",
+            "@container":"@list"},
             
-            "id":{"@id":"schema:identifier","@type":"@id"},
-            "name": {"@id":"schema:name","@type":"@id"},
-            "version":{"@id":"schema:version","@type":"@id"},
+        "id":{"@id":"schema:identifier","@type":"@id"},
+        "name": {"@id":"schema:name","@type":"@id"},
+        "version":{"@id":"schema:version","@type":"@id"},
             
-            "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
-            "email":{"@id":"schema:email","@type":"@id"},
-            "organization":{"@id":"schema:affiliation","@type":"@id"},
+        "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
+        "email":{"@id":"schema:email","@type":"@id"},
+        "organization":{"@id":"schema:affiliation","@type":"@id"},
             
-            "pests":{"@id":"ipm:pests","@container":"@list","@type":"xsd:Text"},
-            "crops":{"@id":"ipm:crops","@container":"@list","@type":"xsd:Text"},
-            "Keywords":{"@id":"schema:Keywords","@container":"@list","@type":"xsd:Text"},
-            "type_of_decision":{"@id":"ipm:type_of_decision","@type":"xsd:Text"},
-            "type_of_output":{"@id":"ipm:type_of_output","@type":"xsd:Text"},
-            "url":{"@id":"schema:url","@type":"@id"},
-            "description":{"@id":"schema:description","@type":"xsd:Text"},
-            "citation":{"@id":"schema:citation"},
-            "valid_spatial":{"@id":"schema:countriesSupported","@type":"@id"},
+        "pests":{"@id":"ipm:pests","@container":"@list","@type":"xsd:Text"},
+        "crops":{"@id":"ipm:crops","@container":"@list","@type":"xsd:Text"},
+        "Keywords":{"@id":"schema:Keywords","@container":"@list","@type":"xsd:Text"},
+        "type_of_decision":{"@id":"ipm:type_of_decision","@type":"xsd:Text"},
+        "type_of_output":{"@id":"ipm:type_of_output","@type":"xsd:Text"},
+        "url":{"@id":"schema:url","@type":"@id"},
+        "description":{"@id":"schema:description","@type":"xsd:Text"},
+        "citation":{"@id":"schema:citation"},
+        "valid_spatial":{"@id":"schema:countriesSupported","@type":"@id"},
     
-            "input":{
-                "@id":"ipm:input",
-                "weather":{"@id":"ipm:weather",
-                    "@container":"@set",
-                    "parameter_code":{"@id":"ipm:parameter_code","@type":"xsd:interger"},
-                    "interval":{"@id":"ipm:interval","@type":"xsd:interger"}
+        "input":{
+            "@id":"ipm:input",
+            "weather":{
+                "@id":"ipm:weather",
+                "@container":"@set",
+                "parameter_code":{"@id":"ipm:parameter_code","@type":"xsd:interger"},
+                "interval":{"@id":"ipm:interval","@type":"xsd:interger"}
                 },
-                "execution":{"@id":"ipm:execution",
-                    "endpoint":{"@id":"ipm:endpoint"},
-                    "form_method":{"@id":"ipm:form_method"},
-                    "content_type":{"@id":"ipm:content_type"},
-                    "input_schema":{"@id":"ipm:input_schema"}
+            "execution":{"@id":"ipm:execution",
+               "endpoint":{"@id":"ipm:endpoint"},
+                "form_method":{"@id":"ipm:form_method"},
+                "content_type":{"@id":"ipm:content_type"},
+                "input_schema":{"@id":"ipm:input_schema"}
                 }
             },
-            "output":{
-                "@id":"ipm:output",
-                "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation","@type":"xsd:Text"},
-                "result_parameters":{"@id":"ipm:result_parameters","@type":"xsd:Text"},
-                "title":{"@id":"ipm:title","@type":"xsd:Text"}
-            }
+        "output":{
+            "@id":"ipm:output",
+            "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation","@type":"xsd:Text"},
+            "result_parameters":{"@id":"ipm:result_parameters","@type":"xsd:Text"},
+            "title":{"@id":"ipm:title","@type":"xsd:Text"}
         }
+        
     }
 }
