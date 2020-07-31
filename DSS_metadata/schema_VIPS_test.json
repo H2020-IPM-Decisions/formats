@@ -1,5 +1,7 @@
 {
-  "@context":"https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_schema.jsonld",
+  "@context":[
+    "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_schema.jsonld",
+    "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_model.jsonld"],
   
   "@id":"no.nibio.vips",
   "id":"no.nibio.vips",

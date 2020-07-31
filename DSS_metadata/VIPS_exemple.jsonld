@@ -4,7 +4,6 @@
     "schema":"https://schema.org/",
     "ipm":"https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md/",
     
-    "type":"@type",
     "id":{"@id":"schema:identifier"},
     "Person":{"@id":"schema:Person"},
     "Organization":{"@id":"schema:Organization"},

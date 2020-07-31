@@ -5,8 +5,10 @@
         "xsd":"http://www.w3.org/2001/XMLSchema#",        
         
         "DSS_Model":{
+
             "@id":"ipm:DSS_model",
             "@type":"DSS_Model",
+            "@container":"@list",
             
             "id":{"@id":"schema:identifier","@type":"@id"},
             "name": {"@id":"schema:name","@type":"@id"},
