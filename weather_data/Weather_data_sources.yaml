@@ -1,42 +1,317 @@
 # TEST YAML sample of weather datasource meta data to be used by the plaform
 # (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
-Datasources:
+datasources:
   - 
-    Datasource_name: "Met Norway Locationforecast"
-    Description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
-    Public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
-    Endpoint: "https://ipmdecisions.nibio.no/WeatherService/rest/forecasts/yr/"
-    Needs_data_control: false
-    Temporal:
-      Historic: #  
+    name: "Met Norway Locationforecast"
+    description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
+    public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
+    organization: 
+      name: The Norwegian Meteorological Institute
+      country: Norway
+      address: Postboks 43 Blindern
+      postal_code: "0371"
+      city: Oslo
+      email: david.melchior@met.no
+      url: https://www.met.no/en
+    endpoint: "https://ipmdecisions.nibio.no/weather/rest/weatheradapter/yr/"
+    needs_data_control: false
+    temporal:
+      historic: #  
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
-      Forecast: 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
-    Access_type: location
-    # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
-    Spatial: |- 
-      {"type": "Sphere"}
-    Parameters:
-      Common:
+      forecast: 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    access_type: location
+    spatial: 
+      # Using country codes to get GeoJSON. Saves a lot of duplication.
+      # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+      # e.g.
+      # - NOR
+      # - SWE
+      countries: null
+      # "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+      geoJSON: |- 
+        {"type": "Sphere"}
+    parameters:
+      common:
        - 1001 # Instantaneous temperature at 2m (Celcius)
        - 3001 # Instantaneous RH at 2m (%)
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   -
-    Datasource_name: "Landbruksmeteorologisk tjeneste"
-    Description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
-    Public_URL: "https://lmt.nibio.no/"
-    Endpoint: "https://ipmdecisions.nibio.no/LMTServices/rest/ipmdecisions/getdata/"
-    Needs_data_control: true
-    Temporal:
-      Historic: #  
+    name: Finnish Meteorological Institute measured data
+    description: Weather station network covering Finland. Data availability varies between the stations. The oldest station is from 1844
+    public_URL: https://en.ilmatieteenlaitos.fi/
+    organization: 
+      name: The Finnish Meteorological Institute
+      country: Finland
+      address: P.O. BOX 503
+      postal_code: FI-00101
+      city: Helsinki
+      email: webmaster@fmi.fi
+      url: https://en.ilmatieteenlaitos.fi/
+    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/fmi/
+    needs_data_control: false
+    temporal:
+      historic: #  
+        start: "2020-01-01" # Start == null => No measured/historic/observational data
+        end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
+      forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    access_type: stations
+    spatial:
+      # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+      # If the resource is a gridded service, the Spatial property is a polygon or a set of polygons
+      # The polygons may be specified directly in the GeoJSON property, or it may be a referenced polygon
+      # in the countries list. Open data sources exist, such as https://github.com/datasets/geo-countries
+      # If the resource is a FeatureCollection of points, this is a weather station network of between at least 1 and an indefinite number of stations
+      # WMOCertified: 1-5 where 1 is best and 5 is failing. If property non existant or == null => Not tested (so probably bad)
+      countries: ## Using country codes to get GeoJSON. Saves a lot of duplication
+        - FIN # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+      geoJSON: |-
+        {
+          "type": "FeatureCollection", 
+          "features": [
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.26", "63.09"]}, "properties": {"name": "Alajärvi Möksy", "id": "101533"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.52", "61.27"]}, "properties": {"name": "Asikkala Pulkkilanharju", "id": "101185"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.85", "69.04"]}, "properties": {"name": "Enontekiö Kilpisjärvi Saana", "id": "102017"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.79", "69.05"]}, "properties": {"name": "Enontekiö Kilpisjärvi", "id": "102016"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.58", "68.6"]}, "properties": {"name": "Enontekiö Näkkälä", "id": "102019"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.43", "68.36"]}, "properties": {"name": "Enontekiö airport", "id": "101976"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.57", "60.29"]}, "properties": {"name": "Espoo Nuuksio", "id": "852678"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.79", "60.18"]}, "properties": {"name": "Espoo Tapiola", "id": "874863"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.42", "64.14"]}, "properties": {"name": "Haapavesi Mustikkamäki", "id": "101695"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.73", "65.02"]}, "properties": {"name": "Hailuoto Keskikylä", "id": "101776"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.56", "65.04"]}, "properties": {"name": "Hailuoto Marjaniemi", "id": "101784"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.44", "63.45"]}, "properties": {"name": "Halsua Purola", "id": "101528"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["19.13", "60.3"]}, "properties": {"name": "Hammarland Märket", "id": "100919"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.95", "59.77"]}, "properties": {"name": "Hanko Russarö", "id": "100932"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.91", "59.81"]}, "properties": {"name": "Hanko Tulliniemi", "id": "100946"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.25", "59.84"]}, "properties": {"name": "Hanko Tvärminne", "id": "100953"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.32", "61.11"]}, "properties": {"name": "Hattula Lepaa", "id": "101151"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.05", "61.2"]}, "properties": {"name": "Heinola Asemantaus", "id": "101196"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.98", "60.11"]}, "properties": {"name": "Helsinki Harmaja", "id": "100996"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.93", "59.95"]}, "properties": {"name": "Helsinki lighthouse", "id": "101003"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.94", "60.18"]}, "properties": {"name": "Helsinki Kaisaniemi", "id": "100971"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.96", "60.2"]}, "properties": {"name": "Helsinki Kumpula", "id": "101004"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.05", "60.25"]}, "properties": {"name": "Helsinki Malmi airfield", "id": "101009"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.17", "60.22"]}, "properties": {"name": "Helsinki Vuosaari Käärmeniementie", "id": "103943"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.2", "60.21"]}, "properties": {"name": "Helsinki Vuosaari harbour", "id": "151028"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.8", "60.6"]}, "properties": {"name": "Hyvinkää Hyvinkäänkylä", "id": "101130"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.49", "61"]}, "properties": {"name": "Hämeenlinna Katinen", "id": "101150"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.04", "61.05"]}, "properties": {"name": "Hämeenlinna Lammi Pappila", "id": "101154"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.84", "62.69"]}, "properties": {"name": "Ilmajoki Seinäjoki airport", "id": "137188"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["30.98", "62.77"]}, "properties": {"name": "Ilomantsi Mekrijärvi", "id": "101651"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["31.04", "63.14"]}, "properties": {"name": "Ilomantsi Pötsönvaara", "id": "101649"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.74", "68.9"]}, "properties": {"name": "Inari Angeli Lintupuoliselkä", "id": "102026"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.42", "68.61"]}, "properties": {"name": "Inari Ivalo airport", "id": "102033"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.27", "69.14"]}, "properties": {"name": "Inari Kaamanen", "id": "102047"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.89", "69.58"]}, "properties": {"name": "Inari Kirakkajärvi", "id": "102055"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.3", "68.85"]}, "properties": {"name": "Inari Nellim", "id": "102052"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.3", "68.48"]}, "properties": {"name": "Inari Raja-Jooseppi", "id": "102009"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.44", "68.43"]}, "properties": {"name": "Inari Saariselkä Kaunispää", "id": "102006"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.41", "68.42"]}, "properties": {"name": "Inari Saariselkä tourist centre", "id": "102005"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.76", "69.05"]}, "properties": {"name": "Inari Seitalaassa", "id": "129963"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.49", "69.07"]}, "properties": {"name": "Inari Väylä", "id": "102042"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.01", "59.93"]}, "properties": {"name": "Inkoo Bågaskär", "id": "100969"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.72", "62.6"]}, "properties": {"name": "Joensuu Linnunlahti", "id": "101632"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.5", "60.81"]}, "properties": {"name": "Jokioinen Ilmala", "id": "101104"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["19.99", "60.18"]}, "properties": {"name": "Jomala Jomalaby", "id": "100917"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["19.9", "60.13"]}, "properties": {"name": "Jomala Mariehamn airport", "id": "100907"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.09", "61.88"]}, "properties": {"name": "Joutsa Savenaho", "id": "101367"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.23", "63.23"]}, "properties": {"name": "Juuka Niemelä", "id": "101609"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.29", "61.85"]}, "properties": {"name": "Juupajoki Hyytiälä", "id": "101317"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.89", "61.89"]}, "properties": {"name": "Juva Partala", "id": "101418"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.67", "62.4"]}, "properties": {"name": "Jyväskylä airport", "id": "101339"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.69", "62.39"]}, "properties": {"name": "Jyväskylä airport AWOS", "id": "137208"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.81", "61.86"]}, "properties": {"name": "Jämsä Halli Lentoasemantie", "id": "101338"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.8", "61.86"]}, "properties": {"name": "Jämsä Halli airport", "id": "101315"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.08", "60.48"]}, "properties": {"name": "Järvenpää Sorto", "id": "103786"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.55", "60.39"]}, "properties": {"name": "Kaarina Yltöinen", "id": "100934"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.75", "64.22"]}, "properties": {"name": "Kajaani Petäisenniska", "id": "126736"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.67", "64.28"]}, "properties": {"name": "Kajaani airport", "id": "101725"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.45", "64.33"]}, "properties": {"name": "Kalajoki Ulkokalla", "id": "101673"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.46", "61.84"]}, "properties": {"name": "Kankaanpää Niinisalo airfield", "id": "101291"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.8", "62.18"]}, "properties": {"name": "Karvia Alkkia", "id": "101272"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.19", "62.33"]}, "properties": {"name": "Kaskinen Sälgrund", "id": "101256"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.18", "62.41"]}, "properties": {"name": "Kauhajoki Kuja-Kokko", "id": "101289"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.04", "63.12"]}, "properties": {"name": "Kauhava airfield", "id": "101503"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.52", "65.67"]}, "properties": {"name": "Kemi Ajos", "id": "101846"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.1", "65.39"]}, "properties": {"name": "Kemi I lighthouse", "id": "101783"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.58", "65.79"]}, "properties": {"name": "Kemi Kemi-Tornio airport", "id": "101840"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.16", "66.72"]}, "properties": {"name": "Kemijärvi airfield", "id": "101950"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.76", "60.17"]}, "properties": {"name": "Kemiönsaari Kemiö", "id": "100951"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.19", "59.87"]}, "properties": {"name": "Kemiönsaari Vänö", "id": "100945"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.35", "59.92"]}, "properties": {"name": "Kirkkonummi Mäkiluoto", "id": "100997"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.24", "67.99"]}, "properties": {"name": "Kittilä Kenttärova", "id": "101987"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.21", "68"]}, "properties": {"name": "Kittilä Lompolonvuoma", "id": "778135"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.24", "68"]}, "properties": {"name": "Kittilä Matorova", "id": "101985"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.78", "68.17"]}, "properties": {"name": "Kittilä Pokka", "id": "101994"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.9", "67.65"]}, "properties": {"name": "Kittilä parish", "id": "101990"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.86", "67.69"]}, "properties": {"name": "Kittilä airport", "id": "101986"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.35", "61.25"]}, "properties": {"name": "Kokemäki Tulkkila", "id": "101103"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.1", "63.84"]}, "properties": {"name": "Kokkola Santahaka", "id": "101675"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.85", "63.95"]}, "properties": {"name": "Kokkola Tankar", "id": "101661"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.19", "62.93"]}, "properties": {"name": "Korsnäs Bredskäret", "id": "101479"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.18", "60.29"]}, "properties": {"name": "Kotka Haapasaari", "id": "101042"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.96", "60.38"]}, "properties": {"name": "Kotka Rankki", "id": "101030"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.81", "60.7"]}, "properties": {"name": "Kouvola Anjala", "id": "101194"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.93", "60.89"]}, "properties": {"name": "Kouvola Utti Lentoportintie", "id": "101219"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.95", "60.9"]}, "properties": {"name": "Kouvola Utti airport", "id": "101191"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.17", "62.2"]}, "properties": {"name": "Kristiinankaupunki lighthouse", "id": "101268"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.14", "63.73"]}, "properties": {"name": "Kruunupyy Kokkola-Pietarsaari airport", "id": "101662"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["30.17", "64.3"]}, "properties": {"name": "Kuhmo Kalliojoki", "id": "101773"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.75", "60.26"]}, "properties": {"name": "Kumlinge parish", "id": "100928"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.31", "63.14"]}, "properties": {"name": "Kuopio Maaninka", "id": "101572"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.9", "62.8"]}, "properties": {"name": "Kuopio Ritoniemi", "id": "101580"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.63", "62.89"]}, "properties": {"name": "Kuopio Savilahti", "id": "101586"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.03", "60.72"]}, "properties": {"name": "Kustavi Isokari", "id": "101059"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.4", "66.32"]}, "properties": {"name": "Kuusamo Juuma", "id": "101899"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.31", "66.37"]}, "properties": {"name": "Kuusamo Kiutaköngäs", "id": "101887"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.14", "66.17"]}, "properties": {"name": "Kuusamo Ruka Talvijärvi", "id": "806428"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.15", "66.17"]}, "properties": {"name": "Kuusamo Rukatunturi", "id": "101897"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.22", "66"]}, "properties": {"name": "Kuusamo Välikangas", "id": "107081"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.23", "65.99"]}, "properties": {"name": "Kuusamo airport", "id": "101886"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.35", "59.5"]}, "properties": {"name": "Kökar Bogskär", "id": "100921"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.62", "60.97"]}, "properties": {"name": "Lahti Sopenkorpi", "id": "104796"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.47", "61.2"]}, "properties": {"name": "Lappeenranta Hiekkapakka", "id": "101252"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.56", "61.04"]}, "properties": {"name": "Lappeenranta Konnunsuo", "id": "101246"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.21", "61.06"]}, "properties": {"name": "Lappeenranta Lepola", "id": "101247"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.13", "61.04"]}, "properties": {"name": "Lappeenranta airport", "id": "101237"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["19.95", "59.96"]}, "properties": {"name": "Lemland Nyhamn", "id": "100909"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["30.05", "63.32"]}, "properties": {"name": "Lieksa Lampela", "id": "101636"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.64", "62.66"]}, "properties": {"name": "Liperi Joensuu airport", "id": "101608"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.67", "62.55"]}, "properties": {"name": "Liperi Tuiskavanluoto", "id": "101628"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.05", "60.24"]}, "properties": {"name": "Lohja Porla", "id": "100974"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.45", "60.27"]}, "properties": {"name": "Loviisa Orrengrund", "id": "101039"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.51", "61.7"]}, "properties": {"name": "Luhanka Judinsalo", "id": "101362"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.3", "60.12"]}, "properties": {"name": "Lumparland Långnäs harbour", "id": "151048"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["20.74", "62.98"]}, "properties": {"name": "Maalahti Strömmingsbådan", "id": "101481"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["19.93", "60.09"]}, "properties": {"name": "Mariehamn West Harbour", "id": "151029"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.21", "61.69"]}, "properties": {"name": "Mikkeli airport AWOS", "id": "855522"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.2", "61.69"]}, "properties": {"name": "Mikkeli airport", "id": "101398"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.81", "62.51"]}, "properties": {"name": "Multia Karhila", "id": "101536"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.03", "68.06"]}, "properties": {"name": "Muonio Laukukero", "id": "101982"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.12", "67.97"]}, "properties": {"name": "Muonio Sammaltunturi", "id": "101983"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.68", "67.96"]}, "properties": {"name": "Muonio parish", "id": "106435"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.07", "63.44"]}, "properties": {"name": "Mustasaari Valassaaret", "id": "101464"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.19", "60.63"]}, "properties": {"name": "Mäntsälä Hirvihaara", "id": "103794"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.83", "63.67"]}, "properties": {"name": "Nurmes Valtimo", "id": "101743"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.65", "60.51"]}, "properties": {"name": "Nurmijärvi Röykkä", "id": "101149"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.37", "64.94"]}, "properties": {"name": "Oulu Oulunsalo Pellonpää", "id": "101799"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.39", "65.01"]}, "properties": {"name": "Oulu Vihreäsaari harbour", "id": "101794"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.34", "64.94"]}, "properties": {"name": "Oulu airport", "id": "101786"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.7", "60.11"]}, "properties": {"name": "Parainen Fagerholm", "id": "100924"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.37", "59.78"]}, "properties": {"name": "Parainen Utö", "id": "100908"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.46", "61.44"]}, "properties": {"name": "Parikkala Koitsanlahti", "id": "101254"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.22", "67.02"]}, "properties": {"name": "Pelkosenniemi Pyhätunturi", "id": "101958"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.96", "66.77"]}, "properties": {"name": "Pello parish", "id": "101914"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.52", "63.75"]}, "properties": {"name": "Pietarsaari Kallan", "id": "101660"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.62", "61.42"]}, "properties": {"name": "Pirkkala Tampere-Pirkkala airport", "id": "101118"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.38", "61.63"]}, "properties": {"name": "Pori Tahkoluoto harbour", "id": "101267"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.81", "61.46"]}, "properties": {"name": "Pori airport", "id": "101044"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.78", "61.48"]}, "properties": {"name": "Pori railway station", "id": "101064"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.63", "60.2"]}, "properties": {"name": "Porvoo Emäsalo", "id": "101023"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.61", "60.39"]}, "properties": {"name": "Porvoo Harabacka", "id": "101028"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.6", "59.99"]}, "properties": {"name": "Porvoo Kalbådagrund", "id": "101022"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.55", "60.3"]}, "properties": {"name": "Porvoo Kilpilahti harbour", "id": "100683"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.96", "65.4"]}, "properties": {"name": "Pudasjärvi airfield", "id": "101805"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.06", "64.66"]}, "properties": {"name": "Puolanka Paljakka", "id": "101831"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.18", "61.52"]}, "properties": {"name": "Puumala parish", "id": "150168"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.59", "60.49"]}, "properties": {"name": "Pyhtää airfield", "id": "107029"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.71", "63.74"]}, "properties": {"name": "Pyhäjärvi Ojakylä", "id": "101705"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.41", "64.67"]}, "properties": {"name": "Raahe Lapaluoto harbour", "id": "101785"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.9", "64.61"]}, "properties": {"name": "Raahe Nahkiainen", "id": "101775"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.57", "59.82"]}, "properties": {"name": "Raasepori Jussarö", "id": "100965"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.57", "62.06"]}, "properties": {"name": "Rantasalmi Rukkasluoto", "id": "101436"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.37", "65.98"]}, "properties": {"name": "Ranua airfield", "id": "101873"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.3", "61.14"]}, "properties": {"name": "Rauma Kylmäpihlaja", "id": "101061"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.52", "61.14"]}, "properties": {"name": "Rauma Pyynpää", "id": "105427"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.66", "63.38"]}, "properties": {"name": "Rautavaara Ylä-Luosta", "id": "101603"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.01", "66.58"]}, "properties": {"name": "Rovaniemi Apukka", "id": "101933"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.84", "66.56"]}, "properties": {"name": "Rovaniemi airport", "id": "101920"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.85", "66.57"]}, "properties": {"name": "Rovaniemi airport AWOS", "id": "137190"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.71", "66.5"]}, "properties": {"name": "Rovaniemi railway station", "id": "101928"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.18", "67.16"]}, "properties": {"name": "Salla Naruska", "id": "101966"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.61", "67.75"]}, "properties": {"name": "Salla Värriötunturi", "id": "102012"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.69", "66.82"]}, "properties": {"name": "Salla parish", "id": "101959"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.65", "60.46"]}, "properties": {"name": "Salo Kiikala airfield", "id": "100967"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.11", "60.37"]}, "properties": {"name": "Salo Kärkkä", "id": "100955"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["29.32", "61.8"]}, "properties": {"name": "Savonlinna Punkaharju Laukansaari", "id": "101441"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.93", "61.95"]}, "properties": {"name": "Savonlinna airport", "id": "101430"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.18", "67.29"]}, "properties": {"name": "Savukoski parish", "id": "101952"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.49", "62.94"]}, "properties": {"name": "Seinäjoki Pelmaa", "id": "101486"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.09", "64.68"]}, "properties": {"name": "Siikajoki Ruukki", "id": "101787"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.81", "63"]}, "properties": {"name": "Siilinjärvi Kuopio airport", "id": "101570"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.22", "60.12"]}, "properties": {"name": "Sipoo Eestiluoto", "id": "101029"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.19", "60.1"]}, "properties": {"name": "Sipoo Itätoukki", "id": "105392"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.75", "67.82"]}, "properties": {"name": "Sodankylä Lokka", "id": "102000"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.63", "67.37"]}, "properties": {"name": "Sodankylä Tähtelä", "id": "101932"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.19", "68.08"]}, "properties": {"name": "Sodankylä Vuotso", "id": "102001"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.81", "60.65"]}, "properties": {"name": "Somero Salkola", "id": "101128"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.34", "64.11"]}, "properties": {"name": "Sotkamo Kuolaniemi", "id": "101756"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.06", "64"]}, "properties": {"name": "Sotkamo Tuhkakylä", "id": "107113"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.75", "64.93"]}, "properties": {"name": "Suomussalmi Pesiö", "id": "101826"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["28.22", "65.57"]}, "properties": {"name": "Taivalkoski parish", "id": "101885"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.75", "61.47"]}, "properties": {"name": "Tampere Härmälä", "id": "101124"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.75", "61.52"]}, "properties": {"name": "Tampere Siilinkari", "id": "101311"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.76", "61.5"]}, "properties": {"name": "Tampere Tampella", "id": "151049"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["30.35", "62.24"]}, "properties": {"name": "Tohmajärvi Kemie", "id": "101459"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.16", "63.82"]}, "properties": {"name": "Toholampi Laitala", "id": "101689"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.17", "65.85"]}, "properties": {"name": "Tornio Torppi", "id": "101851"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.18", "60.45"]}, "properties": {"name": "Turku Artukainen", "id": "100949"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.1", "60.38"]}, "properties": {"name": "Turku Rajakari", "id": "100947"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["22.28", "60.52"]}, "properties": {"name": "Turku airport", "id": "101065"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.01", "69.76"]}, "properties": {"name": "Utsjoki Kevo", "id": "102035"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.01", "69.76"]}, "properties": {"name": "Utsjoki Kevo Kevojärvi", "id": "126737"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.9", "70.08"]}, "properties": {"name": "Utsjoki Nuorgam", "id": "102036"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.42", "64.5"]}, "properties": {"name": "Vaala Pelso", "id": "101800"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.64", "63.1"]}, "properties": {"name": "Vaasa Klemettilä", "id": "101485"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["21.75", "63.06"]}, "properties": {"name": "Vaasa airport", "id": "101462"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.91", "60.32"]}, "properties": {"name": "Vantaa Helsinki-Vantaa airport AWOS", "id": "137189"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.96", "60.33"]}, "properties": {"name": "Vantaa Helsinki-Vantaa airport", "id": "100968"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.91", "62.32"]}, "properties": {"name": "Varkaus Kosulanniemi", "id": "101421"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["26.42", "62.92"]}, "properties": {"name": "Vesanto parish", "id": "101555"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.22", "63.84"]}, "properties": {"name": "Vieremä Kaarakkala", "id": "101726"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.4", "60.42"]}, "properties": {"name": "Vihti Maasoja", "id": "100976"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["25.86", "63.08"]}, "properties": {"name": "Viitasaari Haapaniemi", "id": "101537"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["27.67", "60.53"]}, "properties": {"name": "Virolahti Koivuniemi", "id": "101231"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["23.54", "62.33"]}, "properties": {"name": "Virrat Äijänneva", "id": "101310"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.65", "66.53"]}, "properties": {"name": "Ylitornio Meltosjärvi", "id": "101908"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.72", "64.05"]}, "properties": {"name": "Ylivieska airfield", "id": "101690"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": ["24.14", "62.55"]}, "properties": {"name": "Ähtäri Inha", "id": "101520"}}
+            ]
+          }
+      # These are the parameters that all stations in the network have. Additional parameters must be stated in the properties of the spatial
+    parameters:
+      common:
+        - 1002 # Mean temperature at 2m (Celcius)
+        - 3002 # Mean RH at 2m (%)
+        - 2001 # Precipitation (mm)
+        - 4003 # Mean wind speed at 2m
+  -
+    name: "Landbruksmeteorologisk tjeneste"
+    description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
+    public_URL: "https://lmt.nibio.no/"
+    organization: 
+      name: NIBIO
+      country: Norway
+      address: Postboks 115
+      postal_code: "1431"
+      city: Ås
+      email: berit.nordskog@nibio.no
+      url: https://www.nibio.no/
+    endpoint: "https://ipmdecisions.nibio.no/lmtservices/rest/ipmdecisions/getdata/"
+    needs_data_control: true
+    temporal:
+      historic: #  
         start: "2010-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
-      Forecast: 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
-    Access_type: stations
+      forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    access_type: stations
     # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
-    # If the resource is a gridded service, the Spatial property is a polygon
+    # If the resource is a gridded service, the Spatial property is a polygon or a set of polygons
+    # The polygons may be specified directly in the GeoJSON property, or it may be a referenced polygon
+    # in the countries list. Open data sources exist, such as https://github.com/datasets/geo-countries
     # If the resource is a FeatureCollection of points, this is a weather station network of between at least 1 and an indefinite number of stations
     # NOTE TO SELF: USED THIS QUERY TO GENERATE THE Points from LMT
     #    SELECT 
@@ -53,114 +328,117 @@ Datasources:
     #    ORDER BY NAME ASC
     #
     # WMOCertified: 1-5 where 1 is best and 5 is failing. If property non existant or == null => Not tested (so probably bad)
-    Spatial: |- 
-      {
-        "type": "FeatureCollection",
-        "features": [
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.68956,62.98474,5]}, "properties": {"name": "Surnadal", "id":"46","WMOCertified": 5}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.60533332824707,59.0185012817383]}, "properties": {"name": "Rygg", "id":"98"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.24073,68.6404,215]}, "properties": {"name": "Bones", "id":"201"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.55906,60.35575,245]}, "properties": {"name": "Gran", "id":"20"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0244,60.54933,155]}, "properties": {"name": "Åsnes", "id":"72","WMOCertified": null}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.04428,61.29272,12]}, "properties": {"name": "Fureneset", "id":"16"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.85057,59.6879,80]}, "properties": {"name": "Darbu", "id":"86"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.99453,62.12793,690]}, "properties": {"name": "Folldal", "id":"140"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.75063,60.46116,34]}, "properties": {"name": "Djønno", "id":"133"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.40297,61.40506,80]}, "properties": {"name": "Høyheimsvik", "id":"66"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.556,60.43029,18]}, "properties": {"name": "Hesthamar", "id":"87"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.56252,61.05454,50]}, "properties": {"name": "Ljøsne", "id":"65"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25962,59.79084,38]}, "properties": {"name": "Lier", "id":"30"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.57805,59.22684,41]}, "properties": {"name": "Gjerpen", "id":"19"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.02859,59.4175,105]}, "properties": {"name": "Bø", "id":"13"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.21189,59.38223,94]}, "properties": {"name": "Gvarv", "id":"21"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.87994,63.48795,28]}, "properties": {"name": "Kvithamar", "id":"57"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.01885,64.51035,32]}, "properties": {"name": "Skogmo", "id":"44"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.95383,59.6625,8]}, "properties": {"name": "Etne", "id":"14"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0349,60.4699,154]}, "properties": {"name": "Grue", "id":"132"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.6937,60.943,162]}, "properties": {"name": "Moelv", "id":"71"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.2174697,60.3371063,12.905]}, "properties": {"name": "Kvam", "id":"28"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.862209,61.179943,45]}, "properties": {"name": "Njøs", "id":"35"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.40478,59.60272,4]}, "properties": {"name": "Svelvik", "id":"47"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.58946,59.0157,5]}, "properties": {"name": "Randaberg", "id":"124"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.18148,61.78584,25]}, "properties": {"name": "Sandane", "id":"63"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.62133,60.25028,105]}, "properties": {"name": "Sekse", "id":"134"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.43896664028258,60.1358081886593,140]}, "properties": {"name": "Sigdal-Nedre Eggedal", "id":"142"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.42527,63.94244,59]}, "properties": {"name": "Mære", "id":"34"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96187,58.9878,20]}, "properties": {"name": "Brunlanes", "id":"143"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.27512,59.16827,50]}, "properties": {"name": "Sandefjord", "id":"131"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.3593076,61.1498682,260]}, "properties": {"name": "Rena", "id":"97"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.57052,60.2542,19]}, "properties": {"name": "Nå", "id":"90"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.55,58.7,20]}, "properties": {"name": "Orre", "id":"84"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.20298,60.80264,182]}, "properties": {"name": "Ilseng", "id":"26"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.39205,59.55416,10]}, "properties": {"name": "Svelvik syd", "id":"123"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.28288,68.64825,14]}, "properties": {"name": "Sortland", "id":"45"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.93651,61.15988,26]}, "properties": {"name": "Slinde", "id":"64"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.97765,59.97758,143]}, "properties": {"name": "Skjetten", "id":"108"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.716463,63.026787,140]}, "properties": {"name": "Meldal", "id":"82"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.15267,61.72274,599]}, "properties": {"name": "Leirflaten", "id":"141"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.3769148,63.1042499]}, "properties": {"name": "Rindal", "id":"130"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.23923,59.38081,39]}, "properties": {"name": "Ramnes", "id":"38"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.12513,59.04641,19]}, "properties": {"name": "Tjølling", "id":"50"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.836755,62.862927,294]}, "properties": {"name": "Rennebu", "id":"83"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.65078,58.76053,90]}, "properties": {"name": "Særheim", "id":"48"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.28132,59.27891,83]}, "properties": {"name": "Søve", "id":"91"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.81449,59.31893,12]}, "properties": {"name": "Tomb", "id":"52"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.9284391,60.56173,42]}, "properties": {"name": "Ulvik", "id":"55"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.65381,60.31853,13.378]}, "properties": {"name": "Ullensvang", "id":"54"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.48659,62.6112,557]}, "properties": {"name": "Oppdal", "id":"81"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2397447,62.9284518]}, "properties": {"name": "Soknedal", "id":"129"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.75427,59.39805,35]}, "properties": {"name": "Rygge", "id":"41"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.06302,61.12183,527]}, "properties": {"name": "Løken", "id":"33"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.62687,62.10944,478]}, "properties": {"name": "Alvdal", "id":"10"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2661,60.14032,126]}, "properties": {"name": "Hønefoss", "id":"25"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.18623,62.91341,23]}, "properties": {"name": "Tingvoll", "id":"49"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.86952,60.70024,262]}, "properties": {"name": "Apelsvoll", "id":"11"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96877,59.21653,25]}, "properties": {"name": "Kvelde", "id":"93"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39342,60.1268,162]}, "properties": {"name": "Årnes", "id":"53"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [30.04085,69.45513,27.343]}, "properties": {"name": "Pasvik", "id":"36"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25878,61.22468,375]}, "properties": {"name": "Gausdal", "id":"18"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.39985,59.86859,185]}, "properties": {"name": "Flesberg", "id":"127"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.69298,63.56502,18]}, "properties": {"name": "Frosta", "id":"15"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.64268513,60.37924842,40]}, "properties": {"name": "Hauso", "id":"121"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.90946,69.65381,12]}, "properties": {"name": "Holt", "id":"24"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.29737,63.34038,44]}, "properties": {"name": "Skjetlein", "id":"43"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.53293,69.26051,5]}, "properties": {"name": "Målselv", "id":"104"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.22339,59.6162,35]}, "properties": {"name": "Sande", "id":"42"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.21713,62.28815,34]}, "properties": {"name": "Linge", "id":"31"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.39634,65.55085,80]}, "properties": {"name": "Grane", "id":"110"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [14.45155,67.28465,26]}, "properties": {"name": "Vågønes", "id":"56"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.14992,59.22995,43]}, "properties": {"name": "Hjelmeland", "id":"22"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04221,59.31936,45]}, "properties": {"name": "Øsaker", "id":"118"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.1018,67.2764,20]}, "properties": {"name": "Valnesfjord", "id":"144"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.80569,60.77324,129]}, "properties": {"name": "Kise", "id":"27"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.78595,61.87228,60]}, "properties": {"name": "Loen", "id":"62"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.925521,60.238677,138]}, "properties": {"name": "Sokna", "id":"146"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.97007,63.58569,23]}, "properties": {"name": "Rissa", "id":"39"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.42553,65.82951,10]}, "properties": {"name": "Tjøtta", "id":"51"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.04668,58.13463,4]}, "properties": {"name": "Lyngdal", "id":"32"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.313199,61.299413,8]}, "properties": {"name": "Ornes", "id":"147"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.0989653,59.4886853,70]}, "properties": {"name": "Hof", "id":"148"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.768903,59.66855,96]}, "properties": {"name": "Åsbakken", "id":"61"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.52845,61.20294,15]}, "properties": {"name": "Balestrand", "id":"12"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.582,59.886,129]}, "properties": {"name": "Bjørkelangen", "id":"145"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.781989,59.660468,94]}, "properties": {"name": "Ås", "id":"5"}},
+    spatial:
+      countries: ## Using country codes to get GeoJSON. Saves a lot of duplication
+        - NOR # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+      geoJSON: |- 
+        {
+          "type": "FeatureCollection",
+          "features": [
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.68956,62.98474,5]}, "properties": {"name": "Surnadal", "id":"46","WMOCertified": 5}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.60533332824707,59.0185012817383]}, "properties": {"name": "Rygg", "id":"98"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.24073,68.6404,215]}, "properties": {"name": "Bones", "id":"201"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.55906,60.35575,245]}, "properties": {"name": "Gran", "id":"20"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0244,60.54933,155]}, "properties": {"name": "Åsnes", "id":"72","WMOCertified": null}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.04428,61.29272,12]}, "properties": {"name": "Fureneset", "id":"16"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.85057,59.6879,80]}, "properties": {"name": "Darbu", "id":"86"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.99453,62.12793,690]}, "properties": {"name": "Folldal", "id":"140"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.75063,60.46116,34]}, "properties": {"name": "Djønno", "id":"133"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.40297,61.40506,80]}, "properties": {"name": "Høyheimsvik", "id":"66"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.556,60.43029,18]}, "properties": {"name": "Hesthamar", "id":"87"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.56252,61.05454,50]}, "properties": {"name": "Ljøsne", "id":"65"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25962,59.79084,38]}, "properties": {"name": "Lier", "id":"30"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.57805,59.22684,41]}, "properties": {"name": "Gjerpen", "id":"19"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.02859,59.4175,105]}, "properties": {"name": "Bø", "id":"13"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.21189,59.38223,94]}, "properties": {"name": "Gvarv", "id":"21"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.87994,63.48795,28]}, "properties": {"name": "Kvithamar", "id":"57"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.01885,64.51035,32]}, "properties": {"name": "Skogmo", "id":"44"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.95383,59.6625,8]}, "properties": {"name": "Etne", "id":"14"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.0349,60.4699,154]}, "properties": {"name": "Grue", "id":"132"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.6937,60.943,162]}, "properties": {"name": "Moelv", "id":"71"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.2174697,60.3371063,12.905]}, "properties": {"name": "Kvam", "id":"28"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.862209,61.179943,45]}, "properties": {"name": "Njøs", "id":"35"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.40478,59.60272,4]}, "properties": {"name": "Svelvik", "id":"47"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.58946,59.0157,5]}, "properties": {"name": "Randaberg", "id":"124"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.18148,61.78584,25]}, "properties": {"name": "Sandane", "id":"63"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.62133,60.25028,105]}, "properties": {"name": "Sekse", "id":"134"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.43896664028258,60.1358081886593,140]}, "properties": {"name": "Sigdal-Nedre Eggedal", "id":"142"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.42527,63.94244,59]}, "properties": {"name": "Mære", "id":"34"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96187,58.9878,20]}, "properties": {"name": "Brunlanes", "id":"143"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.27512,59.16827,50]}, "properties": {"name": "Sandefjord", "id":"131"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.3593076,61.1498682,260]}, "properties": {"name": "Rena", "id":"97"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.57052,60.2542,19]}, "properties": {"name": "Nå", "id":"90"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.55,58.7,20]}, "properties": {"name": "Orre", "id":"84"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.20298,60.80264,182]}, "properties": {"name": "Ilseng", "id":"26"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.39205,59.55416,10]}, "properties": {"name": "Svelvik syd", "id":"123"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.28288,68.64825,14]}, "properties": {"name": "Sortland", "id":"45"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.93651,61.15988,26]}, "properties": {"name": "Slinde", "id":"64"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.97765,59.97758,143]}, "properties": {"name": "Skjetten", "id":"108"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.716463,63.026787,140]}, "properties": {"name": "Meldal", "id":"82"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.15267,61.72274,599]}, "properties": {"name": "Leirflaten", "id":"141"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.3769148,63.1042499]}, "properties": {"name": "Rindal", "id":"130"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.23923,59.38081,39]}, "properties": {"name": "Ramnes", "id":"38"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.12513,59.04641,19]}, "properties": {"name": "Tjølling", "id":"50"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.836755,62.862927,294]}, "properties": {"name": "Rennebu", "id":"83"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [5.65078,58.76053,90]}, "properties": {"name": "Særheim", "id":"48"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.28132,59.27891,83]}, "properties": {"name": "Søve", "id":"91"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.81449,59.31893,12]}, "properties": {"name": "Tomb", "id":"52"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.9284391,60.56173,42]}, "properties": {"name": "Ulvik", "id":"55"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.65381,60.31853,13.378]}, "properties": {"name": "Ullensvang", "id":"54"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.48659,62.6112,557]}, "properties": {"name": "Oppdal", "id":"81"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2397447,62.9284518]}, "properties": {"name": "Soknedal", "id":"129"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.75427,59.39805,35]}, "properties": {"name": "Rygge", "id":"41"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.06302,61.12183,527]}, "properties": {"name": "Løken", "id":"33"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.62687,62.10944,478]}, "properties": {"name": "Alvdal", "id":"10"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.2661,60.14032,126]}, "properties": {"name": "Hønefoss", "id":"25"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.18623,62.91341,23]}, "properties": {"name": "Tingvoll", "id":"49"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.86952,60.70024,262]}, "properties": {"name": "Apelsvoll", "id":"11"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.96877,59.21653,25]}, "properties": {"name": "Kvelde", "id":"93"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39342,60.1268,162]}, "properties": {"name": "Årnes", "id":"53"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [30.04085,69.45513,27.343]}, "properties": {"name": "Pasvik", "id":"36"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.25878,61.22468,375]}, "properties": {"name": "Gausdal", "id":"18"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.39985,59.86859,185]}, "properties": {"name": "Flesberg", "id":"127"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.69298,63.56502,18]}, "properties": {"name": "Frosta", "id":"15"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.64268513,60.37924842,40]}, "properties": {"name": "Hauso", "id":"121"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.90946,69.65381,12]}, "properties": {"name": "Holt", "id":"24"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.29737,63.34038,44]}, "properties": {"name": "Skjetlein", "id":"43"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [18.53293,69.26051,5]}, "properties": {"name": "Målselv", "id":"104"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.22339,59.6162,35]}, "properties": {"name": "Sande", "id":"42"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.21713,62.28815,34]}, "properties": {"name": "Linge", "id":"31"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [13.39634,65.55085,80]}, "properties": {"name": "Grane", "id":"110"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [14.45155,67.28465,26]}, "properties": {"name": "Vågønes", "id":"56"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.14992,59.22995,43]}, "properties": {"name": "Hjelmeland", "id":"22"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.04221,59.31936,45]}, "properties": {"name": "Øsaker", "id":"118"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [15.1018,67.2764,20]}, "properties": {"name": "Valnesfjord", "id":"144"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.80569,60.77324,129]}, "properties": {"name": "Kise", "id":"27"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.78595,61.87228,60]}, "properties": {"name": "Loen", "id":"62"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.925521,60.238677,138]}, "properties": {"name": "Sokna", "id":"146"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.97007,63.58569,23]}, "properties": {"name": "Rissa", "id":"39"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.42553,65.82951,10]}, "properties": {"name": "Tjøtta", "id":"51"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.04668,58.13463,4]}, "properties": {"name": "Lyngdal", "id":"32"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [7.313199,61.299413,8]}, "properties": {"name": "Ornes", "id":"147"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.0989653,59.4886853,70]}, "properties": {"name": "Hof", "id":"148"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.768903,59.66855,96]}, "properties": {"name": "Åsbakken", "id":"61"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [6.52845,61.20294,15]}, "properties": {"name": "Balestrand", "id":"12"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.582,59.886,129]}, "properties": {"name": "Bjørkelangen", "id":"145"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.781989,59.660468,94]}, "properties": {"name": "Ås", "id":"5"}},
           {"type": "Feature", "geometry": {"type": "Point", "coordinates": [12.09144,60.25378,172]}, "properties": {"name": "Roverud", "id":"40"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39042,59.38824,102]}, "properties": {"name": "Rakkestad", "id":"37"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.1872,61.45822,184]}, "properties": {"name": "Fåvang", "id":"17"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.89166,59.76152,15]}, "properties": {"name": "Hokksund", "id":"23"}},
-          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.522554,58.340071,10]}, "properties": {"name": "Landvik", "id":"29"}}
-        ]
-      }
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [11.39042,59.38824,102]}, "properties": {"name": "Rakkestad", "id":"37"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [10.1872,61.45822,184]}, "properties": {"name": "Fåvang", "id":"17"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [9.89166,59.76152,15]}, "properties": {"name": "Hokksund", "id":"23"}},
+            {"type": "Feature", "geometry": {"type": "Point", "coordinates": [8.522554,58.340071,10]}, "properties": {"name": "Landvik", "id":"29"}}
+          ]
+        }
     # These are the parameters that all stations in the network have. Additional parameters must be stated in the properties of the spatial
-    Parameters:
+    parameters:
       # TODO Complete this list
-      Common:
+      common:
         - 1002 # Mean temperature at 2m (Celcius)
         - 1003 # Minimum temperature at 2m (Celcius)
         - 1004 # Maximum temperature at 2m (Celcius)
         - 3002 # Mean RH at 2m (%)
         - 2001 # Precipitation (mm)
         - 4003 # Mean wind speed at 2m
-      Optional:
+      optional:
         - 3101 # Leaf wetness duration at 2m (minutes/time unit)
         - 5001 # Solar radiation (W/sqm)
