@@ -17,8 +17,8 @@
         "email":{"@id":"schema:email"},
         "organization":{"@id":"schema:affiliation"},
         
-        "pests":{"@id":"ipm:pests","@container":"@list"},
-        "crops":{"@id":"ipm:crops","@container":"@list"},
+        "pests":{"@id":"ipm:pests"},
+        "crops":{"@id":"ipm:crops"},
         "Keywords":{"@id":"schema:Keywords"},
         "type_of_decision":{"@id":"ipm:type_of_decision"},
         "type_of_output":{"@id":"ipm:type_of_output"},
@@ -28,7 +28,7 @@
         "valid_spatial":{"@id":"schema:CountriesSupported"},
 
         "input":{"@id":"ipm:input"},
-        "weather":{"@id":"ipm:weather","@container":"@list", "@type":"Dataset"},
+        "weather":{"@id":"ipm:weather"},
         "parameter_code":{"@id":"ipm:parameter_code"},
         "interval":{"@id":"ipm:interval"},
         "execution":{"@id":"ipm:execution"},
