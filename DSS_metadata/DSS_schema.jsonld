@@ -3,36 +3,30 @@
         "schema": "http://www.schema.org/",
         "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
          
+        "Person":{"@id":"schema:Person"},
  
         "id":{"@id":"schema:identifier","@type":"@id"},
         "name":{"@id": "schema:name"},
         "version":{"@id": "schema:version"},
         "url":{"@id":"schema:url"},
-
-        "organization":{"@id":"schema:Organization"},
+        "organization":{"@id":"schema:Organization","@type":"@id"},
         "address":{"@id":"schema:address"},
         "country":{"@id":"schema:Country"},
         "postal_code":{"@id":"schema:postalCode"},
         "city":{"@id":"schema:City"},
         "email":{"@id":"schema:email"},
+        "languages":{"@id":"schema:availableLanguage"},
 
-        "languages":{"@id":"schema:availableLanguage","@container": "@list"},
-
-        "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"DSS_Model"},
-
-        
-        "Person":{"@id":"schema:Person"},
+        "DSS_Model":{"@id":"ipm:models"},    
         "authors":{"@id":"schema:author"},
-        
-        "pests":{"@id":"ipm:pests"},
-        "crops":{"@id":"ipm:crops"},
-        "Keywords":{"@id":"schema:Keywords"},
+        "pests":{"@id":"ipm:pests","@container":"@list"},
+        "crops":{"@id":"ipm:crops","@container":"@list"},
+        "Keywords":{"@id":"schema:Keywords","@container":"@list"},
         "type_of_decision":{"@id":"ipm:type_of_decision"},
         "type_of_output":{"@id":"ipm:type_of_output"},
         "description":{"@id":"schema:description"},
         "citation":{"@id":"schema:citation"},
-        "valid_spatial":{"@id":"schema:CountriesSupported"},
-
+        "valid_spatial":{"@id":"schema:countriesSupported"},
         "input":{"@id":"ipm:input"},
         "weather":{"@id":"ipm:weather"},
         "parameter_code":{"@id":"ipm:parameter_code"},
@@ -46,7 +40,5 @@
         "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
         "result_parameters":{"@id":"ipm:result_parameters"},
         "title":{"@id":"ipm:title"}
-
-      
     }
 }
