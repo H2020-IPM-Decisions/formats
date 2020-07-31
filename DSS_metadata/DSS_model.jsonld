@@ -7,22 +7,22 @@
         "DSS_Model":{"@id":"ipm:DSS_model","@type":"@id","@container":"@list"},
             
         "id":{"@id":"schema:identifier","@type":"@id"},
-        "name": {"@id":"schema:name","@type":"@id"},
-        "version":{"@id":"schema:version","@type":"@id"},
+        "name": {"@id":"schema:name"},
+        "version":{"@id":"schema:version"},
             
         "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
-        "email":{"@id":"schema:email","@type":"@id"},
-        "organization":{"@id":"schema:affiliation","@type":"@id"},
+        "email":{"@id":"schema:email"},
+        "organization":{"@id":"schema:affiliation"},
             
         "pests":{"@id":"ipm:pests","@container":"@list","@type":"xsd:Text"},
         "crops":{"@id":"ipm:crops","@container":"@list","@type":"xsd:Text"},
         "Keywords":{"@id":"schema:Keywords","@container":"@list","@type":"xsd:Text"},
         "type_of_decision":{"@id":"ipm:type_of_decision","@type":"xsd:Text"},
         "type_of_output":{"@id":"ipm:type_of_output","@type":"xsd:Text"},
-        "url":{"@id":"schema:url","@type":"@id"},
+        "url":{"@id":"schema:url"},
         "description":{"@id":"schema:description","@type":"xsd:Text"},
         "citation":{"@id":"schema:citation"},
-        "valid_spatial":{"@id":"schema:countriesSupported","@type":"@id"},
+        "valid_spatial":{"@id":"schema:countriesSupported"},
     
         "input":{"@id":"ipm:input"},
         "weather":{"@id":"ipm:weather"},
