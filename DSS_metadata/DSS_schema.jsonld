@@ -4,7 +4,7 @@
         "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
          
  
-        "id":{"@id":"schema:identifier"},
+        "id":{"@id":"schema:identifier","@type":"@id"},
         "name":{"@id": "schema:name"},
         "version":{"@id": "schema:version"},
         "url":{"@id":"schema:url"},
@@ -19,15 +19,34 @@
         "languages":{"@id":"schema:availableLanguage","@container": "@list"},
 
         "DSS_Model":{"@id":"ipm:models","@container":"@list","@type":"DSS_Model"},
-        "pests":{"@id":"ipm:pests","@container":"@list"},
-        "crops":{"@id":"ipm:crops","@container":"@list"},
+
+        
+        "Person":{"@id":"schema:Person"},
+        "authors":{"@id":"schema:author"},
+        
+        "pests":{"@id":"ipm:pests"},
+        "crops":{"@id":"ipm:crops"},
         "Keywords":{"@id":"schema:Keywords"},
         "type_of_decision":{"@id":"ipm:type_of_decision"},
         "type_of_output":{"@id":"ipm:type_of_output"},
-        "url":{"@id":"schema:url"},
         "description":{"@id":"schema:description"},
         "citation":{"@id":"schema:citation"},
-        "valid_spatial":{"@id":"schema:CountriesSupported"}
+        "valid_spatial":{"@id":"schema:CountriesSupported"},
+
+        "input":{"@id":"ipm:input"},
+        "weather":{"@id":"ipm:weather"},
+        "parameter_code":{"@id":"ipm:parameter_code"},
+        "interval":{"@id":"ipm:interval"},
+        "execution":{"@id":"ipm:execution"},
+        "endpoint":{"@id":"ipm:endpoint"},
+        "form_method":{"@id":"ipm:form_method"},
+        "content_type":{"@id":"ipm:content_type"},
+        "input_schema":{"@id":"ipm:input_schema"},
+        "output":{"@id":"ipm:output"},
+        "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
+        "result_parameters":{"@id":"ipm:result_parameters"},
+        "title":{"@id":"ipm:title"}
+
       
     }
 }
