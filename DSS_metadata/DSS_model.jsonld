@@ -4,10 +4,7 @@
         "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
         "xsd":"http://www.w3.org/2001/XMLSchema#",        
         
-        "DSS_Model":{
-            "@id":"ipm:DSS_model",
-            "@type":"DSS_Model",
-            "@container":"@list"},
+        "DSS_Model":{"@id":"ipm:DSS_model","@type":"@id","@container":"@list"},
             
         "id":{"@id":"schema:identifier","@type":"@id"},
         "name": {"@id":"schema:name","@type":"@id"},
@@ -27,27 +24,20 @@
         "citation":{"@id":"schema:citation"},
         "valid_spatial":{"@id":"schema:countriesSupported","@type":"@id"},
     
-        "input":{
-            "@id":"ipm:input",
-            "weather":{
-                "@id":"ipm:weather",
-                "@container":"@set",
-                "parameter_code":{"@id":"ipm:parameter_code","@type":"xsd:interger"},
-                "interval":{"@id":"ipm:interval","@type":"xsd:interger"}
-                },
-            "execution":{"@id":"ipm:execution",
-               "endpoint":{"@id":"ipm:endpoint"},
-                "form_method":{"@id":"ipm:form_method"},
-                "content_type":{"@id":"ipm:content_type"},
-                "input_schema":{"@id":"ipm:input_schema"}
-                }
-            },
-        "output":{
-            "@id":"ipm:output",
-            "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation","@type":"xsd:Text"},
-            "result_parameters":{"@id":"ipm:result_parameters","@type":"xsd:Text"},
-            "title":{"@id":"ipm:title","@type":"xsd:Text"}
-        }
+        "input":{"@id":"ipm:input"},
+        "weather":{"@id":"ipm:weather"},
+        "parameter_code":{"@id":"ipm:parameter_code","@type":"xsd:interger"},
+        "interval":{"@id":"ipm:interval","@type":"xsd:interger"},
+        "execution":{"@id":"ipm:execution"},
+        "endpoint":{"@id":"ipm:endpoint"},
+        "form_method":{"@id":"ipm:form_method"},
+        "content_type":{"@id":"ipm:content_type"},
+        "input_schema":{"@id":"ipm:input_schema"},
+        "output":{"@id":"ipm:output"},
+        "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation","@type":"xsd:Text"},
+        "result_parameters":{"@id":"ipm:result_parameters","@type":"xsd:Text"},
+        "title":{"@id":"ipm:title","@type":"xsd:Text"}
+        
         
     }
 }
