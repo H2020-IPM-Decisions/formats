@@ -10,10 +10,10 @@
         "version":{"@id": "schema:version"},
         "url":{"@id":"schema:url"},
         "organization":{"@id":"schema:Organization","@type":"schema:Organization"},
-        "address":{"@id":"schema:address"},
-        "country":{"@id":"schema:Country"},
+        "address":{"@id":"schema:streetAddress"},
+        "country":{"@id":"schema:addressCountry"},
         "postal_code":{"@id":"schema:postalCode"},
-        "city":{"@id":"schema:City"},
+        "city":{"@id":"schema:addressLocality"},
         "email":{"@id":"schema:email"},
         "languages":{"@id":"schema:availableLanguage"},
 
