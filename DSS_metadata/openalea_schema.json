@@ -1,0 +1,59 @@
+{
+    "@context":[ 
+        "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_schema.jsonld",
+        "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/DSS_metadata/DSS_model.jsonld"],
+    
+    "@id":"https://github.com/openalea",
+    "@type":"SoftwareApplication",
+    "name":"OpenAlea",
+    "version":"1.2",
+    "url":"http://openalea.gforge.inria.fr/dokuwiki/doku.php",
+    "organization":{
+        "@type":"Organization",
+        "name":"CIRAD/INRIA",
+        "address":"Avenue agropolis",
+        "country": "Frrance",
+        "postal_code":"34398",
+        "city":"Montpellier cedex 5",
+        "email": "christophe.pradal@cirad.fr",
+        "url": "https://www.cirad.fr/"},
+    "languages":["French","English"],
+    "codeRepository":"https://github.com/openalea",
+    "programmingLanguage":["Python2.7","C++"],
+    "runtimePlatform":"python 2.7",
+    "downloadUrl": "http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download",
+    "installUrl":null,
+    "operatingSystem":["linux: Unbunto (14.04)","windows:32 bits version of Xp, Vista and Seven","Mac Os X: Maverick (10.7 64bits)"],
+    "author":[
+        {"@id":"https://orcid.org/0000-0002-2555-761X",
+        "@type":"Person",
+        "name":"Christophe Pradal",
+        "organization":"CIRAD/INRIA"},
+        {"@id":"https://orcid.org/0000-0002-1202-8460",
+        "@type":"Person",
+        "name":"Christophe Godin",
+        "organization":"CIRAD/INRIA"}
+    ],
+    "citation":null,
+    "contributor":null,
+    "dateCreated":null,
+    "dateModified":null,
+    "datePublished":null,
+    "fileFormat":"application/zip",
+    "funder": null,
+    "keywords":["3D Modeling","Bio-Informatics","Visualization"],
+    "license":"https://github.com/openalea/mtg/blob/master/LICENSE",
+    "description":"OpenAlea is an open source project primarily aimed at the plant research community. It is a distributed collaborative effort to develop Python libraries and tools that address the needs of current and future works in Plant Architecture modeling. OpenAlea includes modules to analyse, visualize and model the functioning and growth of plant architecture.", 
+    
+    "maintainer":{
+        "@id":"https://orcid.org/0000-0002-2555-761X",
+        "@type":"Person",
+        "name":"Christophe Pradal",
+        "organization":"CIRAD/INRIA"},
+    "contIntegration":null,
+    "buildInstructions": "https://openalea.readthedocs.io/en/latest/install.html#",
+    "developmentStatus":null,
+    "issueTracker":null,
+    "readme":"https://github.com/openalea/openalea/blob/master/README.md"
+
+}
