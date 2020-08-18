@@ -1,14 +1,15 @@
 {
     "@context":{
         "schema": "http://www.schema.org/",
-        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
-         
-        "Person":{"@id":"schema:Person"},
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/Json_LD_Documentation.md",
+        "codemeta":"https://codemeta.github.io/terms/",
+ 
+        "Person":{"@id":"schema:Person","@type":"schema:Person"},
  
         "id":{"@id":"schema:identifier","@type":"@id"},
         "name":{"@id": "schema:name"},
-        "version":{"@id": "schema:version"},
-        "url":{"@id":"schema:url"},
+        "version":{"@id": "schema:version","@type":"schema:Float"},
+        "url":{"@id":"schema:url","@type":"schema:URL"},
         "organization":{"@id":"schema:Organization","@type":"schema:Organization"},
         "address":{"@id":"schema:streetAddress"},
         "country":{"@id":"schema:addressCountry"},
@@ -17,6 +18,34 @@
         "email":{"@id":"schema:email"},
         "languages":{"@id":"schema:availableLanguage"},
 
-        "DSS_Model":{"@id":"ipm:models"}    
+        "codeRepository":{"@id":"schema:codeRepository"},
+        "programmingLanguage":{"@id":"schema:programmingLanguage","@container":"@list"},
+        "runtimePlatform":{"@id":"schema:runtimePlateform"},
+        "downloadUrl": {"@id":"schema:downlaodUrl"},
+        "installUrl":{"@id":"schema:installUrl"},
+        "operatingSystem":{"@id":"schema:operatingSystem","@container":"@list","@type":"schema:Text"},
+        "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
+        "citation":{"@id":"schema:citation","@container":"@list","@type":"schema:URL"},
+        "contributor":{"@id":"schema:contributor","@container":"@list","@type":"schema:Person"},
+        "dateCreated":{"@id":"schema:dateCreated","@type":"schema:Date"},
+        "dateModified":{"@id":"schema:dateModified","@type":"schema:Date"},
+        "datePublished":{"@id":"schema:datePublished","@type":"schema:Date"},
+        "fileFormat":{"@id":"schema:fileFormat"},
+        "funder": {"@id":"schema:funder"},
+        "Keywords":{"@id":"schema:Keywords","@container":"@list","@type":"schema:Text"},
+        "license":{"@id":"schema:licence","@type":"schema:URL"},
+        "description":{"@id":"schema:description","@type":"schema:Text"},
+
+
+        "DSS_Model":{"@id":"ipm:models","@type":"DSS_Model"},
+
+        "maintainer":{"@id":"codemeta:maintainer","@container":"@list","@type":"schema:Person"},
+        "contIntegration":{"@id":"codemeta:contIntegration","@type":"schema:URL"},
+        "buildInstructions": {"@id":"codemeta:buildInstructions","@type":"schema:URL"},
+        "developmentStatus": {"@id":"codemeta:developementStatus","@type":"schema:URL"},
+        "issueTracker":{"@id":"codemeta:issueTracker","@type":"schema:URL"},
+        "readme":{"@id":"codemeta:readme","@type":"schema:URL"}
+    
+
     }
 }
