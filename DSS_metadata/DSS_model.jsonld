@@ -10,8 +10,8 @@
         "version":{"@id":"schema:version","@type":"schema:Float"},
             
         "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
-        "email":{"@id":"schema:email"},
-        "organization":{"@id":"schema:affiliation"},
+        "email":{"@id":"schema:email","@type":"schema:Text"},
+        "organization":{"@id":"schema:affiliation","@type":"schema:Text"},
             
         "pests":{"@id":"ipm:pests","@container":"@list","@type":"schema:Text"},
         "crops":{"@id":"ipm:crops","@container":"@list","@type":"schema:Text"},
@@ -30,7 +30,7 @@
         "execution":{"@id":"ipm:execution"},
         "endpoint":{"@id":"ipm:endpoint","@type":"schema:URL"},
         "form_method":{"@id":"ipm:form_method"},
-        "content_type":{"@id":"ipm:content_type"},
+        "content_type":{"@id":"ipm:content_type","@type":"schema:Text"},
         "input_schema":{"@id":"ipm:input_schema"},
         "output":{"@id":"ipm:output"},
         "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation","@type":"schema:Text"},

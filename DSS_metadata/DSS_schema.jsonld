@@ -32,7 +32,7 @@
         "dateModified":{"@id":"schema:dateModified","@type":"schema:Date"},
         "datePublished":{"@id":"schema:datePublished","@type":"schema:Date"},
         "fileFormat":{"@id":"schema:fileFormat","@type":"schema:Text"},
-        "funder": {"@id":"schema:funder"},
+        "funder": {"@id":"schema:funder","@container":"@list","@type":"schema:Organization"},
         "Keywords":{"@id":"schema:Keywords","@container":"@list","@type":"schema:Text"},
         "license":{"@id":"schema:licence","@type":"schema:URL"},
         "description":{"@id":"schema:description","@type":"schema:Text"},
