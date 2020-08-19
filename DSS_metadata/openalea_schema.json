@@ -6,7 +6,7 @@
     "@id":"https://github.com/openalea",
     "@type":"SoftwareApplication",
     "name":"OpenAlea",
-    "version":"1.2",
+    "version":1.2,
     "url":"http://openalea.gforge.inria.fr/dokuwiki/doku.php",
     "organization":{
         "@type":"Organization",
@@ -53,7 +53,7 @@
     "contIntegration":null,
     "buildInstructions": "https://openalea.readthedocs.io/en/latest/install.html#",
     "developmentStatus":null,
-    "issueTracker":null,
+    "issueTracker":"https://github.com/openalea/openalea/issues",
     "readme":"https://github.com/openalea/openalea/blob/master/README.md"
 
 }

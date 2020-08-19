@@ -6,7 +6,7 @@
   "@id":"no.nibio.vips",
   "id":"no.nibio.vips",
   "name":"VIPS",
-  "version":"2.0",
+  "version":2.0,
   "url":"https://www.vips-landbruk.no/",
   "organization":{
     "@type":"Organization",
@@ -26,7 +26,7 @@
       "@type":"DSS_Model",
       "id":"PSILARTEMP",
       "name": "Carrot rust fly temperature model",
-      "version":"1.0",
+      "version":1.0,
       "authors":{
         "@type":"Person",
         "name":"Berit Nordskog",
