@@ -15,7 +15,7 @@
         "address":{"@id":"schema:streetAddress"},
         "country":{"@id":"schema:addressCountry"},
         "postal_code":{"@id":"schema:postalCode"},
-        "city":{"@id":"schema:addressLocality",},
+        "city":{"@id":"schema:addressLocality"},
         "email":{"@id":"schema:email"},
         "languages":{"@id":"schema:availableLanguage","@container":"@list"},
 
