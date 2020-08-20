@@ -45,7 +45,7 @@
         "buildInstructions": {"@id":"codemeta:buildInstructions"},
         "developmentStatus": {"@id":"codemeta:developementStatus"},
         "issueTracker":{"@id":"codemeta:issueTracker"},
-        "readme":{"@id":"codemeta:readme"}
+        "readme":{"@id":"codemeta:readme"} 
     
 
     }
