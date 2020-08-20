@@ -11,7 +11,7 @@
             
         "authors":{"@id":"schema:author","@container":"@list","@type":"schema:Person"},
         "email":{"@id":"schema:email","@type":"schema:Text"},
-        "organization":{"@id":"schema:affiliation","@type":"schema:Text"},
+        "organization":{"@id":"schema:Organization","@type":"schema:Text"},
             
         "pests":{"@id":"ipm:pests","@container":"@list","@type":"schema:Text"},
         "crops":{"@id":"ipm:crops","@container":"@list","@type":"schema:Text"},
