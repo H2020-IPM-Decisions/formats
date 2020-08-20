@@ -9,7 +9,7 @@
   "version":2.0,
   "url":"https://www.vips-landbruk.no/",
   "organization":{
-    "@type":"Organization",
+    "@type":"organization",
     "name":"NIBIO",
     "address":"Postboks 115",
     "country": "Norway",
