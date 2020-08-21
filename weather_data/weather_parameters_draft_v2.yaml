@@ -37,7 +37,7 @@ name: Mean air temperature at 10m
 - id: 1024
   name: Maximum air temperature in canopy
   unit: Celcius
-#
+# Soil temperatures
 - id: 1101
   name: Instantaneous temperature at -5cm (Celcius)
   unit: Celcius
@@ -111,6 +111,10 @@ name: Mean air temperature at 10m
   name: Maximum temperature at -50cm
   unit: Celcius
 
+# Misc temperatures
+- id: 1901
+  name: Dew point temperature
+  unit: Celcius
 
 ## 2000-series = precipitation (mm)
 - id: 2001
