@@ -41,34 +41,34 @@ An example  using these contexts are available:
 | properties |container| Type | reference | description |
 |--|--|--|--|--|
 | address | |Text | schema:streetAddress | The street address. For example, 1600 Amphitheatre Pkwy. |
-| authors |list| schema:Person | schema:author | The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably. |
+| authors |list| Person | schema:author | The author of this content or rating. Please note that author is special in that HTML 5 provides a special mechanism for indicating authorship via the rel tag. That is equivalent to this and may be used interchangeably. |
 | city | |Text | schema:addressLocality | The locality in which the street address is, and which is in the region. For example, Mountain View |
+|codeRepository||URL|schema:codeRepository|Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex, institutional GitLab instance, etc.|
+|contributor|list|Person|schema:contributor|A secondary contributor to the CreativeWork or Event. |
 | country | |Text | schema:addressCountry | The country. For example, USA. You can also provide the two-letter ISO 3166-1 alpha-2 country code. |
+|dateCreated||Date|schema:dateCreated|The date on which the CreativeWork was created or the item was added to a DataFeed. |
+|dateModified||Date|schema:dateModified|The date on which the CreativeWork was most recently modified or when the item’s entry was modified within a DataFeed. |
+|datePublished||Date|datePublished|Date of first broadcast/publication|
 | description | |Text | schema:description | A description of the item. |
+|downloadUrl||URL|schema:downloadUrl|If the file can be downloaded, URL to download the binary. |
 | email | |Text | schema:email | Email address. |
+|fileFormat||Text or URL|schema:fileFormat|Media type, typically MIME format (see IANA site) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, ‘encoding’ can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry. |
+|funder|list|Organization or Person|schema:funder|A person or organization that supports (sponsors) something through some kind of financial contribution. v|
 | id | |PropertyValue, URL or Text | schema:identifier | The identifier property represents any kind of identifier for any kind of Thing, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See background notes for more details |
+|installUrl||URL|schema:installUrl|URL at which the app may be installed, if different from the URL of the item. |
 | keywords | list|Text | schema:Keywords | Keywords or tags used to describe this content. Multiple entries in a keywords list are typically delimited by commas. |
 | languages |list |Text | schema:availableLanguage | A language someone may use with or at the item, service or place. Please use one of the language codes from the IETF BCP 47 standard |
-| name | |Text | schema:name | schema:Thing | The name of the item.(organisation,model,author) |
-| organization | |Text | schema:affiliation | An organization that this person is affiliated with. For example, a school/university, a club, or a team. |
-| organization | |schema:Organization | schema:Organization | An organization such as a school, NGO, corporation, club, etc. |
-| postal_code | |Text | schema:postalCode | The postal code. For example, 94043. |
-| url | |URL | schema:url | schema:Thing | URL of the item. |
-| version | |Float | schema:version | The version of the CreativeWork embodied by a specified resource. |
-|codeRepository||URL|schema:codeRepository|Link to the repository where the un-compiled, human readable code and related code is located (SVN, GitHub, CodePlex, institutional GitLab instance, etc.|
-|programmingLanguage|list|Text|schema:programmingLanguage|The computer programming language.|
-|runtimePlatform||Text|schema:runtimePlatform|Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0). Supersedes runtime. |
-|downloadUrl||URL|schema:downloadUrl|If the file can be downloaded, URL to download the binary. |
-|installUrl||URL|schema:installUrl|URL at which the app may be installed, if different from the URL of the item. |
+|licence||URL|schema:licence|A license document that applies to this content, typically indicated by URL.|
+| name | |Text | schema:name | The name of the item.(organisation,model,author) |
 |operatingSystem|list|Text|schema:operatingSystem|Operating systems supported (Windows 7, OSX 10.6, Android 1.6). |
-| citation | list|URL | schema:citation | List of DOI about model |
-|contributor|list|schema:Person|schema:contributor|A secondary contributor to the CreativeWork or Event. |
-|dateCreated||schema:Date|schema:dateCreated|The date on which the CreativeWork was created or the item was added to a DataFeed. |
-|dateModified||schema:Date|schema:dateModified|The date on which the CreativeWork was most recently modified or when the item’s entry was modified within a DataFeed. |
-|datePublished||schema:Date|datePublished|Date of first broadcast/publication|
-|fileFormat||Text|schema:fileFormat|Media type, typically MIME format (see IANA site) of the content e.g. application/zip of a SoftwareApplication binary. In cases where a CreativeWork has several media type representations, ‘encoding’ can be used to indicate each MediaObject alongside particular fileFormat information. Unregistered or niche file formats can be indicated instead via the most appropriate URL, e.g. defining Web page or a Wikipedia entry. |
-|funder|list|schema:Organization|schema:funder|A person or organization that supports (sponsors) something through some kind of financial contribution. v|
-|licence||schema:URL|schema:licence|A license document that applies to this content, typically indicated by URL.|
+| organization | |Text | schema:affiliation | An organization that this person is affiliated with. For example, a school/university, a club, or a team. |
+| organization | |Organization | schema:Organization | An organization such as a school, NGO, corporation, club, etc. |
+| postal_code | |Text | schema:postalCode | The postal code. For example, 94043. |
+|programmingLanguage|list|ComputerLanguage or Text |schema:programmingLanguage|The computer programming language.|
+|runtimePlatform||Text|schema:runtimePlatform|Runtime platform or script interpreter dependencies (Example - Java v1, Python2.3, .Net Framework 3.0). Supersedes runtime. |
+|softwareRequirements||Text or URL|schema:softwareRequirements|Required software dependencies|
+| url | |URL | schema:url | URL of the item. |
+| version | |Number or Text | schema:version | The version of the CreativeWork embodied by a specified resource. |
 
 
 
@@ -95,18 +95,19 @@ An example  using these contexts are available:
 | type_of_output | |Text | ipmdecision:type_of_output | indicate the type of output |
 | valid_spatial | |Text | ipmdecision:valid_spatial (schema:countriesSupported) | spatial validation of model |
 | warning_status_interpretation || Text | ipmdecision:warning_status_interpretation | Definition of the warning_station_interpretation specific for this DSS model |
-| weather |list | | ipmdecision:weather | weather data for parameter_code is described in <https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml> |
+| weather |list | DataFeed?? | ipmdecision:weather | weather data for parameter_code is described in <https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml> |
 
 ### Properties description can be issue from codemeta
 
 |Properties|container|Type|reference|description|
 |--|--|--|--|--|
-|maintener|list|schema:Person|codemeta:mainterner|Individual responsible for maintaining the software (usually includes an email contact address)|
+|maintener|list|Person|codemeta:mainterner|Individual responsible for maintaining the software (usually includes an email contact address)|
 |contIntegration||URL|condemeta:contIntegration|link to continuous integration service|
 |buildInstruction||URL|codemeta:buildInstruction|link to installation instructions/documentation |
-|developmentStatus||URL|codemeta:developmentStatus|Description of development status, e.g. Active, inactive, suspended. See repostatus.org|
+|developmentStatus||Text|codemeta:developmentStatus|Description of development status, e.g. Active, inactive, suspended. See repostatus.org|
 |IssueTracker||URL|codemeta:IssueTracker|ink to software bug reporting or issue tracking system|
 |readme||URL|codemeta:readme|link to software Readme file|
+| citation | list|URL or ScholarlyArticle | codemeta:referencePublication  | An academic publication related to the software. (doi) |
 
 
 > **sources:**  

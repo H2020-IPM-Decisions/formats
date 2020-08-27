@@ -36,7 +36,7 @@
         "Keywords":{"@id":"schema:Keywords"},
         "license":{"@id":"schema:licence"},
         "description":{"@id":"schema:description"},
-
+        "softwareRequirements":{"@id":"schema:softwareRequirements"},
 
         "DSS_Model":{"@id":"ipm:models","@type":"DSS_Model"},
 

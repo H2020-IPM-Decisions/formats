@@ -24,6 +24,7 @@
     "downloadUrl": "http://openalea.gforge.inria.fr/dokuwiki/doku.php?id=download",
     "installUrl":null,
     "operatingSystem":["Windows", "Linux","Mac OS X"],
+    "softwareRequirements":null,
     "authors":[
         {"@id":"https://orcid.org/0000-0002-2555-761X",
         "@type":"Person",
