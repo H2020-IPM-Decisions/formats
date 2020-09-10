@@ -15,10 +15,16 @@ JSON-LD introduces:
 and a facility to express one or more directed graphs, such as a social network, in a single document.
 
 
->**Sources documentations**
->* json-ld: <https://json-ld.org/>   
->* json-ld documentation: <https://json-ld.org/learn.html>    
->* json-ld syntax: <https://www.w3.org/TR/json-ld/>  
+>**Sources documentations:**
+>* [json-ld](https://json-ld.org/)   
+>* [json-ld documentation](https://json-ld.org/learn.html)    
+>* [json-ld syntax](https://www.w3.org/TR/json-ld/) 
+
+## Json Schema, schema.org, Json-ld What difference?
+
+>**Sources documentation:** 
+>
+> [json-schema, schema.org, jsonld what the difference](https://levelup.gitconnected.com/json-schema-schema-org-json-ld-whats-the-difference-e30d7315686a)
 
 
 ## JSON-LD Context for IPM-Decision
