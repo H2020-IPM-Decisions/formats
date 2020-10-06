@@ -341,7 +341,7 @@ datasources:
       city: Ås
       email: berit.nordskog@nibio.no
       url: https://www.nibio.no/
-    endpoint: "https://ipmdecisions.nibio.no/lmtservices/rest/ipmdecisions/getdata/"
+    endpoint: "https://lmt.nibio.no/services/rest/ipmdecisions/getdata/"
     needs_data_control: true
     temporal:
       historic: #  
