@@ -187,19 +187,19 @@ name: Mean air temperature at 10m
   name: Min wind speed at 2m
   unit: m/s
 - id: 4011
-  name: Wind direction at 2m (degrees 0-360)
+  name: Wind direction at 10m (degrees 0-360)
   unit: degrees
 - id: 4012
-  name: Instantaneous wind speed at 2m
+  name: Instantaneous wind speed at 10m
   unit: m/s
 - id: 4013
-  name: Mean wind speed at 2m
+  name: Mean wind speed at 10m
   unit: m/s
 - id: 4014
-  name: Max wind speed at 2m
+  name: Max wind speed at 10m
   unit: m/s
 - id: 4015
-  name: Min wind speed at 2m
+  name: Min wind speed at 10m
   unit: m/s
 
 ## 5000-series = radiation
