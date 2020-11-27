@@ -59,7 +59,7 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
   execution: 
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -139,7 +139,7 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
   execution:
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/NAERSTADMO/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/NAERSTADMO/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -208,7 +208,7 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
   execution:
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/ALTERNARIA/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/ALTERNARIA/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -277,7 +277,7 @@ models:
      interval: 3600
   execution:
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/NEGPROGMOD/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/NEGPROGMOD/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -362,7 +362,7 @@ models:
     - SEPTAP # EPPO Code for the disease
   execution:
     type: ONTHEFLY # [ONTHEFLY, BATCH, TICKET]
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/SEPAPIICOL/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/SEPAPIICOL/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
 # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -382,7 +382,7 @@ models:
                 "title": "Field observations",
                 "type": "array",
                 "items": {
-                  "$ref": "https://ipmdecisions.nibio.no/dss/rest/schema/fieldobservation"
+                  "$ref": "https://ipmdecisions.nibio.no/api/dss/rest/schema/fieldobservation"
                 }
               },
               "fieldObservationQuantifications": {
@@ -455,7 +455,7 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
   execution: 
     type: ONTHEFLY
-    endpoint: https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
