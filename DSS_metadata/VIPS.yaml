@@ -79,7 +79,7 @@ models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
@@ -159,7 +159,7 @@ models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
@@ -229,7 +229,7 @@ models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
@@ -297,7 +297,7 @@ models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
@@ -400,7 +400,7 @@ models:
             "required": ["timeZone","startDateGrowth","endDateCalculation"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"],
@@ -475,7 +475,7 @@ models:
             "required": ["timeZone","timeStart","timeEnd"]
           },
           "weatherData": {
-            "$ref": "https://ipmdecisions.nibio.no/weather/rest/schema/weatherdata"
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
           }
         },
         "required": ["modelId","configParameters"]
