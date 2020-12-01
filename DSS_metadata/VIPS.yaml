@@ -97,6 +97,108 @@ models:
       - id: TMDD5C
         title: Accumulated day degrees
         description: The accumulated day degrees with a base temperature of 5 degrees celcius
+########### TODO finish adapt
+- name: Carrot rust fly observation model
+  id: PSILAROBSE
+  version: 1.0
+  authors: # List of the model authors
+  - name: Tor J. Johansen
+    email: tor.johansen@nibio.no
+    organization: NIBIO
+  pests: 
+  - PSILRO # EPPO code for carrot rust fly
+  crops:
+  - DAUCS # EPPO code for carrot
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
+  description: |
+    The warning system model is based on weekly observations of adult carrot rust flies captured on yellow sticky traps. The model is based in its entirety on observations, with no input of weather data or weather forecasts. Traps are placed in the field edge and in the field and are examined for carrot rust flies weekly throughout the season. The number of adult carrot rust flies is registered in VIPS and is used in the warning system model. The observations are compared with the economic threshold levels and a warning is calculated. After organophosphates (which had a good effect against larvae) were removed from the market, they were replaced by pyrethroids that only work against the adult stage. Studies were carried out in 2005 and 2006 to adjust the larval-based thresholds to chemical control of adult flies. The experience from Norway and other countries indicated that the first treatment against carrot rust flies should be done as soon as possible after the first fly is observed on the traps. The threshold that is used in VIPS is therefore at the first observation of 1 fly.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  input:
+   field_observation:
+    species: 
+    - PSILRO # EPPO Code for the disease
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^PSILAROBSE$", "title": "Model Id", "default":"PSILAROBSE", "description":"Must be PSILAROBSE"},
+          "configParameters": {
+            "title":"Configuration parameters",
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "startDateCalculation": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "endDateCalculation": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
+              "fieldObservations": {
+                "title": "Field observations",
+                "type": "array",
+                "items": {
+                  "$ref": "https://ipmdecisions.nibio.no/api/dss/rest/schema/fieldobservation"
+                }
+              },
+              "fieldObservationQuantifications": {
+                "title": "Field observation quantifications",
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/fieldObs_PSILRO"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": ["timeZone","startDateCalculation","endDateCalculation"]
+          }
+        },
+        "required": ["modelId","configParameters"],
+        "definitions": {
+          "fieldObs_PSILRO": {
+            "title": "Psila rosae quantification", 
+            "properties": {
+              "trapCountCropEdge":{"title":"Insect trap count at the edge of the field","type":"integer"},
+              "trapCountCropInside":{"title":"Insect trap count inside the field","type":"integer"}
+            },
+            "required": ["trapCountCropEdge","trapCountCropInside"]
+          }
+        }
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+
+Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+
+Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+
+The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TRAP_COUNT_CROP_EDGE
+        title: Insect trap count at the edge of the field
+        description: Insect trap count at the edge of the field
+      - id: TRAP_COUNT_CROP_INSIDE
+        title: Insect trap count inside the field
+        description: Insect trap count inside the field
 ###########
 - name: Nærstad model
   id: NAERSTADMO
@@ -271,9 +373,9 @@ models:
    weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 1002 # = Mean temp at 2m measured in Celcius.
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
-   - parameter_code: 2001  # Leaf wetness duration. Measured in minutes with wetness per period 
+   - parameter_code: 2001  # Precipitation
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
-   - parameter_code: 3002
+   - parameter_code: 3002 # Mean relative humidity (%)
      interval: 3600
   execution:
     type: ONTHEFLY
@@ -356,6 +458,12 @@ models:
   input:
    weather: # TODO: weather parameter codes, frequency codes and unit codes
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
+     interval: 3600
+   - parameter_code: 1002 # = Mean temp at 2m measured in Celcius.
+     interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
+   - parameter_code: 2001  # Precipitation
+     interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
+   - parameter_code: 3002 # Mean relative humidity (%)
      interval: 3600
    field_observation:
     species: 
