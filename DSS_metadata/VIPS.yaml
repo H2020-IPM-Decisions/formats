@@ -186,11 +186,11 @@ models:
     warning_status_interpretation: |-
       Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
 
-Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+      Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
 
-Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+      Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
 
-The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TRAP_COUNT_CROP_EDGE
