@@ -3,7 +3,7 @@
 ---
 # General info about the DSS
 id: no.nibio.vips
-version: 2.0
+version: "2.0"
 name: VIPS
 url: https://www.vips-landbruk.no/
 organization: 
@@ -27,7 +27,7 @@ languages:
 models:
 - name: Carrot rust fly temperature model
   id: PSILARTEMP
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Berit Nordskog
     email: berit.nordskog@nibio.no
@@ -100,7 +100,7 @@ models:
 ########### TODO finish adapt
 - name: Carrot rust fly observation model
   id: PSILAROBSE
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Tor J. Johansen
     email: tor.johansen@nibio.no
@@ -131,7 +131,7 @@ models:
     - PSILRO # EPPO Code for the disease
   execution: 
     type: ONTHEFLY
-    endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run/ipmd
+    endpoint: https://coremanager.vips.nibio.no/models/PSILAROBSE/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
@@ -202,7 +202,7 @@ models:
 ###########
 - name: Nærstad model
   id: NAERSTADMO
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Ragnhild Nærstad
     email: ragnhild.naerstad@syngenta.com
@@ -276,11 +276,11 @@ models:
       # the id is used with the model_id as the namespace
       - id: RISK
         title: Calculated risk value
-        description: null
+        description: Calculated risk value
 #####
 - name: Alternaria TOMCAST
   id: ALTERNARIA
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Dr R. E. Pitblado
   pests:
@@ -347,7 +347,7 @@ models:
 #####
 - name: Negative prognosis
   id: NEGPROGMOD
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Ullrich J. & H. Schrödter
   pests:
@@ -422,7 +422,7 @@ models:
 #####
 - name: Septoria apiicola model
   id: SEPAPIICOL
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Berit Nordskog
     email: berit.nordskog@nibio.no
@@ -532,7 +532,7 @@ models:
 ##########
 - name: Bremia lactucae (Downy mildew of lettuce) model
   id: BREMIALACT
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Berit Nordskog
     email: berit.nordskog@nibio.no
