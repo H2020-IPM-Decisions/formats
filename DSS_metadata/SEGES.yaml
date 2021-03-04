@@ -1,0 +1,140 @@
+# YAML sample of model meta data to be used by the plaform
+# (c) 2021 Tor-Einar Skog <tor-einar.skog@nibio.no>
+---
+# General info about the DSS
+id: dk.seges
+version: "1.0"
+name: SEGES DSS models
+url: https://www.seges.dk/
+organization: 
+ name: SEGES
+ country: Denmark
+ address: Agro Food Park 15
+ postal_code: "8200"
+ city: Aarhus N
+ email: info@seges.dk
+ url: https://www.seges.dk/
+languages:
+- Danish
+- English
+# List of DSS models provided by SEGES
+models:
+- name: Septoria Humidity Model
+  id: SEPTORIAHU
+  version: "1.0"
+  authors: # List of the model authors
+  - name: Lise N. Jørgensen
+    email: lisen.jorgensen@agro.au.dk
+    organization: Aarhus University
+  pests: 
+  - SEPTTR # Zymoseptoria tritici
+  - LEPTNO # Parastagonospora nodorum
+  - PYRNTR # Pyrenophora tritici-repentis
+  crops:
+  - 3WHEC # Wheat crops
+  keywords: none
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/SEPTORIAHU/
+  description: |
+    Fuktmodellen er et beslutningsstøtteverktøy for å kunne vurdere risiko for 
+    angrep av hvetebladprikk i høsthvete under danske forhold. Modellen er basert 
+    på antall timer med bladfuktighet. Bladfuktighet er definert som nedbør (0,2 mm) 
+    eller 85 % luftfuktighet i minst 30 min/time målt fra den nærmeste værstasjonen.
+    
+    Værdata brukes fra de siste 3 dagene og prognosen for de neste 3 dagene fremover. 
+    I tillegg legges det inn dato for når utviklingsstadium BBCH 31 eller 32 inntreffer. 
+    Modellen beregner forventet dato for de andre utviklingsstadiene, som kan justeres manuelt ved avvik.
+    
+    Det er også viktig å legge inn data for evt. gjennomførte sprøytinger. Etter sprøyting med 
+    fungicider som er effektive mot bladflekksjukdommer (*) går modellen ut fra at plantene er 
+    beskyttet i en periode på 10 dager.
+
+    Antall timer med bladfuktighet som utløser et varsel og prosent luftfuktighet som definerer en 
+    fuktig time kan justeres manuelt pga. aktuelle informasjon fra det aktuelle feltet for eksempel 
+    sortsresistens, sjukdomspress i åkeren, forgrøde (kryss av «Vis avanserte innstillinger»).
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+      - DNK
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  input:
+   weather: 
+    - parameter_code: 2001 # Precipitation
+      interval: 3600 # Hourly
+    - parameter_code: 3002 # Relative humidity
+      interval: 3600 
+    - parameter_code: 3101 # Leaf wetness
+      interval: 3600
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://coremanager.vips.nibio.no/models/SEPTORIAHU/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^SEPTORIAHU$", "title": "Model Id", "default":"SEPTORIAHU", "description":"Must be SEPTORIAHU"},
+          "configParameters": {
+            "title":"Configuration parameters",
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "dateGs31": {"type":"string","format": "date", "title": "Date of growth stage 31 (YYYY-MM-DD)"},
+              "date3rdUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 3rd upper leaf emerging (GS32) (YYYY-MM-DD)"},
+              "date2ndUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 2nd upper leaf emerging (GS33) (YYYY-MM-DD)"},
+              "dateUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of upper leaf emerging (GS37-39) (YYYY-MM-DD)"},
+              "dateGs75": {"type":"string","format": "date", "title": "Date of all kernels fully developed (GS75) (YYYY-MM-DD)"},
+              "dateSpraying1": {"type":"string","format": "date", "title": "Date of first spraying"},
+              "dateSpraying2": {"type":"string","format": "date", "title": "Date of second spraying"},
+              "sprayingProtectionDays": {"type":"integer", title:"Number of days the crop is protected", "default": 10, "minimum": 0},
+              "thresholdRelativeHumidity": {"type":"number", title:"Threshold RH for wet hour", "default": 85.0, "minimum": 0},
+              "thresholdLeafWetness": {"type":"number", title:"Threshold Leaf wetness for wet hour", "default": 30.0, "minimum": 0},
+              "thresholdPrecipitation": {"type":"number", title:"Threshold precipitation for wet hour", "default": 0.2, "minimum": 0},
+              "slidingHoursPast": {"type":"integer", title:"Number of hours to consider before current hour", "default": 36, "minimum": 1},
+              "slidingHoursAhead": {"type":"integer", title:"Number of hours to consider after current hour", "default": 36, "minimum": 1},
+              "thresholdHumidPeriodHours": {"type":"integer", title:"Threshold number of hours for a 'wet period'", "default": 19, "minimum": 1},
+              "leafLifeTime": {"type":"integer", title:"Expected life time of a leaf (in days)", "default": 75, "minimum": 1}
+            },
+            "required": [
+              "timeZone","dateGs31","date3rdUpperLeafEmerging","date2ndUpperLeafEmerging","dateUpperLeafEmerging","dateGs75",
+              "sprayingProtectionDays","thresholdRelativeHumidity","thresholdLeafWetness","thresholdPrecipitation",
+              "slidingHoursPast", "slidingHoursAhead","thresholdHumidPeriodHours","leafLifeTime"
+            ]
+          },
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          }
+        },
+        "required": ["modelId","configParameters"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+      bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: HPH
+        title: Humid period hour (consecutive humid hours)
+        description: Humid period hour (consecutive humid hours)
+      - id: HPHPP
+        title: Humid period hour (consecutive humid hours) corrected for protection period
+        description: Humid period hour (consecutive humid hours) corrected for protection period
+      - id: THPHPP
+        title: Threshold for consecutive humid hours
+        description: Threshold for consecutive humid hours
+      - id: HH
+        title: Current hour is humid hour? 1 = true, 0 = false
+        description: Current hour is humid hour? 1 = true, 0 = false
+      - id: HHS
+        title: Humid hour sum for sliding middle
+        description: Humid hour sum for sliding middle

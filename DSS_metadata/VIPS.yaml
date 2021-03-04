@@ -1,5 +1,5 @@
-# TEST YAML sample of model meta data to be used by the plaform
-# (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
+# YAML sample of model meta data to be used by the plaform
+# (c) 2021 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
 # General info about the DSS
 id: no.nibio.vips
@@ -36,7 +36,7 @@ models:
   - PSILRO # EPPO code for carrot rust fly
   crops:
   - DAUCS # EPPO code for carrot
-  keywords: foo, bar, mechanistic, regression
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
   description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
@@ -97,7 +97,181 @@ models:
       - id: TMDD5C
         title: Accumulated day degrees
         description: The accumulated day degrees with a base temperature of 5 degrees celcius
-########### TODO finish adapt
+##
+- name: Cabbage fly flight period temperature model
+  id: DELIARADIC
+  version: "1.0"
+  authors: # List of the model authors
+  - name: Tor Johansen
+    email: tor.johansen@nibio.no
+    organization: NIBIO
+  pests: 
+  - HYLERA # EPPO code for Cabbage Fly
+  crops:
+  - 1BRSG # EPPO code for the Brassica Genus
+  keywords: none
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/DELIARADIC/
+  description: |
+    The model determines the flight period. It gives information about the expected time of the first 
+    oviposition and continued oviposition of the cabbage maggot in cruciferous crops. The model only 
+    applies for cabbage maggot, not turnip fly.
+
+    Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with 
+    early crops the preceding season (either on the current field or neighboring fields), the flight 
+    period can start earlier due to higher soil temperature under the covers.
+
+    This model should be used in combination with direct observations of eggs in the field. This is 
+    due to large variability and to get an idea of the severity of attack.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  input:
+   weather: 
+   - parameter_code: 1002 # = Mean air temp at 2m
+     interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   - parameter_code: 1112 # Mean soil temp at 10cm depth
+     interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://coremanager.vips.nibio.no/models/DELIARADIC/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^DELIARADIC$", "title": "Model Id", "default":"DELIARADIC", "description":"Must be DELIARADIC"},
+          "configParameters": {
+            "title":"Configuration parameters",
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"}
+            },
+            "required": ["timeZone"]
+          },
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          }
+        },
+        "required": ["modelId","configParameters"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+      Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+      Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+      Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMDD4C
+        title: Accumulated air temperature day degrees 
+        description: The accumulated soil temperature day degrees with a base temperature of 4 degrees celcius
+      - id: TJM10DD4C
+        title: Accumulated soil temperature day degrees 
+        description: The accumulated soil temperature day degrees with a base temperature of 4 degrees celcius
+      - id: TMDD4CLT
+        title: Lower threshold value for TMDD4C
+        description: When this threshold is reached, the flight period is beginning and the first oviposition is close
+      - id: TMDD4CUT
+        title: Upper threshold value for TMDD4C
+        description: When this threshold is reached, it is likely that oviposition has begun.
+      - id: TJM10DD4CLT
+        title: Lower threshold value for TJM10DD4C
+        description: When this threshold is reached, the flight period is beginning and the first oviposition is close
+      - id: TJM10DD4CUT
+        title: Upper threshold value for TJM10DD4C
+        description: When this threshold is reached, it is likely that oviposition has begun.
+##
+- name: Cabbage moth model
+  id: MAMESTRABR
+  version: "1.0"
+  authors: # List of the model authors
+  - name: Nina Johansen
+    email: nina.johansen@nibio.no
+    organization: NIBIO
+  pests: 
+  - BARABR # EPPO code for Cabbage Moth
+  crops:
+  - 1BRSG # EPPO code for the Brassica Genus
+  keywords: none
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/DELIARADIC/
+  description: |
+    The model for the warning system for cabbage moth was developed by Dr. Nina Svae Johansen. 
+    It is based on the minimum temperature threshold and the requirement for accumulated 
+    day-degrees for the different stages of the cabbage moth [CITATION Joh96 \t \l 1044 ]. 
+    The accumulated degree-day model calculates forecasts for development of the cabbage moth 
+    through the summer, generates warnings for the time when eggs and small larvae can be 
+    registered in the field and the best time for treatment [CITATION Joh97 \t \l 1044 ].
+
+    Note that the model is based on temperature, it is not related to the presence or 
+    absence of cabbage moth in the field. Thus, it is important to evaluate the situation in the field.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  input:
+   weather: 
+   - parameter_code: 1002 # = Mean air temp at 2m
+     interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   - parameter_code: 1112 # Mean soil temp at 10cm depth
+     interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://coremanager.vips.nibio.no/models/MAMESTRABR/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^MAMESTRABR$", "title": "Model Id", "default":"MAMESTRABR", "description":"Must be MAMESTRABR"},
+          "configParameters": {
+            "title":"Configuration parameters",
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"}
+            },
+            "required": ["timeZone"]
+          },
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          }
+        },
+        "required": ["modelId","configParameters"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+      Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+      Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+      Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMDD
+        title: Accumulated day degrees 
+        description: The accumulated day degrees with a base temperature of 0 degrees celcius
+##
 - name: Carrot rust fly observation model
   id: PSILAROBSE
   version: "1.0"
@@ -109,7 +283,7 @@ models:
   - PSILRO # EPPO code for carrot rust fly
   crops:
   - DAUCS # EPPO code for carrot
-  keywords: foo, bar, mechanistic, regression
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
   description_URL: https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/
@@ -199,6 +373,138 @@ models:
       - id: TRAP_COUNT_CROP_INSIDE
         title: Insect trap count inside the field
         description: Insect trap count inside the field
+##
+- name: Cabbage root fly and turnip fly observation model
+  id: DELIARFOBS
+  version: "1.0"
+  authors: # List of the model authors
+  - name: Richard Meadow
+    email: richard.meadow@nibio.no
+    organization: NIBIO
+  pests: 
+  - HYLERA # EPPO code for Cabbage root fly (Delia radicum)
+  - HYLEFLO # EPPO code for turnip fly (Delia floralis)
+  crops:
+  - BROSL # EPPO code for cabbage (head cabbage, Brassica oleracea var. capitata)
+  - BRSOB # EPPO code for cauliflower (Brassica oleracea var. botrytis)
+  - BRSOK # EPPO code for broccoli (Brassica oleracea var. italica)
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://www.vips-landbruk.no/forecasts/models/DELIARFOBS/
+  description: |
+    The warning system model is based on weekly observations of oviposition by the 
+    brassica root flies [CITATION Bli991 \l 1044 ]. The model is based in its entirety 
+    on observations, with no input of weather data or weather forecasts. The model does 
+    not distinguish between the cabbage maggot and the turnip fly. The observations consist 
+    of collecting sand from the base of 10 plants and floating the eggs in water. The 
+    counts are registered in VIPS and the mean number of eggs is calculated. The observations 
+    are compared to damage thresholds [CITATION Bli99 \l 1044 ] and warnings are calculated.
+    The damage thresholds are related to the plants developmental stage and tell how many eggs 
+    that can be on a plant before there will be a reduction in growth and yield. VIPS presents 
+    two warning system models based on damage thresholds: one for newly planted cabbage and 
+    one for cabbage that has been in the field more than 4 weeks. The model can also be set up 
+    as a private warning for the farmer’s own field, in which case the model will vary between 
+    the two different damage thresholds based on the age of the cabbage crop (starting at the 
+    time of planting).
+    The warning system model is only valid for cabbage, cauliflower and broccoli. The damage 
+    threshold for cabbage, cauliflower and broccoli the first 4 weeks after planting is 14 eggs 
+    per plant per week. After 4 weeks the damage threshold changes to 40 eggs per plant per 
+    week. Damage thresholds have not been determined for other crucifers.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries:
+      - NOR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  input:
+   field_observation:
+    species: 
+    - HYLERA # EPPO Code for the disease
+    - HYLEFLO
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://coremanager.vips.nibio.no/models/DELIARFOBS/run/ipmd
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "modelId": {"type": "string", "pattern":"^DELIARFOBS$", "title": "Model Id", "default":"DELIARFOBS", "description":"Must be DELIARFOBS"},
+          "configParameters": {
+            "title":"Configuration parameters",
+            "type": "object",
+            "properties": {
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "startDateCalculation": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "endDateCalculation": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
+              "fieldObservations": {
+                "title": "Field observations",
+                "type": "array",
+                "items": {
+                  "$ref": "https://ipmdecisions.nibio.no/api/dss/rest/schema/fieldobservation"
+                }
+              },
+              "fieldObservationQuantifications": {
+                "title": "Field observation quantifications",
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/definitions/fieldObs_HYLERA"
+                    }
+                  ]
+                }
+              }
+            },
+            "required": ["timeZone","startDateCalculation","endDateCalculation"]
+          }
+        },
+        "required": ["modelId","configParameters"],
+        "definitions": {
+          "fieldObs_HYLERA": {
+            "title": "Delia radicum egg quantification", 
+            "properties": {
+              "counting01":{"title":"Number of eggs, plant 1", "type":"integer", "minimum": 0},
+              "counting02":{"title":"Number of eggs, plant 2", "type":"integer", "minimum": 0},
+              "counting03":{"title":"Number of eggs, plant 3", "type":"integer", "minimum": 0},
+              "counting04":{"title":"Number of eggs, plant 4", "type":"integer", "minimum": 0},
+              "counting05":{"title":"Number of eggs, plant 5", "type":"integer", "minimum": 0},
+              "counting06":{"title":"Number of eggs, plant 6", "type":"integer", "minimum": 0},
+              "counting07":{"title":"Number of eggs, plant 7", "type":"integer", "minimum": 0},
+              "counting08":{"title":"Number of eggs, plant 8", "type":"integer", "minimum": 0},
+              "counting09":{"title":"Number of eggs, plant 9", "type":"integer", "minimum": 0},
+              "counting10":{"title":"Number of eggs, plant 10","type":"integer", "minimum": 0}
+            },
+            "required": []
+          }
+        }
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+      Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+      This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+      Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+      The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+      The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: OBS_AVG
+        title: Average egg count
+        description: Average of counting of eggs on 10 plants
+      - id: THRESHOLD_YOUNG
+        title: Economic threshold in young plants
+        description: Economic threshold in young plants (up to 4 weeks)
+      - id: THRESHOLD_OLD
+        title: Economic threshold in mature plants
+        description: Economic threshold in mature plants (4 weeks and older)
 ###########
 - name: Nærstad model
   id: NAERSTADMO
@@ -244,7 +550,7 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/NAERSTADMO/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
         "type":"object",
@@ -313,7 +619,7 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/ALTERNARIA/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
         "type":"object",
@@ -382,7 +688,7 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/NEGPROGMOD/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
         "type":"object",
@@ -473,7 +779,7 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/SEPAPIICOL/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-# The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
         "type":"object",
