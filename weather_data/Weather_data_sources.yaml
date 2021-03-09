@@ -14,7 +14,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: "https://ipmdecisions.nibio.no/weather/rest/weatheradapter/yr/"
+    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/yr/
     needs_data_control: false
     temporal:
       historic: #  
@@ -50,7 +50,7 @@ datasources:
       city: Helsinki
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
-    endpoint: "https://ipmdecisions.nibio.no/weather/rest/weatheradapter/fmi/forecasts"
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/forecasts
     needs_data_control: false
     temporal:
       historic: #  
@@ -91,7 +91,7 @@ datasources:
       city: Helsinki
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
-    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/fmi/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/
     needs_data_control: false
     temporal:
       historic: #  
@@ -495,7 +495,7 @@ datasources:
       city: Varna
       email: info@meteobot.com
       url: https://meteobot.com/en/
-    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/meteobot/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/meteobot/
     authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
@@ -1066,7 +1066,7 @@ datasources:
       city: Jork
       email: mb@fruitweb.info
       url: https://www.fruitweb.info/en/
-    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/davisfruitweb/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/davisfruitweb/
     authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
@@ -1106,7 +1106,7 @@ datasources:
       city: Weis
       email: office@metos.at
       url: https://metos.at
-    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/metos/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/metos/
     authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
