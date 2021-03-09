@@ -14,7 +14,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: https://ipmdecisions.nibio.no/weather/rest/weatheradapter/yr/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/yr/
     needs_data_control: false
     temporal:
       historic: #  
