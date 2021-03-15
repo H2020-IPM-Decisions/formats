@@ -95,14 +95,14 @@ models:
               "dateGs75": {"type":"string","format": "date", "title": "Date of all kernels fully developed (GS75) (YYYY-MM-DD)"},
               "dateSpraying1": {"type":"string","format": "date", "title": "Date of first spraying"},
               "dateSpraying2": {"type":"string","format": "date", "title": "Date of second spraying"},
-              "sprayingProtectionDays": {"type":"integer", title:"Number of days the crop is protected", "default": 10, "minimum": 0},
-              "thresholdRelativeHumidity": {"type":"number", title:"Threshold RH for wet hour", "default": 85.0, "minimum": 0},
-              "thresholdLeafWetness": {"type":"number", title:"Threshold Leaf wetness for wet hour", "default": 30.0, "minimum": 0},
-              "thresholdPrecipitation": {"type":"number", title:"Threshold precipitation for wet hour", "default": 0.2, "minimum": 0},
-              "slidingHoursPast": {"type":"integer", title:"Number of hours to consider before current hour", "default": 36, "minimum": 1},
-              "slidingHoursAhead": {"type":"integer", title:"Number of hours to consider after current hour", "default": 36, "minimum": 1},
-              "thresholdHumidPeriodHours": {"type":"integer", title:"Threshold number of hours for a 'wet period'", "default": 19, "minimum": 1},
-              "leafLifeTime": {"type":"integer", title:"Expected life time of a leaf (in days)", "default": 75, "minimum": 1}
+              "sprayingProtectionDays": {"type":"integer", "title":"Number of days the crop is protected", "default": 10, "minimum": 0},
+              "thresholdRelativeHumidity": {"type":"number", "title":"Threshold RH for wet hour", "default": 85.0, "minimum": 0},
+              "thresholdLeafWetness": {"type":"number", "title":"Threshold Leaf wetness for wet hour", "default": 30.0, "minimum": 0},
+              "thresholdPrecipitation": {"type":"number", "title":"Threshold precipitation for wet hour", "default": 0.2, "minimum": 0},
+              "slidingHoursPast": {"type":"integer", "title":"Number of hours to consider before current hour", "default": 36, "minimum": 1},
+              "slidingHoursAhead": {"type":"integer", "title":"Number of hours to consider after current hour", "default": 36, "minimum": 1},
+              "thresholdHumidPeriodHours": {"type":"integer", "title":"Threshold number of hours for a 'wet period'", "default": 19, "minimum": 1},
+              "leafLifeTime": {"type":"integer", "title":"Expected life time of a leaf (in days)", "default": 75, "minimum": 1}
             },
             "required": [
               "timeZone","dateGs31","date3rdUpperLeafEmerging","date2ndUpperLeafEmerging","dateUpperLeafEmerging","dateGs75",

@@ -1,9 +1,8 @@
----
-# General info about the models
-id: adas.models
-version: 0.0.4
+# General info about the DSS
+id: adas.dss
+version: "0.0.1"
 name: Models
-url: http://web1.adas.co.uk/dsstest
+url: http://web1.adas.co.uk/adas_dss
 organization: 
  name: ADAS
  country: England
@@ -15,254 +14,498 @@ organization:
 languages:
 - English
 # From here on we get model specific
+# There may be many DSS models per DSS
+# They should have their separate list entry
+# We use EPPO codes (https://gd.eppo.int/)
+# for pests and crops
+# We use these parameters/codes for weather data: 
+# https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml
 models:
-- name: CIBSE hourly temperature for a single day
-  id: CIBSEsingleday
-  version: 0.0.4
+- name: Cutworm Model
+  id: DASGPA
+  version: "0.0.1"
   authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-
-  keywords: algorithm, temperature
-  type_of_output: hourly temperatures
-  description_URL: http://web1.adas.co.uk/dsstest/Help/Api/POST-api-CIBSEsingleday
+  - name: J. Bowden, J. Cochrane, B.J. Emmett, T.E. Minall, P.L Sherlock
+    email: NA
+    organization: Rothamsted Experimental Statton
+  pests: 
+  - DASGPA # EPPO code for cutworm
+  crops: []
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://web1.adas.co.uk/adas_dss/dasgpa/Help/Api/POST-api-DASGPA
   description: |
-    This model calculates hourly tempertaure values based on the CIBSE model for a single day (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in the day using the CIBSE Guide A2 (1982). 
-    The model then uses these predicted times aswell as minimum and maximum air tempertaures to fit the data via sinusoidal curves.
-  citation: null # Optional. Use the DOI as identifier (list)
+    This model assesses Cutworm risk in crops based on the work of Bowden et al., (1982). The model was originally devised to estimate an index of larval survival to third instar, based on temperature rate of development relationships and mortality due to daily rainfall.
+    If no start date is inputted into the model the default will be used.The default is defined as the first day after 1st June where temperature exceeds 12 degrees.
+    Any spray dates can be inputted into the model and are deemed to be 100% effective at removing cutworm from the model.
+    The model will return the number of batches that survive to the third instar for the last three days of inputted weather data, the asscoiated risk and the recommended action.
+  citation: 10.1111/j.1744-7348.1983.tb02663.x # Optional. Use the DOI as identifier (list)
   # Where has this model been considered valid
   valid_spatial:
-    countries: []
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: 
+      - GBR
+    # Optionally, use a custom polygon
     geoJSON: |-
       {}
   execution: 
     type: ONTHEFLY
-    endpoint:  http://web1.adas.co.uk/dsstest/Api/CIBSEsingleday
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema: |
-      { 
-         "type": "object",
-         "required": ["Date","Tmin","Tmax"]
-         "properties": {
-            "Date": {"type": "string", "format": "date"},
-            "Tmin": {"type": "number"},
-            "Tmax": {"type": "number"}
-          },
-      }
-  output: 
-    warning_status_interpretation: ""
-    result_parameters:
-    # the id is used with the model_id as the namespace
-    - id: TMH
-      title: Hourly temperatures
-      description: The hourly tempertaures are provided for each hour of the day. 
-###########
-- name: CIBSE hourly temperature for multiple days
-  id: CIBSEmultipledays
-  version: 0.0.4
-  authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-
-  keywords: algorithm, temperature
-  type_of_output: hourly temperatures
-  description_URL: http://web1.adas.co.uk/dsstest/Help/Api/POST-api-CIBSEmultipledays
-  description: |
-    This model calculates hourly tempertaure values based on the CIBSE model for multiple days (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in each day using the CIBSE Guide A2 (1982). 
-    Maximum temperature is then linked, using a sinusoidal curve to the minimum temperature of the following day. Capping is introduced in this model whereby if the generated value is higher than the maximum temperature then it is reduced to the maximum tempertaure,
-    and if lower than the minium temperature the generated value is changed to the minimum temperature.
-  citation: null # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
-  valid_spatial:
-    countries: []
-    geoJSON: |-
-      {}
-  execution: 
-    type: ONTHEFLY
-    endpoint:  http://web1.adas.co.uk/dsstest/Api/CIBSEmultipledays
+    endpoint: http://web1.adas.co.uk/adas_dss/dasgpa/api/DASGPA
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
-        "type": "object",
-        "required": ["Temperature"],
+        "type":"object",
         "properties": {
-            "Temperature": {
-                "type": "object",
-                "properties": {
-                    "Date": {"type": "string","format": "date"},
-                    "Tmin": {"type": "number"},
-                    "Tmax": {"type": "number"}
-                },
-             "required": ["Date", "Tmin", "Tmax"],
+           
+          "Weather": {
+            "type": "object",
+            "properties": {
+              "Date": {"type": "string", "format": "date"},
+              "Temperature": {"type": "number"},
+              "Rainfall": {"type": "number"}
+            },
+            "required": ["Date","Temperature","Rainfall"]
+          },
+          "Start Date": {"type": "string", "format": "date"},
+          
+          "Spray": {
+            
+            "type": "object",
+            "properties":{
+               "Date": {"type": "string", "format": "date"}
             }
-        }
+          }
+        },
+        "required": ["Weather"]
       }
-  output:
-    warning_status_interpretation: ""
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      No Risk indicates that the daily count of cutworm in their third instar is zero. No Action Required.
+      Low Risk indicates that the daily count of cutworm in their third instar is between 1 and 2. Currently low risk but should revist regularly as risk can change rapidly.
+      Medium Risk indicates that the daily count of cutworm in their third instar is between 3 and 4.Risk assessment is medium. Should check field to obtain first hand information about the need to take action.
+      High Risk indicates that there are over 4 cutworm in their third instar. Risk assessment is high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take..
     result_parameters:
       # the id is used with the model_id as the namespace
-      - id: TMH
-        title: Hourly temperature
-        description: The hourly tempertaures are provided for each hour of each day. 
-###########
-- name: Sin14R-1 hourly temperature for a single day
-  id: Sin14R-1singleday
-  version: 0.0.4
+      - id: Third_Instar_Count
+        title: Number of cutworm in their third instar.
+        description: Number of cutowrm in their third instar, associated risk and recommended action.
+##########
+- name: Grain Apid Model
+  id: MACSAV
+  version: "0.0.1"
   authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
+  - name: Hans Larsson
+    email: NA
+    organization: Swedish University of Agricultural Sciences
+  pests: 
 
-  keywords: algorithm, temperature
-  type_of_output: hourly temperatures
-  description_URL: http://web1.adas.co.uk/dsstest/Help/Api/POST-api-Sin14R-1singleday
+  - MACSAV # EPPO Sitobion avenae / grain aphid
+  crops:
+  - TRZAW # EPPO for winter wheat
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://web1.adas.co.uk/adas_dss/macsav/Help/Api/POST-api-MACSAV
   description: |
-    This model calculates hourly tempertaure values based on the Sin14R-1 model for a single day (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in the day, based upon sunrise and sunset times for the given location. 
-    Sunrise and sunset times are dependent on the users inputs for latitude, longtiude and GMT offset.
-    The model assumes that maximum temperature always occured at hour 14, and minimum temperature an hour before sunrise.
-    The model then uses these predicted times aswell as minimum and maximum air tempertaures to fit the data via sinusoidal curves.
-  citation: null # Optional. Use the DOI as identifier (list)
+    This is simple threshold comparison DSS for the grain aphid, Sitobion avenae, based on the work of Larsson (2004) in southern Sweden. 
+    It compares a provided aphid observation value (aphids per tiller) and provided yield (t/ha) to economic thresholds, for three different crop stages (GS59, GS69 and GS75).
+    An object is returned containing the risk and recommended action for each of the crop growth stages.
+  citation: 10.1016/j.cropro.2004.08.011 # Optional. Use the DOI as identifier (list)
   # Where has this model been considered valid
   valid_spatial:
-    countries: []
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: 
+      - GBR, SWE
+    # Optionally, use a custom polygon
     geoJSON: |-
       {}
   execution: 
     type: ONTHEFLY
-    endpoint:  http://web1.adas.co.uk/dsstest/Api/Sin14R-1singleday
+    endpoint: http://web1.adas.co.uk/adas_dss/macsav/api/MACSAV
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
-     {
-        "type": "object",
-         "required": ["Latitude","Longitude","Date", "Tmin", "Tmax", "GMT_Offset"]
-         "properties": {
-                "Latitude": {"type":"number"},
-                "Longitude": {"type":"number"},
-                "Date": {"type": "string", "format": "date"},
-                "Tmin": {"type": "number"},
-                "Tmax": {"type": "number"},
-                "GMT_Offset": {"type": "number"}
-          }
-     }
-  output:
-    warning_status_interpretation: ""
-    result_parameters:
-      # the id is used with the model_id as the namespace
-      - id: TMH
-        title: Hourly temperature
-        description: The hourly tempertaures are provided for each hour of the day. 
-###########
-- name: Sin14R-1 hourly temperature for multiple days
-  id: Sin14R-1multipledays
-  version: 0.0.4
-  authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-
-  keywords: algorithm, temperature
-  type_of_output: hourly temperatures
-  description_URL: http://web1.adas.co.uk/dsstest/Help/Api/POST-api-Sin14R-1multipledays
-  description: |
-    This model calculates hourly tempertaure values based on the Sin14R-1 model for multiple days (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in each day, based upon sunrise and sunset times for the given location.
-    Sunrise and sunset times are dependent on the users inputs for latitude, longtiude and GMT offset.
-    The model assumes that maximum temperature always occured at hour 14, and minimum temperature an hour before sunrise. 
-    Maximum temperature is then linked, using a sinusoidal curve to the minimum temperature of the following day. Capping is introduced in this model whereby if the generated value is higher than the maximum temperature then it is reduced to the maximum tempertaure,
-    and if lower than the minium temperature the generated value is changed to the minimum temperature. 
-  citation: null # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
-  valid_spatial:
-    countries: []
-    geoJSON: |-
-      {}
-  execution: 
-    type: ONTHEFLY
-    endpoint:  http://web1.adas.co.uk/dsstest/Api/CIBSEmultipledays
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema: |
-     {
-        "type": "object",
-        "required": ["Latitude", "Longitude", "TemperatureClass"],
+      {
+        "type":"object",
         "properties": {
-            "Latitude": {"type": "number"},
-            "Longitude": {"type": "number"},
-            "TemperatureClasses"{
-                "type": "object",
-                "properties": {
-                    "Date": {"type": "string","format": "date"},
-                    "Tmin": {"type": "number"},
-                    "Tmax": {"type": "number"},
-                    "GMT_Offset": {"type":"number"}
-                }
-            required": ["Date", "Tmin", "Tmax", "GMT_Offset"]
-          }
-       }
-     }
-  output:
-    warning_status_interpretation: ""
+            
+          "Observation": {"type": "number"},
+          "Yield": {"type": "number"}
+        },
+        "required": ["Observation","Yield"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Low Risk suggests you should revist regularly as risk can change rapidly. It indicates that the number of aphids per tiller is below the economic threshold for that specific crop stage.
+      High Risk suggests you should walk around your field  as soon as possible to enable you to make a decision on which action to take. It indicates that the number of aphids per tiller is above the economic threshold for that specific crop stage.
     result_parameters:
       # the id is used with the model_id as the namespace
-      - id: TMH
-        title: Hourly temperature
-        description: The hourly tempertaures are provided for each hour of each day. 
-###########
-- name: Hourly Relative Humidiy
-  id: Hourly_RH
-  version: 0.0.4
+      - id: Action_Response
+        title: Action_Response
+        description: Message to inform the risk and what action is required as a result of the yield levels, number of aphids and crop stage.
+##########
+- name: Orange Wheat Blossom Midge Model
+  id: SITDMO
+  version: "0.0.1"
   authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-
-  keywords: algorithm, relative humidity
-  type_of_output: hourly temperatures
-  description_URL: http://web1.adas.co.uk/dsstest/Help/Api/POST-api-RH_Hourly
+  - name: Guillaume Jacquemin, Sandrine Chavalle, Michel D Proft
+    email: g.jacquemin@cra.wallonie.be, s.chavalle@cra.wallonie.be, m.deproft@cra.wallonie.be
+    organization: Walloon Agricultural Research Centre
+  pests: 
+  - SITDMO # EPPO code for orange wheat blossom midge (Sitodiplosis mosellana)
+  crops:
+  - TRZAX # EPPO code for Triticum aestivum (wheat hybrid)
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://web1.adas.co.uk/adas_dss/sitdmo/Help/Api/POST-api-SITDMO
   description: |
-    This model simulates hourly realtive humidity from hourly temperature (Eccel, 2012). The assumption is made that minimum temperature is a first guess estimate of dew point temperature.
-    The model then expresses relative humidity as the ratio between actual water vapour and saturation vapour.
-  citation: null # Optional. Use the DOI as identifier (list)
+    This is a simple Phase Indication DSS based on the work of Jacquemin et al., (2013). 
+    It uses daily temperature (degrees celsius) and rainfall (mm) data to identify emergence in the Orange Wheat Blossom Midge. 
+    Optional parameters can be inputted to set the thresholds at each of the phases of the Orange Wheat Blossom Midge Lifecycle. If not inputted, the defaults will be set.
+    The model only runs between the months May and June and will therefore ignore any weather inputted before or after that time.
+    The model will return, what Phase the insect is in. If the insect has emerged it will also provide the dates of the emergence. It will also provide a risk and the recommended action.
+  citation: 10.1016/j.cropro.2013.12.021 # Optional. Use the DOI as identifier (list)
   # Where has this model been considered valid
   valid_spatial:
-    countries: []
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: 
+      - GBR, BEL
+    # Optionally, use a custom polygon
     geoJSON: |-
       {}
   execution: 
     type: ONTHEFLY
-    endpoint:  http://web1.adas.co.uk/dsstest/Api/RH_Hourly
+    endpoint: http://web1.adas.co.uk/adas_dss/sitdmo/api/SITDMO
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
-     {
-        "type": "object",
-        "required": ["TemperatureClasses"],
+      {
+        "type":"object",
         "properties": {
-            "TemperatureClasses": {
-                "type": "object",
-                "properties": {
-                    "Date": {"type": "string","format": "date"},
-                    "Hour": {"type": "number"},
-                    "Temperature": {"type": "number"}
-                },
-             "required": ["Date", "Hour", "Temperature"]
-            }
-        }
-     }
-  output:
-    warning_status_interpretation: ""
+            
+          "Weather": {
+            "type": "object",
+            "properties": {
+              "Date": {"type": "string", "format": "date"},
+              "Temperature": {"type": "number"},
+              "Rainfall": {"type": "number"}
+            },
+            "required": ["Date","Temperature","Rainfall"]
+          },
+          "Temperature Threshold Phase 1": {"type": "number", "default":"3"},
+          "Degree Day Threshold Phase 1": {"type": "number", "default":"250"},
+          "Temperature Threshold Phase 2": {"type": "number", "default":"13"},
+          "Rainfall Threshold Phase 2": {"type": "number", "default":"0"},
+          "Temperature Threshold Phase 3": {"type": "number", "default":"7"},
+          "Degree Day Threshold Phase 3": {"type": "number", "default":"160"}
+        },
+        "required": ["Weather"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Phase One indicates there is currently a low risk but should revist regularly as risk can change rapidly.
+      
+      Phase Two indicates that the risk assessment is medium. Should check field to obtain first hand information about the need to take action.
+      Phase Three indicates that the risk assessment is high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take.
+      Emerged Risk indictaed that the risk assessment is very high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take.
     result_parameters:
       # the id is used with the model_id as the namespace
-      - id: RHH
-        title: Hourly relative humidity
-        description: The hourly relative humidity is provided for each hour of the day. 
-
+      - id: Emergence
+        title: Emergence
+        description: What Phase the insect is in. If the insect has emerged it will also provide the dates of the emergence. It will also provide the assocated risk and recommended action.
+##########
+- name: Pollen Beetle Model
+  id: MELIAE
+  version: "0.0.1"
+  authors: # List of the model authors
+  - name: Hannah Griffiths
+    email: Hannah.Griffiths@adas.co.uk
+    organization: ADAS
+  pests: 
+  - MELIAE # EPPO code for pollen beetle
+  crops: 
+  - BRSNN # EPPO code for rapeseed
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://web1.adas.co.uk/adas_dss/meliae/Help/Api/POST-api-MELIAE
+  description: |
+    This model is based on the work of Ferguson et al., (2015) to predict both migration and damage risk of the Pollen Beetle.
+    Daily maximum air temperature is used to predict Migration Risk. The default value of 15 degrees celsius is used, as that is the temperature advised in the UK at which pollen beetles will fly. 
+    Number of beetles per plant is used to predict Damage Risk. Control threshold levels of pollen beetle numbers are used as thresholds. These defaults are set to 2,5 and 15.
+    Threshold however can also be overwritten by the user.
+    The model can only be used between growth stage 51 and 59.
+    The model returns the Migration Risk alongside the Damage Risk for the last three days of the inputted weather data.
+  citation: DOI 10.1002/ps.4069 # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: []
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint: http://web1.adas.co.uk/adas_dss/meliae/api/MELIAE
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+            
+          "Input": {
+            "type": "object",
+            "properties": {
+              "Date": {"type": "string", "format": "date"},
+              "Max Temperature": {"type": "number"},
+              "Beetle Count (per plant)": {"type": "number"}
+            },
+            "required": ["Date","Max Temperature","Beetle Count (per plant)"]
+          },
+          "Growth Stage": {"type": "number"},
+          "Temperature Threshold": {"type": "number",  "default":"15"},
+          "1st Beetle Threshold": {"type": "number",  "default":"2"},
+          "2nd Beetle Threshold": {"type": "number",  "default":"5"},
+          "3rd Beetle Threshold": {"type": "number",  "default":"15"},
+          
+          }
+        },
+        "required": ["Input","Growth Stage"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Migration Risk is Low indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
+      Migration Risk is High indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
+      
+      Damage Risk is Low indicates that the number of beetles per plant is below the first threshold. Recommends to revist regularly as risk can change rapidly. Recommends to revist regularly as risk can change rapidly
+      Damage Risk is Medium indicates that the number of beetles per plant is between the first and the second threshold. You should check field to obtain first hand information about the need to take action.
+      
+      Damage Risk is High indicates that the number of beetles per plant is between the second and the third threshold. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+      
+      Damage Risk is Very High indicates that the number of beetles per plant is above the third threshold. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: Risk
+        title: Migration and Damage Risk.
+        description: Migration and Damage Risk and the recommended action.
+##########
+- name: Saddle Gall Midge Model
+  id: HAPDMA
+  version: "0.0.1"
+  authors: # List of the model authors
+  - name: Charlotte Rowley, Andew Cherrill, Simon R. Leather, Tome W. Pope
+    email: crowley@harper-adams.ac.uk
+    organization: Centre for Integrated Pest Management
+  pests: 
+  - HAPDMA # EPPO code for Saddle Gall Midge (Haplodiplosis marginata)
+  crops:
+  - TRZAS, HORVS #EPPO for spring wheat and spring barley
+  keywords: foo, bar, mechanistic, regression
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://web1.adas.co.uk/adas_dss/hapdma/Help/Api/POST-api-HAPDMA
+  description: |
+    A simple DSS which predicts the dates of emergence for the Saddle Gall Midge based on a model derived by (Rowley et., 2017). Rainfall events followed by an accummulation of 512 degree days above 0 degrees C can be used to predict peaks.
+    Cumulative emergence as a function of degree day accumulations was best described using a probit model.
+ 
+    The model will start on the date of first rainfall on or after the 1st March and will end at the end of July.
+    A Rainfall event is described as daily rainfall over the rainfall threshold (default 1mm) following 3 days without precipitation.
+    Optional parameters can be inputted to set the thresholds. If not inputted, the defaults described above will be set.
+    The model will return the dates of peak emergence, cummulative emergence, the associated risk and recommended action.
+    
+  citation: 10.1016/j.cropro.2017.08.025 # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: 
+      - GBR
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint: http://web1.adas.co.uk/adas_dss/hapdma/api/HAPDMA
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+            
+          "Weather": {
+            "type": "object",
+            "properties": {
+              "Date": {"type": "string", "format": "date"},
+              "Hour": {"type": "number"},
+              "Hourly Temperature": {"type": "number"},
+              "Hourly Rainfall": {"type": "number"}
+            },
+            "required": ["Date","Hour", "Hourly Temperature","Hourly Rainfall"]
+          },
+          "Rainfall Threshold": {"type": "number, "default":"1"},
+          "Dry Day Threshold": {"type": "number", "default":"3"},
+          "Temperature Threshold": {"type": "number", "default":"0"},
+          "Degree Days": {"type": "number", "default":"512"}
+        },
+        "required": ["Weather"]
+      }
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Low Risk indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
+      Medium Risk indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
+      High Risk indicates that there is up to 90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+      
+      Very High Risk indicates that there is over 90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: Emergence
+        title: Dates of Peak Emegerence and Cumulative Emergence.
+        description: Dates of Peak Emegerence and Cumulative Emergence, risk and recommended action.
+##########
+- name: Threshold Comparison DSS
+  id: ThresholdComparisonDSS
+  version: "0.0.1"
+  authors: # List of the model authors
+  - name: Hannah Griffiths
+    email: Hannah.Griffiths@adas.co.uk
+    organization: ADAS
+  keywords: foo, bar, mechanistic, regression, algorithm
+  type_of_decision: Short-term tactical
+  type_of_output: Risk Indictation
+  description_URL: http://web1.adas.co.uk/adas_dss/genericthresholds/Help/Api/POST-api-ThresholdComparisonDSS
+  description: |
+     This is an agnostic simple threshold comparison DSS. 
+     It compares a provided observation value with a provided threshold value. 
+     This DSS can therefore be used to represent a threshold-based DSS for any pest where there is a single threshold for action.
+     An object is returned that contains two items:
+             1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
+             2) an action message.
+    
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: []
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint: http://web1.adas.co.uk/adas_dss/genericthresholds/api/ThresholdComparisonDSS
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+            
+          "threshold": {"type": "number"},
+          "observation": {"type": "number"}
+        },
+        "required": ["threshold","observation"]
+      }    
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Risk Rating 0. Observation is below threshold - no action required.
+      Risk Rating 5. Observation exceeds threshold. Immediate remedial action is recommended.    
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: Risk 
+        title: Risk
+        description: Risk and recommended action is provided.
+##########
+- name: Threshold DSS
+  id: ThresholdDSS
+  version: "0.0.1"
+  authors: # List of the model authors
+  - name: Hannah Griffiths
+    email: Hannah.Griffiths@adas.co.uk
+    organization: ADAS
+  keywords: foo, bar, mechanistic, regression, algorithm
+  type_of_decision: Short-term tactical
+  type_of_output: Risk Indictation
+  description_URL: http://web1.adas.co.uk/adas_dss/genericthresholds/Help/Api/POST-api-ThresholdDSS
+  description: |
+     This is an agnostic simple threshold comparison DSS. 
+     It compares a provided observation value with a provided threshold value. 
+     This DSS can therefore be used to represent a threshold-based DSS for any pest where there is a single threshold for action.
+     An object is returned that contains two items:
+             1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
+             2) an action message.
+    
+     This represents a threshold-based DSS where there are multiple thresholds for different types of action.
+     The code compares a provided observation with a set of provided action thresholds, where different actions are required depending on which threshold is exceeded.
+     An object consisting of the following is required:
+        An observation (of type double)
+        A list of risk classes where each risk class consists of:
+                1) A risk level (an integer number, ideally between 1 and 5 inclusive),
+                2) An action (text), and
+                3) A threshold (of type double) for the action.
+     An object is returned that contains two items:
+        1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
+        2) an action message.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    # Using country codes to get GeoJSON. Saves a lot of duplication.
+    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+    countries: []
+    # Optionally, use a custom polygon
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint: http://web1.adas.co.uk/adas_dss/genericthresholds/api/ThresholdDSS
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+           "observation": {"type": "number"}
+            
+          "RiskClassList": {
+            "type": "object",
+            "properties": {
+              "Risk": {"type": "number"},
+              "Action": {"type": "string"},
+              "Threshold": {"type": "number"}
+            },
+            "required": ["Risk","Action","Threshold"]
+          }
+        },
+        "required": ["oberservation", "RiskClassList"]
+      }
+  
+    # Definition of the result parameters specific for this DSS model
+  output: 
+    warning_status_interpretation: |-
+      Risk rating and associated action inputted by the user.
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: Risk 
+        title: Risk
+        description: Risk and recommended action is provided.
