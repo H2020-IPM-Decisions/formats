@@ -57,6 +57,12 @@ models:
    weather_parameters: 
    - parameter_code: 1002 # = Mean air temp at 2m
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution: 
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run/ipmd
@@ -140,6 +146,12 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
    - parameter_code: 1112 # Mean soil temp at 10cm depth
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution: 
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/DELIARADIC/run/ipmd
@@ -155,7 +167,9 @@ models:
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"}
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone"]
           },
@@ -234,6 +248,12 @@ models:
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
    - parameter_code: 1112 # Mean soil temp at 10cm depth
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution: 
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/MAMESTRABR/run/ipmd
@@ -249,7 +269,9 @@ models:
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"}
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone"]
           },
@@ -545,6 +567,12 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/NAERSTADMO/run/ipmd
@@ -614,6 +642,12 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 3101  # Leaf wetness duration. Measured in minutes with wetness per period 
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/ALTERNARIA/run/ipmd
@@ -683,6 +717,12 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 3002 # Mean relative humidity (%)
      interval: 3600
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/NEGPROGMOD/run/ipmd
@@ -771,6 +811,12 @@ models:
      interval: 3600 # The least detail accepted (higher frequencies can aggregate to lower)
    - parameter_code: 3002 # Mean relative humidity (%)
      interval: 3600
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.startDateGrowth ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.endDateCalculation ## Could be path.to.property OR e.g. XXXX-12-31
    field_observation:
     species: 
     - SEPTAP # EPPO Code for the disease
@@ -867,6 +913,12 @@ models:
    weather_parameters: 
    - parameter_code: 1002 # = Mean air temp at 2m
      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+   weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+   weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+     determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+     value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
   execution: 
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/run/ipmd
@@ -923,3 +975,4 @@ models:
       - id: TXD_THRESHOLD
         title: Max threshold for temperature for infection
         description: If the max temperature is above this threshold, infection does not occur
+
