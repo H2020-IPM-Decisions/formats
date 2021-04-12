@@ -65,7 +65,7 @@ models:
     geoJSON: |-
       {}
   input:
-   weather: 
+   weather_parameters: 
     - parameter_code: 2001 # Precipitation
       interval: 3600 # Hourly
     - parameter_code: 3002 # Relative humidity
