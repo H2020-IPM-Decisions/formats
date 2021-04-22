@@ -77,6 +77,8 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/SEPTORIAHU/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    input_schema_hidden_properties:
+      - modelId
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
