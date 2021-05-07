@@ -190,7 +190,8 @@ models:
       Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
       Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
       Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
-    ### Experimental field!!! (adding chart parameters)
+    ### Experimental fields!!! (adding chart parameters)
+    chart_heading: Day degrees
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD4C
