@@ -61,14 +61,14 @@ models:
   - CONAR # EPPO code for Convolvolus arvensis L.
   - CONCA # EPPO code for Conyza canadensis L.
   - DACGL # EPPO code for Dactylis glomerata L.
-  - ELYRE # EPPO code for Elymus repens
+  - AGRRE # EPPO code for Elymus repens
   - EPIMO # EPPO code for Epilobium montanum L.
   - EQUAR # EPPO code for Equisetum arvense L.
   - EROCI # EPPO code for Erodium cicutarium
   - EPHHE # EPPO code for Euphorbia helioscopia L.
   - EPHPE # EPPO code for Euphorbia peplus L.
   - FESAR # EPPO code for Festuca arundinacea
-  - FESDU # EPPO code for Festuca duriuscula ovina
+  - FESOV # EPPO code for Festuca duriuscula ovina
   - FESPR # EPPO code for Festuca pratensis
   - FESRU # EPPO code for Festuca rubra L.
   - FUMOF # EPPO code for Fumaria officinalis L.
@@ -146,7 +146,7 @@ models:
     markniveau og som et generelt planlægningsværtøj for planteavlskonsulenter til at finde egnede tankblandinger og tilhørende doser. Programmet
     fungerer ved hjælp af dosis-respons-data, som kommer fra effektrapporter. I Danmark arbejdes der for tiden på også at anvende programmet 
     i forbindelse med kunstig intelligens, automatisk ukrudtsgenkendelse og tildelingskort.
-    
+
     English: Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
     or let the built-in IPM principles of IPMwise guide you. The program contains useful tools to adapt the effort against weeds to the 
     current weed population in a field and thus minimize the use of herbicides considerably. The program can be used to plan herbicide 
@@ -196,18 +196,18 @@ models:
   - MYOAR # EPPO code for Myosotis arvensis
   - STEME # EPPO code for Stellaria media
   - TUSFA # EPPO code for Tussilago farfara L.
-  - AMSMI # EPPO code for Amsinckia micrantha
+  - AMSCA # EPPO code for Amsinckia micrantha
   - CHEAL # EPPO code for Chenopodium album L.
   - ARBTH # EPPO code for Arabidopsis thaliana
   - ANTAR # EPPO code for Anthemis arvensis L.
   - GAESS # EPPO code for Galeopsis spp.
   - LAPCO # EPPO code for Lapsana communis L.
-  - BROHO # EPPO code for Bromus hordeaceus L.
+  - BROMO # EPPO code for Bromus hordeaceus L.
   - BROST # EPPO code for Bromus sterilis L.
   - EROCI # EPPO code for Erodium cicutarium
   - DACGL # EPPO code for Dactylis glomerata L.
   - AETCY # EPPO code for Aethusa cynapium L.
-  - AGRST # EPPO code for Agrostis stolonifera L.
+  - AGSST # EPPO code for Agrostis stolonifera L.
   - CERFO # EPPO code for Cerastium fontanum ssp.
   - FUMOF # EPPO code for Fumaria officinalis L.
   - MATIN # EPPO code for Tripleurospermum in. L.
@@ -254,21 +254,21 @@ models:
   - SPRAR # EPPO code for Spergula arvensis L.
   - HORVX # EPPO code for Lamium sp
   - AVESA # EPPO code for Avena sativa L
-  - TRIAE # EPPO code for Tricicum aestivum L.
+  - TRZAX # EPPO code for Tricicum aestivum L.
   - SECCE # EPPO code for Secale cereale L.
   - VIOAR # EPPO code for Viola arvensis
   - GERSS # EPPO code for Geranium spp.
   - SONSS # EPPO code for Sonchus spp.
   - FESPR # EPPO code for Festuca pratensis
   - FESRU # EPPO code for Festuca rubra L.
-  - FESDU # EPPO code for Festuca duriuscula ovina
+  - FESOV # EPPO code for Festuca duriuscula ovina
   - FESAR # EPPO code for Festuca arundinacea
   - CIRAR # EPPO code for Cirsium arvense
   - LAMSS # EPPO code for Lamium spp.
   - PAPRH # EPPO code for Papaver rhoeas L.
   - EPHPE # EPPO code for Euphorbia peplus L.
   - EPHHE # EPPO code for Euphorbia helioscopia L.
-  - VULMY # EPPO code for Vulpia myuros
+  - VLPMY # EPPO code for Vulpia myuros
   - VERAR # EPPO code for Veronica arvensis L.
   - VERPE # EPPO code for Veronica persica
   - VERHE # EPPO code for Veronica hederifolia L.
@@ -325,18 +325,18 @@ models:
   - MYOAR # EPPO code for Myosotis arvensis
   - STEME # EPPO code for Stellaria media
   - TUSFA # EPPO code for Tussilago farfara L.
-  - AMSMI # EPPO code for Amsinckia micrantha
+  - AMSCA # EPPO code for Amsinckia micrantha
   - CHEAL # EPPO code for Chenopodium album L.
   - ARBTH # EPPO code for Arabidopsis thaliana
   - ANTAR # EPPO code for Anthemis arvensis L.
   - GAESS # EPPO code for Galeopsis ssp.
   - LAPCO # EPPO code for Lapsana communis L.
-  - BROHO # EPPO code for Bromus hordeaceus L.
+  - BROMO # EPPO code for Bromus hordeaceus L.
   - BROST # EPPO code for Bromus sterilis L.
   - EROCI # EPPO code for Erodium cicutarium
   - DACGL # EPPO code for Dactylis glomerata L.
   - AETCY # EPPO code for Aethusa cynapium L.
-  - AGRST # EPPO code for Agrostis stolonifera L.
+  - AGSST # EPPO code for Agrostis stolonifera L.
   - CERFO # EPPO code for Cerastium fontanum ssp.
   - FUMOF # EPPO code for Fumaria officinalis L.
   - MATIN # EPPO code for Tripleurospermum in. L.
@@ -383,28 +383,28 @@ models:
   - SPRAR # EPPO code for Spergula arvensis L.
   - HORVX # EPPO code for Hordeum vulgare L.
   - AVESA # EPPO code for Avena sativa L
-  - TRIAE # EPPO code for Tricicum aestivum L.
+  - TRZAX # EPPO code for Tricicum aestivum L.
   - SECCE # EPPO code for Secale cereale L.
   - VIOAR # EPPO code for Viola arvensis
   - GERSS # EPPO code for Geranium ssp.
   - SONSS # EPPO code for Sonchus ssp.
   - FESPR # EPPO code for Festuca pratensis
   - FESRU # EPPO code for Festuca rubra L.
-  - FESDU # EPPO code for Festuca duriuscula ovina
+  - FESOV # EPPO code for Festuca duriuscula ovina
   - FESAR # EPPO code for Festuca arundinacea
   - CIRAR # EPPO code for Cirsium arvense
   - LAMSS # EPPO code for Lamium spp.
   - PAPRH # EPPO code for Papaver rhoeas L.
   - EPHPE # EPPO code for Euphorbia peplus L.
   - EPHHE # EPPO code for Euphorbia helioscopia L.
-  - VULMY # EPPO code for Vulpia ssp.
+  - VLPMY # EPPO code for Vulpia ssp.
   - VERAR # EPPO code for Veronica arvensis L.
   - VERPE # EPPO code for Veronica persica
   - VERHE # EPPO code for Veronica hederifolia L.
   - AVEST # EPPO code for Avena sterilis
   - BRODI # EPPO code for Bromus diandrus
   - DIPER # EPPO code for Diplotaxis erucoides
-  - KOCSC # EPPO code for Kochia scoparia
+  - KCHSC # EPPO code for Kochia scoparia
   - LACSE # EPPO code for Lactuca serriola
   - LOLRI # EPPO code for Lolium rigidum
   - MATCH # EPPO code for Matricaria chamomilla
@@ -413,7 +413,7 @@ models:
   - POASS # EPPO code for Poa spp.
   - POLSP # EPPO code for Polygonum ssp.
   - RAPRA # EPPO code for Rapanus raphanistrum
-  - SHEAR # EPPO code for Sherardia arvensis
+  - SHRAR # EPPO code for Sherardia arvensis
   - AVELU # EPPO code for Avena ludo.
   - ABUTH # EPPO code for Abutilon theophrasti
   - AMABL # EPPO code for Amaranthus blitoides
@@ -425,7 +425,7 @@ models:
   - POLAV # EPPO code for Polygonum aviculare
   - POLLA # EPPO code for Polygonum laphatifolia
   - POROL # EPPO code for Portulaca oleracea
-  - SETGL # EPPO code for Setaria glauca
+  - PESGL # EPPO code for Setaria glauca
   - SETVE # EPPO code for Setaria verticilata
   - SOLNI # EPPO code for Solanum nigrum
   - SORHA # EPPO code for Sorghum halepense (rhizomes)
@@ -434,15 +434,15 @@ models:
   - SOLHA # EPPO code for Sorghum halepense (seedlings)
   - LITAR # EPPO code for Lithospermum arvense
   - CHRCO # EPPO code for Chrysantemum coronarium
-  - SALKA # EPPO code for Salsola kali
+  - SASKA # EPPO code for Salsola kali
   - PANSS # EPPO code for Panicum ssp.
-  - RIDSE # EPPO code for Ridolfia segetum
-  - TRIAE # EPPO code for Wheat, volunteer
-  - HORVU # EPPO code for Barley, volunteer
+  - CRYRI # EPPO code for Ridolfia segetum
+  - TRZAX # EPPO code for Wheat, volunteer
+  - HORVX # EPPO code for Barley, volunteer
   - LOLPE # EPPO code for Ryegrass, volunteer
   - CENDI # EPPO code for Centaurea diluta
   - SYLMA # EPPO code for Sylibum marianum
-  - RIDSE # EPPO code for Ridolfia segetum
+  - CRYRI # EPPO code for Ridolfia segetum
   crops:
   - 3WHEC # EPPO code for wheat crops
   - 3BARC # EPPO code for barley crops
@@ -472,3 +472,143 @@ models:
   execution: 
     type: LINK
     endpoint:  http://www.ipmwise.es
+
+    - name: IPMwise demo version
+  id: ipmwise.demo
+  version: 4.0
+  authors: # List of the model authors (Optional)
+  - name: Per Rydahl
+    email: per.rydahl@ipmconsult.dk
+    organization: IPMC (IPM Consult ApS)
+  - name: Ole Mission Bøjer
+    email: ole.bojer@ipmconsult.dk
+    organization: IPMC (IPM Consult ApS)
+  pests: 
+  - ACHMI # EPPO code for Achillea millefolium L.
+  - AETCY # EPPO code for Aethusa cynapium L.
+  - AGSST # EPPO code for Agrostis stolonifera L.
+  - ALOGE # EPPO code for Alopecurus geniculatus L.
+  - ALOMY # EPPO code for Alopecurus myosuroides
+  - AMSCA # EPPO code for Amsinckia micrantha
+  - ANGAR # EPPO code for Anagallis arvensis L.
+  - LYCAR # EPPO code for Anchusa arvensis
+  - ANTAR # EPPO code for Anthemis arvensis L.
+  - APHAR # EPPO code for Aphanes arvensis L.
+  - ARBTH # EPPO code for Arabidopsis thaliana
+  - ARTVU # EPPO code for Artemisia vulgaris L.
+  - ATRPA # EPPO code for Atriplex patula L.
+  - AVEFA # EPPO code for Avena fatua L.
+  - AVESA # EPPO code for Avena sativa L
+  - BIDTR # EPPO code for Bidens tripartita L.
+  - BRSRS # EPPO code for Brassica campestris L.
+  - BRSNN # EPPO code for Brassica napus L.
+  - BROMO # EPPO code for Bromus hordeaceus L.
+  - BROST # EPPO code for Bromus sterilis L.
+  - CENCY # EPPO code for Centaurea cyanus L.
+  - CERFO # EPPO code for Cerastium fontanum ssp.
+  - MATMT # EPPO code for Chamomilla suaveolens
+  - CHEAL # EPPO code for Chenopodium album L.
+  - CHYSE # EPPO code for Chrysanthemum segetum
+  - CIRAR # EPPO code for Cirsium arvense
+  - CONAR # EPPO code for Convolvolus arvensis L.
+  - CONCA # EPPO code for Conyza canadensis L.
+  - DACGL # EPPO code for Dactylis glomerata L.
+  - AGRRE # EPPO code for Elymus repens
+  - EPIMO # EPPO code for Epilobium montanum L.
+  - EQUAR # EPPO code for Equisetum arvense L.
+  - EROCI # EPPO code for Erodium cicutarium
+  - EPHHE # EPPO code for Euphorbia helioscopia L.
+  - EPHPE # EPPO code for Euphorbia peplus L.
+  - FESAR # EPPO code for Festuca arundinacea
+  - FESOV # EPPO code for Festuca duriuscula ovina
+  - FESPR # EPPO code for Festuca pratensis
+  - FESRU # EPPO code for Festuca rubra L.
+  - FUMOF # EPPO code for Fumaria officinalis L.
+  - GAESS # EPPO code for Galeopsis spp.
+  - GASSS # EPPO code for Galinsoga spp.
+  - GALAP # EPPO code for Galium aparine L.
+  - GERMO # EPPO code for Geranium spp.
+  - GNAUL # EPPO code for Gnaphalium uliginosum L.
+  - HORVX # EPPO code for Hordeum vulgare L.
+  - LAMSS # EPPO code for Lamium spp.
+  - LAPCO # EPPO code for Lapsana communis L.
+  - LOLMU # EPPO code for Lolium multiflorum
+  - LOLPE # EPPO code for Lolium perenne L.
+  - MATCH # EPPO code for Matricaria recutita L.
+  - MENAR # EPPO code for Mentha arvensis L.
+  - MYOAR # EPPO code for Myosotis arvensis
+  - PAPRH # EPPO code for Papaver rhoeas L.
+  - POAAN # EPPO code for Poa annua L.
+  - POAPR # EPPO code for Poa pratensis L.
+  - POATR # EPPO code for Poa trivialis L.
+  - POLAV # EPPO code for Polygonum aviculare L.
+  - POLCO # EPPO code for Polygonum convolvulus L.
+  - POLLA # EPPO code for Polygonum lapathifolium
+  - POLPE # EPPO code for Polygonum persicaria L.
+  - MELAL # EPPO code for Pragtstjerne, aften
+  - RANRE # EPPO code for Ranunculus repens L.
+  - RAPRA # EPPO code for Raphanus raphanistrum L.
+  - RUMCR # EPPO code for Rumex crispus L.
+  - RUMOB # EPPO code for Rumex obtusifolius L.
+  - SECCE # EPPO code for Secale cereale L.
+  - SENJA # EPPO code for Senecio jacobaea L.
+  - SENVE # EPPO code for Senecio vernalis
+  - SENVU # EPPO code for Senecio vulgaris L.
+  - SETVI # EPPO code for Setaria viridis L.
+  - MELNO # EPPO code for Silene noctiflora
+  - SINAR # EPPO code for Sinapis arvensis L.
+  - SOLNI # EPPO code for Solanum nigrum L.
+  - SOLTU # EPPO code for Solanum tuberosum L.
+  - SONSS # EPPO code for Sonchus spp.
+  - SPRAR # EPPO code for Spergula arvensis L.
+  - STAPA # EPPO code for Stachys palustris L.
+  - STEME # EPPO code for Stellaria media
+  - TAROF # EPPO code for Taraxacum officinale
+  - THLAR # EPPO code for Thlaspi arvense L.
+  - TRZAX # EPPO code for Tricicum aestivum L.
+  - TRFPR # EPPO code for Trifolium pratense L.
+  - TRFRE # EPPO code for Trifolium repens L.
+  - MATIN # EPPO code for Tripleurospermum in. L.
+  - TUSFA # EPPO code for Tussilago farfara L.
+  - URTDI # EPPO code for Urtica dioica L.
+  - URTUR # EPPO code for Urtica urens L.
+  - VERAR # EPPO code for Veronica arvensis L.
+  - VERHE # EPPO code for Veronica hederifolia L.
+  - VERPE # EPPO code for Veronica persica
+  - VIOAR # EPPO code for Viola arvensis
+  - VLPMY # EPPO code for Vulpia myuros
+  crops:
+  - 3WHEC # EPPO code for wheat crops
+  - ZEAMX # EPPO code for maize crops
+  - 3BARC # EPPO code for barley crops
+  - 3RYEC # EPPO code for rye crops
+  - 3TRIC # EPPO code for triticale crops
+  - 3OATC # EPPO code for oat crops
+  - 3BEEC # EPPO code for beet crops
+  - 3CERC # EPPO code for cereal crops
+  - 3GRAC # EPPO code for grass crops
+  - 3LEGC # EPPO code for legume crops
+  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost, timing, weed density, weed size, weed species, crop growthstage, autumn sown crops, spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management, Integrated weed control, Legislative framework, Crop Protection Online, Dose-response curves
+  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition, Efficacy tables
+  description_URL: http://demo.ipmwise.com
+  description: |
+    Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
+    or let the built-in IPM principles of IPMwise guide you. The software contains useful tools to adapt the effort against weeds to the 
+    current weed population in a field and thus minimize the use of herbicides considerably. The software can be used to plan herbicide 
+    efforts at both field level and as a general planning tool for crop advisors to find suitable tank mixtures and corresponding dose rates. 
+    The principles of the program are based on dose response data derived from efficacy reports. In Denmark, work is currently underway to 
+    also use the IPMwise decision support software in conjunction with artificial intelligence, automatic weed recognition and spray maps. 
+    This demo has been restricted concerning the number of crops and weeds compared to the full Danish version.
+    citation: # Optional. Use the DOI as identifier (list)
+    - https://www.doi.org/10.1007/978-3-030-44402-0
+    - https://doi.org/10.1016/j.cropro.2014.06.012
+    - https://doi.org/10.1614/WT-D-13-00085.1
+  # Where has this model been considered valid
+  valid_spatial:
+    countries:
+    - DNK
+    geoJSON: |-
+      {}
+  execution: 
+    type: LINK
+    endpoint:  http://demo.ipmwise.com/
