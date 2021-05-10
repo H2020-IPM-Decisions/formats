@@ -473,7 +473,7 @@ models:
     type: LINK
     endpoint:  http://www.ipmwise.es
 
-    - name: IPMwise demo version
+- name: IPMwise demo version
   id: ipmwise.demo
   version: 4.0
   authors: # List of the model authors (Optional)
