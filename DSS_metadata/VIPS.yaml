@@ -100,11 +100,41 @@ models:
       Red warning indicates peak flight period.
       Grey warning indicates that the flight period of the 1st generation is over.
       Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+    chart_heading: Accumulated day degrees
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD5C
         title: Accumulated day degrees
         description: The accumulated day degrees with a base temperature of 5 degrees celcius
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
+          color: "#0033cc"
+      - id: THRESHOLD_1
+        title: Threshold for start of flight period
+        description: When the accumulated day degrees exceed this threshold, the flight period is starting up
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
+          color: "#ffff00"
+      - id: THRESHOLD_2
+        title: Threshold for peak flight period
+        description: When the accumulated day degrees exceed this threshold, you enter the peak flight period
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
+          color: "#ff0000"
+      - id: THRESHOLD_3
+        title: Threshold for end of 1st generation flight period
+        description: When the accumulated day degrees exceed this threshold, the 1st generation flight period is over
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
+          color: "#999999"
 ##
 - name: Cabbage fly flight period temperature model
   id: DELIARADIC
@@ -200,7 +230,7 @@ models:
         chart_info:
           default_visible: true
           unit: "&deg;C"
-          type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
+          chart_type: spline # Could be  line, spline, area, areaspline, column and scatter. Ref https://www.highcharts.com/docs/chart-and-series-types/chart-types
           color: "#0066ff"
       - id: TJM10DD4C
         title: Accumulated soil temperature day degrees 
@@ -208,7 +238,7 @@ models:
         chart_info:
           default_visible: false
           unit: "&deg;C"
-          type: spline 
+          chart_type: spline 
           color: "#00ccff"
       - id: TMDD4CLT
         title: Lower threshold value for TMDD4C
@@ -216,7 +246,7 @@ models:
         chart_info:
           default_visible: true
           unit: "&deg;C"
-          type: spline 
+          chart_type: spline 
           color: "#ffff00"
       - id: TMDD4CUT
         title: Upper threshold value for TMDD4C
@@ -224,7 +254,7 @@ models:
         chart_info:
           default_visible: true
           unit: "&deg;C"
-          type: spline 
+          chart_type: spline 
           color: "#ff0000"
       - id: TJM10DD4CLT
         title: Lower threshold value for TJM10DD4C
@@ -232,7 +262,7 @@ models:
         chart_info:
           default_visible: false
           unit: "&deg;C"
-          type: spline 
+          chart_type: spline 
           color: "#ff9900"
       - id: TJM10DD4CUT
         title: Upper threshold value for TJM10DD4C
@@ -240,7 +270,7 @@ models:
         chart_info:
           default_visible: false
           unit: "&deg;C"
-          type: spline 
+          chart_type: spline 
           color: "#990000"
 ##
 - name: Cabbage moth model
