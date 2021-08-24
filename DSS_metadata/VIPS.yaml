@@ -1,4 +1,4 @@
-# YAML sample of model meta data to be used by the plaform
+# YAML model meta data to be used by the plaform
 # (c) 2021 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
 # General info about the DSS
@@ -101,6 +101,11 @@ models:
       Grey warning indicates that the flight period of the 1st generation is over.
       Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
     chart_heading: Accumulated day degrees
+    chart_groups:
+      - id: G1
+        title: Day degrees
+        result_parameter_ids: 
+          - TMDD5C
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD5C
@@ -222,6 +227,16 @@ models:
       Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
     ### Experimental fields!!! (adding chart parameters)
     chart_heading: Day degrees
+    chart_groups:
+      - id: G1
+        title: Day degrees
+        result_parameter_ids: 
+          - TMDD4C
+          - TJM10DD4C
+          - TMDD4CLT
+          - TMDD4CUT
+          - TJM10DD4CLT
+          - TJM10DD4CUT
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD4C
@@ -356,11 +371,22 @@ models:
       Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
       Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
       Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+    chart_heading: Accumulated day degrees
+    chart_groups:
+      - id: G1
+        title: Day degrees
+        result_parameter_ids: 
+        - TMDD
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD
         title: Accumulated day degrees 
         description: The accumulated day degrees with a base temperature of 0 degrees celcius
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#0033cc"
 ##
 - name: Carrot rust fly observation model
   id: PSILAROBSE
@@ -457,14 +483,40 @@ models:
       Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
 
       The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+    chart_heading: Trap countings
+    chart_groups:
+      - id: G1
+        title: Trap countings
+        result_parameter_ids: 
+        - TRAP_COUNT_THRESHOLD
+        - TRAP_COUNT_CROP_EDGE
+        - TRAP_COUNT_CROP_INSIDE
     result_parameters:
       # the id is used with the model_id as the namespace
+      - id: TRAP_COUNT_THRESHOLD
+        title: Threshold for trap count
+        description: The threshold for trap count
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#000000"
       - id: TRAP_COUNT_CROP_EDGE
         title: Insect trap count at the edge of the field
         description: Insect trap count at the edge of the field
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: column
+          color: "#ffff00"
       - id: TRAP_COUNT_CROP_INSIDE
         title: Insect trap count inside the field
         description: Insect trap count inside the field
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: column
+          color: "#ff0000"
 ##
 - name: Cabbage root fly and turnip fly observation model
   id: DELIARFOBS
@@ -588,6 +640,13 @@ models:
       Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
       The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
       The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+    chart_groups:
+      - id: G1
+        title: Egg count
+        result_parameter_ids: 
+        - OBS_AVG
+        - THRESHOLD_YOUNG
+        - THRESHOLD_OLD
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: OBS_AVG
@@ -680,6 +739,11 @@ models:
       Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
       Risk > 2,5 = warning issued (Red)
       When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+    chart_groups:
+      - id: G1
+        title: Risk
+        result_parameter_ids: 
+        - RISK
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: RISK
@@ -755,6 +819,12 @@ models:
   output: 
     warning_status_interpretation: |-
       The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+    
+    chart_groups:
+      - id: G1
+        title: Aggregated Daily Disease Severity Value
+        result_parameter_ids: 
+        - DSV_SUM
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: DSV_SUM
@@ -835,6 +905,12 @@ models:
       When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
 
       When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+    chart_groups:
+      - id: G1
+        title: Infection risk
+        result_parameter_ids: 
+        - AGGREGATED_CONTRIB
+        - INFECTION_THRESHOLD
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: AGGREGATED_CONTRIB
@@ -953,6 +1029,12 @@ models:
       Green = No risk of infection.
       Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
       Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+    chart_groups:
+      - id: G1
+        title: Results
+        result_parameter_ids: 
+        - WET_DAY
+        - PEST_OBSERVED
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: WET_DAY
@@ -1037,6 +1119,16 @@ models:
       given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
       Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
       actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+    chart_groups:
+      - id: G1
+        title: Results
+        result_parameter_ids: 
+        - TXD
+        - ELWAST
+        - ELWASYBST
+        - SLN
+        - SYN
+        - TXD_THRESHOLD
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TXD
