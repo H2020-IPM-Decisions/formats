@@ -3,6 +3,7 @@
 ---
 datasources:
   - 
+    id: no.met.locationforecast
     name: "Met Norway Locationforecast"
     description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
     public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
@@ -39,6 +40,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: net.ipmdecisions.dwd.forecast.germany
     name: "Deutsche Wetterdienst location forecast by IPM Decisions"
     description: "27 hour weather forecasts for Germany and surrounding areas. 2.5 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-DWD"
@@ -110,6 +112,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: net.ipmdecisions.dwd.forecast.europe
     name: "Deutsche Wetterdienst EU Area location forecast by IPM Decisions"
     description: "30 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-DWD-EU"
@@ -181,6 +184,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: net.ipmdecisions.meteofrance.forecast
     name: "MeteoFrance location forecast by IPM Decisions"
     description: "40 hour weather forecasts for France and surroundings. 2.5 km resolution. Pulls data from MeteoFrance's Public Data service (https://donneespubliques.meteofrance.fr). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-MeteoFrance"
@@ -253,6 +257,7 @@ datasources:
        - 4002 # Instantaneous wind speed at 2m
 
   -
+    id: fi.fmi.forecast.location
     name: "FMI weather forecasts"
     description: "36 hour forecasts for Finland from the Finnish Meteorological Institute"
     public_URL: "https://en.ilmatieteenlaitos.fi/open-data"
@@ -294,6 +299,7 @@ datasources:
        - 4002 # Instantaneous wind speed at 2m
        - 5001 # Global radiation (W/sqm)
   -
+    id: fi.fmi.observation.station
     name: Finnish Meteorological Institute measured data
     description: Weather station network covering Finland. Data availability varies between the stations. The oldest station is from 1844
     public_URL: https://en.ilmatieteenlaitos.fi/
@@ -544,6 +550,7 @@ datasources:
         - 2001 # Precipitation (mm)
         - 4003 # Mean wind speed at 2m
   -
+    id: no.nibio.lmt
     name: "Landbruksmeteorologisk tjeneste"
     description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
     public_URL: "https://lmt.nibio.no/"
@@ -698,6 +705,7 @@ datasources:
         - 3101 # Leaf wetness duration at 2m (minutes/time unit)
         - 5001 # Solar radiation (W/sqm)
   - 
+    id: com.meteobot
     name: MeteoBot API
     description: Network of privately owned weather stations. Access requires permission from each weather station's owner
     public_URL: https://meteobot.com/en/
@@ -1269,6 +1277,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: info.fruitweb
     name: Fruitweb
     description: Network of privately owned weather stations of several types; Davis, Metos and self manufactured. Access requires permission from each weather station's owner
     public_URL: https://fruitweb.info
@@ -1309,6 +1318,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: net.ipmdecisions.metos
     name: Metos
     description: Network of privately owned weather stations of several types; Davis, Metos and self manufactured. Access requires permission from each weather station's owner
     public_URL: https://metos.at
@@ -1349,6 +1359,7 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   -
+    id: fr.meteo-concept.api
     name: Meteodata by Météo Concept
     description: Weather station network covering all of mainland France, with a specially
       high density of agricultural stations in Brittany. Visit www.meteodata.fr and www.meteo-concept.fr
