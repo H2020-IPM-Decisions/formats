@@ -652,12 +652,27 @@ models:
       - id: OBS_AVG
         title: Average egg count
         description: Average of counting of eggs on 10 plants
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#000000"
       - id: THRESHOLD_YOUNG
         title: Economic threshold in young plants
         description: Economic threshold in young plants (up to 4 weeks)
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#ffffff"
       - id: THRESHOLD_OLD
         title: Economic threshold in mature plants
         description: Economic threshold in mature plants (4 weeks and older)
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#ff00ff"
 ###########
 - name: Nærstad model
   id: NAERSTADMO
@@ -744,11 +759,30 @@ models:
         title: Risk
         result_parameter_ids: 
         - RISK
+        - THRESHOLD_LOW
+        - THRESHOLD_HIGH
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: RISK
         title: Calculated risk value
         description: Calculated risk value
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#000000"
+      - id: THRESHOLD_LOW
+        title: Threshold low infection risk
+        description: When the calculated risk exceeds this threshold, the infection risk changes from low risk to some risk
+        
+      - id: THRESHOLD_HIGH
+        title: Threshold high infection risk
+        description: When the calculated risk exceeds this threshold, the infection risk changes from some risk to high risk
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#ff0000"
 #####
 - name: Alternaria TOMCAST
   id: ALTERNARIA
@@ -825,11 +859,34 @@ models:
         title: Aggregated Daily Disease Severity Value
         result_parameter_ids: 
         - DSV_SUM
+        - THRESHOLD_DSV_BASE
+        - THRESHOLD_DSV_MAX
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: DSV_SUM
         title: Aggregated Daily Disease Severity Value
         description: The aggregated risk
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#00000"
+      - id: THRESHOLD_DSV_BASE
+        title: Lower threshold
+        description: Lower threshold
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#ffff00"
+      - id: THRESHOLD_DSV_MAX
+        title: High treshold
+        description: High risk
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#ff0000"
 #####
 - name: Negative prognosis
   id: NEGPROGMOD
@@ -916,9 +973,19 @@ models:
       - id: AGGREGATED_CONTRIB
         title: Aggregated infection risk
         description: The aggregated risk
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#000000"
       - id: INFECTION_THRESHOLD
         title: Infection threshold
         description: Threshold for "High infection risk"
+        chart_info:
+          default_visible: true
+          unit: "Number"
+          chart_type: spline
+          color: "#ff0000"
 #####
 - name: Septoria apiicola model
   id: SEPAPIICOL
@@ -1040,9 +1107,19 @@ models:
       - id: WET_DAY
         title: Was this a wet day
         description: Based on leaf wetness measurements
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#000000"
       - id: PEST_OBSERVED
         title: Has the pest been observed in or near the field, or in the nearby region
         description: Without this, the warning status will never exceed yellow status
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#ff0000"
 ##########
 - name: Bremia lactucae (Downy mildew of lettuce) model
   id: BREMIALACT
@@ -1134,19 +1211,48 @@ models:
       - id: TXD
         title: Maximum daily temperature
         description: The maximum daily temperature
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#ffaa55"
       - id: ELWAST
         title: Was there enough leaf wetness after sunrise today
         description: Was there enough leaf wetness after sunrise today
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#00ff55"
       - id: ELWASYBST
         title: Was there enough relative humidity after sunrise yesterday and befor sunrise today
         description: Was there enough relative humidity after sunrise yesterday and befor sunrise today
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#00ffff"
       - id: SLN
         title: Was there sporulation last night
         description: Was there sporulation last night
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#aaffff"
       - id: SYN
         title: Was there sporulation yesterday night
         description: Was there sporulation yesterday night
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: column
+          color: "#aaff33"
       - id: TXD_THRESHOLD
         title: Max threshold for temperature for infection
         description: If the max temperature is above this threshold, infection does not occur
-
+        chart_info:
+          default_visible: true
+          unit: "&deg;C"
+          chart_type: spline
+          color: "#ff0000"
