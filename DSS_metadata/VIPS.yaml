@@ -106,6 +106,9 @@ models:
         title: Day degrees
         result_parameter_ids: 
           - TMDD5C
+          - THRESHOLD_1
+          - THRESHOLD_2
+          - THRESHOLD_3
     result_parameters:
       # the id is used with the model_id as the namespace
       - id: TMDD5C
