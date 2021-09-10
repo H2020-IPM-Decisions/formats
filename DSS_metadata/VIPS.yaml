@@ -80,7 +80,7 @@ models:
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo", "options":{"infoText":"The time zone information is used when hourly temperature values need to be converted to daily."}},
               "timeStart": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
