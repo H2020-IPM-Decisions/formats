@@ -1365,7 +1365,7 @@ datasources:
       high density of agricultural stations in Brittany. Visit www.meteodata.fr and www.meteo-concept.fr
       or email us at contact@meteo-concept.fr
     public_URL: https://api.meteo-concept.com/
-    endpoint: https://api-beta.meteo-concept.com/api/ipmdecisions/observations/station/
+    endpoint: https://api.meteo-concept.com/api/ipmdecisions/observations/station/
     authentication_required: true
     needs_data_control: true
     access_type: stations
