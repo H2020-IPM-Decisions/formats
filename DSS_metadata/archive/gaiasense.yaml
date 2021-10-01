@@ -1,0 +1,76 @@
+id: gr.gaiasense.ipm
+version: "0.1"
+name: gaiasense
+url: https://www.gaiasense.gr
+organization: 
+  name: NEUROPUBLIC
+  country: Greece
+  address: Methonis 6
+  postal_code: "18545"
+  city: Piraeus
+  email: n_kalatzis@neuropublic.gr
+  url: https://www.neuropublic.gr/
+languages:
+  - Greek
+  - English
+models: 
+- name: Downy mildew of grapevine
+  id: PLASVI
+  version: "1.0"
+  authors:
+  - name: NEUROPUBLIC - department of smart farming
+    email: n_kalatzis@neuropublic.gr
+    organization: NEUROPUBLIC
+  pests: 
+    - PLASVI # EPPO code for grapevine downy mildew
+  crops:
+    - VITVI # EPPO code for grape vine
+  keywords: none
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: http://www.gaiapedia.gr/gaiapedia/index.php/%CE%A0%CE%B5%CF%81%CE%BF%CE%BD%CF%8C%CF%83%CF%80%CE%BF%CF%81%CE%BF%CF%82_%CE%B1%CE%BC%CF%80%CE%AD%CE%BB%CE%BF%CF%85
+  description: |
+    The warning system model «Downy mildew of grapevine» is based on prediction model that utilises as input the following parameters: temperatute, humidity and leaf-wetness. Also the current growth stage of the plant is considered.(this description to be further updated)
+  citation: null
+  valid_spatial:
+    countries:
+      - GRC
+    geoJSON: | 
+      {"type": "FeatureCollection","features": [{"type": "Feature","properties": {},"geometry": {"type": "Polygon","coordinates": [[[22.572097778320312,38.050794662666895],[22.564544677734375,37.83690319650765],[22.680587768554684,37.76040136229719],[22.974472045898438,37.820632846207864],[22.926406860351562,37.93174204861119],[22.848129272460934,37.938240808726576],[22.787704467773434,37.97343243999255],[22.734832763671875,38.02213147353745],[22.666854858398434,38.05512020731343],[22.572097778320312,38.050794662666895]]]}}]}
+  input:
+   weather_parameters: null
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://gaiasense.neuropublic.gr/np_dws/ws/dispatcher.php
+    form_method: get
+    content_type: application/json
+    input_schema_hidden_properties:
+      - modelId
+    input_schema: |
+      {
+        "type":"object",
+        "properties": {
+          "id": {"type": "integer", "title": "WebService ID" , "default" : "5"},
+          "from": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD HH:mm:ss)"},
+          "to": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD HH:mm:ss)"},
+          "token": {"type": "string", "title":"AuthToken" , "default" : "55382eea-b886-11eb-8529-0242ac130003" },
+          "export": {"type": "string", "title": "Supported export types : csv , json" , "default" : "json"},
+          "datatype": {"type": "string", "title": "Measurement Type" , "default" : "models"},
+          "locid": {"type": "integer", "title": "Location ID" , "default" : "74"},
+          "model": {"type": "string", "title": "Model Name" , "default" : "downy_mildew"}
+        },
+        "required": [ "id", "from", "to", "token", "datatype", "locid", "model" ]
+      }
+  output: 
+    warning_status_interpretation: |
+      Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+    chart_heading: Downy mildew risk index
+    result_parameters:
+    - id: TMDD4C
+      title: Pest infestation risk index
+      description: Calculated risk index based on the enviromental parameters of the area.
+      chart_info:
+        default_visible: true
+        unit: "%"
+        chart_type: line
+        color: "#0066ff"

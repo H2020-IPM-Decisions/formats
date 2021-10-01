@@ -1,17 +1,16 @@
----
 # General info about the models
 id: com.ipmwise
 version: 4.0
 name: IPMwise
 url: http://www.ipmwise.dk
-organization: 
- name: IPM Consult ApS
- country: Denmark
- address: Ahornsgade 8A
- postal_code: "DK-2200"
- city: København N
- email: mail@ipmconsult.dk
- url: http://www.ipmconsult.dk
+organization:
+  name: IPM Consult ApS
+  country: Denmark
+  address: Ahornsgade 8A
+  postal_code: DK-2200
+  city: København N
+  email: mail@ipmconsult.dk
+  url: http://www.ipmconsult.dk
 languages:
 - English
 - Danish
@@ -31,7 +30,7 @@ models:
   - name: Ole Mission Bøjer
     email: ole.bojer@ipmconsult.dk
     organization: IPMC (IPM Consult ApS)
-  pests: 
+  pests:
   - ACHMI # EPPO code for Achillea millefolium L.
   - AETCY # EPPO code for Aethusa cynapium L.
   - AGSST # EPPO code for Agrostis stolonifera L.
@@ -136,37 +135,47 @@ models:
   - 3GRAC # EPPO code for grass crops
   - 3LEGC # EPPO code for legume crops
   - ZEAMX # EPPO code for maize crops
-  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost, timing, weed density, weed size, weed species, crop growthstage, autumn sown crops, spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management, Integrated weed control, Legislative framework, Crop Protection Online, Dose-response curves
-  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition, Efficacy tables
+  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost,
+    timing, weed density, weed size, weed species, crop growthstage, autumn sown crops,
+    spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management,
+    Integrated weed control, Legislative framework, Crop Protection Online, Dose-response
+    curves
+  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition,
+    Efficacy tables
   description_URL: http://www.ipmwise.dk
-  description: |
-    Dansk: Tilpas ukrudtsbekæmpelsen til netop dit behov som landmand eller konsulent. Bestem selv, hvor rene dine marker skal være - eller lad IPMwise
-    guide dig, hvis du foretrækker IPM. Programmet indeholder nyttige værktøjer, der kan hjælpe med at tilpasse indsatsen mod ukrudt til den aktuelle 
-    ukrudtsbestand i marken og på den måde mindske herbicidforbruget betragteligt. Programmet kan anvendes til planlægning af herbicidindsatsen på både
-    markniveau og som et generelt planlægningsværtøj for planteavlskonsulenter til at finde egnede tankblandinger og tilhørende doser. Programmet
-    fungerer ved hjælp af dosis-respons-data, som kommer fra effektrapporter. I Danmark arbejdes der for tiden på også at anvende programmet 
-    i forbindelse med kunstig intelligens, automatisk ukrudtsgenkendelse og tildelingskort.
+  description: # Where has this model been considered valid
+    other: |
+      Dansk: Tilpas ukrudtsbekæmpelsen til netop dit behov som landmand eller konsulent. Bestem selv, hvor rene dine marker skal være - eller lad IPMwise
+      guide dig, hvis du foretrækker IPM. Programmet indeholder nyttige værktøjer, der kan hjælpe med at tilpasse indsatsen mod ukrudt til den aktuelle 
+      ukrudtsbestand i marken og på den måde mindske herbicidforbruget betragteligt. Programmet kan anvendes til planlægning af herbicidindsatsen på både
+      markniveau og som et generelt planlægningsværtøj for planteavlskonsulenter til at finde egnede tankblandinger og tilhørende doser. Programmet
+      fungerer ved hjælp af dosis-respons-data, som kommer fra effektrapporter. I Danmark arbejdes der for tiden på også at anvende programmet 
+      i forbindelse med kunstig intelligens, automatisk ukrudtsgenkendelse og tildelingskort.
 
-    English: Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
-    or let the built-in IPM principles of IPMwise guide you. The program contains useful tools to adapt the effort against weeds to the 
-    current weed population in a field and thus minimize the use of herbicides considerably. The program can be used to plan herbicide 
-    efforts at both field level and as a general planning tool for crop advisors to find suitable tank mixtures and corresponding dose rates. 
-    The principles of the program are based on dose response data derived from efficacy reports. In Denmark, work is currently underway to 
-    also use the program in conjunction with artificial intelligence, automatic weed recognition and spray maps.
-    citation: # Optional. Use the DOI as identifier (list)
-    - https://www.doi.org/10.1007/978-3-030-44402-0
-    - https://doi.org/10.1016/j.cropro.2014.06.012
-    - https://doi.org/10.1614/WT-D-13-00085.1
-  # Where has this model been considered valid
+      English: Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
+      or let the built-in IPM principles of IPMwise guide you. The program contains useful tools to adapt the effort against weeds to the 
+      current weed population in a field and thus minimize the use of herbicides considerably. The program can be used to plan herbicide 
+      efforts at both field level and as a general planning tool for crop advisors to find suitable tank mixtures and corresponding dose rates. 
+      The principles of the program are based on dose response data derived from efficacy reports. In Denmark, work is currently underway to 
+      also use the program in conjunction with artificial intelligence, automatic weed recognition and spray maps.
+      citation: # Optional. Use the DOI as identifier (list)
+      - https://www.doi.org/10.1007/978-3-030-44402-0
+      - https://doi.org/10.1016/j.cropro.2014.06.012
+      - https://doi.org/10.1614/WT-D-13-00085.1
+    created_by: ''
+    age: ''
+    assumptions: ''
+    peer_review: ''
   valid_spatial:
     countries:
     - DNK
     geoJSON: |-
       {}
-  execution: 
+  execution:
     type: LINK
-    endpoint:  http://www.ipmwise.dk/
+    endpoint: http://www.ipmwise.dk/
 
+  citation:
 - name: VIPS-ugras Norway
   id: ipmwise.no
   version: 2.0
@@ -180,7 +189,7 @@ models:
   - name: Ole Mission Bøjer
     email: ole.bojer@ipmconsult.dk
     organization: IPMC (IPM Consult ApS)
-  pests: 
+  pests:
   - ANGAR # EPPO code for Anagallis arvensis L.
   - CONCA # EPPO code for Conyza canadensis L.
   - SENVU # EPPO code for Senecio vulgaris L.
@@ -276,26 +285,36 @@ models:
   - 3WHEC # EPPO code for wheat crops
   - 3BARC # EPPO code for barley crops
   - 3OATC # EPPO code for oat crops
-  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost, timing, weed density, weed size, weed species, crop growthstage, autumn sown crops, spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management, Integrated weed control, Legislative framework, Crop Protection Online, Dose-response curves
-  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition, Efficacy tables
+  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost,
+    timing, weed density, weed size, weed species, crop growthstage, autumn sown crops,
+    spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management,
+    Integrated weed control, Legislative framework, Crop Protection Online, Dose-response
+    curves
+  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition,
+    Efficacy tables
   description_URL: http://vipsugras.ipmwise.com
-  description: |
-    VIPS-Ugras 2.0 er en ny versjon av VIPS-ugras. IPM Consult har utviklet systemet og som på dansk heter IPMwise. 
-    Det er tilpasset norske forhold av Norsk institutt for bioøkonomi (NIBIO) i samarbeid med Norsk Landbruksrådgiving (NLR). 
-    Det er nye beregninger og tilpasninger, men det er mye det samme innholdet som gamle VIPS-Ugras. VIPS-Ugras 2.0 krever 
-    innlogging. Fordelen med innlogging er at systemet kan huske skiftene dine. Systemet er gratis i Norge. Du kan velge å 
-    bruke ferdig innlagte effektkrav eller velge dine egne effektkrav. For en optimal plantevernløsning for de fleste forhold 
-    anbefaler vi at du bruker systemets effektkrav  
-  citation: null # Optional. Use the DOI as identifier (list)
+  description:
+    other: |
+      VIPS-Ugras 2.0 er en ny versjon av VIPS-ugras. IPM Consult har utviklet systemet og som på dansk heter IPMwise. 
+      Det er tilpasset norske forhold av Norsk institutt for bioøkonomi (NIBIO) i samarbeid med Norsk Landbruksrådgiving (NLR). 
+      Det er nye beregninger og tilpasninger, men det er mye det samme innholdet som gamle VIPS-Ugras. VIPS-Ugras 2.0 krever 
+      innlogging. Fordelen med innlogging er at systemet kan huske skiftene dine. Systemet er gratis i Norge. Du kan velge å 
+      bruke ferdig innlagte effektkrav eller velge dine egne effektkrav. For en optimal plantevernløsning for de fleste forhold 
+      anbefaler vi at du bruker systemets effektkrav  
+    created_by: ''
+    age: ''
+    assumptions: ''
+    peer_review: ''
+  citation:      # Optional. Use the DOI as identifier (list)
   # Where has this model been considered valid
   valid_spatial:
     countries:
     - NOR
     geoJSON: |-
       {}
-  execution: 
+  execution:
     type: LINK
-    endpoint:  http://vipsugras.ipmwise.com
+    endpoint: http://vipsugras.ipmwise.com
 - name: IPMwise Spain
   id: ipmwise.es
   version: 4.0
@@ -309,7 +328,7 @@ models:
   - name: Ole Mission Bøjer
     email: ole.bojer@ipmconsult.dk
     organization: IPMC (IPM Consult ApS)
-  pests: 
+  pests:
   - ANGAR # EPPO code for Anagallis arvensis L.
   - CONCA # EPPO code for Conyza canadensis L.
   - SENVU # EPPO code for Senecio vulgaris L.
@@ -451,28 +470,38 @@ models:
   - ZEAMX # EPPO code for maize crops
   - GLXMA # EPPO code for soybean
   - TRZDS # EPPO code for durum wheat
-  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost, timing, weed density, weed size, weed species, crop growthstage, autumn sown crops, spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management, Integrated weed control, Legislative framework, Crop Protection Online, Dose-response curves
-  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition, Efficacy tables
+  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost,
+    timing, weed density, weed size, weed species, crop growthstage, autumn sown crops,
+    spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management,
+    Integrated weed control, Legislative framework, Crop Protection Online, Dose-response
+    curves
+  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition,
+    Efficacy tables
   description_URL: http://www.ipmwise.es
-  description: |
-    Adapta tu manejo de malas hierbas a tus necesidades como un agricultor profesional o un asesor de cultivos. 
-    Decide por ti mismo el nivel de control de malas hierbas o utiliza el modulo basado en IPM del IPMwise para guiarte. 
-    Caracteristicas principales: Las herramientas integradas en IPMWise pueden asistirte en planificar y decidir 
-    las mejores estrategias de control de malas hierbas en tus fincas. Puedes simular como afectan las diferentes
-    condiciones de la parcela a la necesidad de control y a las herramientas disponibles. En caso de que no tengas 
-    recomendaciones especificas para controlar tus malas hierbas en un momento determinado, IPMWise te permite 
-    simular si en momentos anteriores o posteriores al actual es posible controlar tus infestaciones de malas hierbas.  
-    citation: null # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+  description: # Where has this model been considered valid
+    other: |
+      Adapta tu manejo de malas hierbas a tus necesidades como un agricultor profesional o un asesor de cultivos. 
+      Decide por ti mismo el nivel de control de malas hierbas o utiliza el modulo basado en IPM del IPMwise para guiarte. 
+      Caracteristicas principales: Las herramientas integradas en IPMWise pueden asistirte en planificar y decidir 
+      las mejores estrategias de control de malas hierbas en tus fincas. Puedes simular como afectan las diferentes
+      condiciones de la parcela a la necesidad de control y a las herramientas disponibles. En caso de que no tengas 
+      recomendaciones especificas para controlar tus malas hierbas en un momento determinado, IPMWise te permite 
+      simular si en momentos anteriores o posteriores al actual es posible controlar tus infestaciones de malas hierbas.  
+      citation: null # Optional. Use the DOI as identifier (list)
+    created_by: ''
+    age: ''
+    assumptions: ''
+    peer_review: ''
   valid_spatial:
     countries:
     - ESP
     geoJSON: |-
       {}
-  execution: 
+  execution:
     type: LINK
-    endpoint:  http://www.ipmwise.es
+    endpoint: http://www.ipmwise.es
 
+  citation:
 - name: IPMwise demo version
   id: ipmwise.demo
   version: 4.0
@@ -483,7 +512,7 @@ models:
   - name: Ole Mission Bøjer
     email: ole.bojer@ipmconsult.dk
     organization: IPMC (IPM Consult ApS)
-  pests: 
+  pests:
   - ACHMI # EPPO code for Achillea millefolium L.
   - AETCY # EPPO code for Aethusa cynapium L.
   - AGSST # EPPO code for Agrostis stolonifera L.
@@ -588,27 +617,37 @@ models:
   - 3CERC # EPPO code for cereal crops
   - 3GRAC # EPPO code for grass crops
   - 3LEGC # EPPO code for legume crops
-  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost, timing, weed density, weed size, weed species, crop growthstage, autumn sown crops, spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management, Integrated weed control, Legislative framework, Crop Protection Online, Dose-response curves
-  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition, Efficacy tables
+  keywords: weeds, herbicides, tank mixtures, dose, recommendation, efficacy, cost,
+    timing, weed density, weed size, weed species, crop growthstage, autumn sown crops,
+    spring sown crops, IPM, IWM, efficacy tables, Field-Specific Crop Management,
+    Integrated weed control, Legislative framework, Crop Protection Online, Dose-response
+    curves
+  type_of_output: Treatment advice, Efficacy of herbicides, Tank mixture composition,
+    Efficacy tables
   description_URL: http://demo.ipmwise.com
-  description: |
-    Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
-    or let the built-in IPM principles of IPMwise guide you. The software contains useful tools to adapt the effort against weeds to the 
-    current weed population in a field and thus minimize the use of herbicides considerably. The software can be used to plan herbicide 
-    efforts at both field level and as a general planning tool for crop advisors to find suitable tank mixtures and corresponding dose rates. 
-    The principles of the program are based on dose response data derived from efficacy reports. In Denmark, work is currently underway to 
-    also use the IPMwise decision support software in conjunction with artificial intelligence, automatic weed recognition and spray maps. 
-    This demo has been restricted concerning the number of crops and weeds compared to the full Danish version.
-    citation: # Optional. Use the DOI as identifier (list)
-    - https://www.doi.org/10.1007/978-3-030-44402-0
-    - https://doi.org/10.1016/j.cropro.2014.06.012
-    - https://doi.org/10.1614/WT-D-13-00085.1
-  # Where has this model been considered valid
+  description: # Where has this model been considered valid
+    other: |
+      Adapt weed management to your needs as a professional farmer or crop advisor. Decide yourself, the level of weed control 
+      or let the built-in IPM principles of IPMwise guide you. The software contains useful tools to adapt the effort against weeds to the 
+      current weed population in a field and thus minimize the use of herbicides considerably. The software can be used to plan herbicide 
+      efforts at both field level and as a general planning tool for crop advisors to find suitable tank mixtures and corresponding dose rates. 
+      The principles of the program are based on dose response data derived from efficacy reports. In Denmark, work is currently underway to 
+      also use the IPMwise decision support software in conjunction with artificial intelligence, automatic weed recognition and spray maps. 
+      This demo has been restricted concerning the number of crops and weeds compared to the full Danish version.
+      citation: # Optional. Use the DOI as identifier (list)
+      - https://www.doi.org/10.1007/978-3-030-44402-0
+      - https://doi.org/10.1016/j.cropro.2014.06.012
+      - https://doi.org/10.1614/WT-D-13-00085.1
+    created_by: ''
+    age: ''
+    assumptions: ''
+    peer_review: ''
   valid_spatial:
     countries:
     - DNK
     geoJSON: |-
       {}
-  execution: 
+  execution:
     type: LINK
-    endpoint:  http://demo.ipmwise.com/
+    endpoint: http://demo.ipmwise.com/
+  citation:

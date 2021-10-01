@@ -1,16 +1,19 @@
+# YAML sample of model meta data to be used by the plaform
+# (c) 2021 Tor-Einar Skog <tor-einar.skog@nibio.no>
+---
 # General info about the DSS
 id: dk.seges
-version: '1.0'
+version: "1.0"
 name: SEGES DSS models
 url: https://www.seges.dk/
-organization:
-  name: SEGES
-  country: Denmark
-  address: Agro Food Park 15
-  postal_code: '8200'
-  city: Aarhus N
-  email: info@seges.dk
-  url: https://www.seges.dk/
+organization: 
+ name: SEGES
+ country: Denmark
+ address: Agro Food Park 15
+ postal_code: "8200"
+ city: Aarhus N
+ email: info@seges.dk
+ url: https://www.seges.dk/
 languages:
 - Danish
 - English
@@ -18,12 +21,12 @@ languages:
 models:
 - name: Septoria Humidity Model
   id: SEPTORIAHU
-  version: '1.0'
+  version: "1.0"
   authors: # List of the model authors
   - name: Lise N. Jørgensen
     email: lisen.jorgensen@agro.au.dk
     organization: Aarhus University
-  pests:
+  pests: 
   - SEPTTR # Zymoseptoria tritici
   - LEPTNO # Parastagonospora nodorum
   - PYRNTR # Pyrenophora tritici-repentis
@@ -33,54 +36,49 @@ models:
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
   description_URL: https://www.vips-landbruk.no/forecasts/models/SEPTORIAHU/
-  description:
-    other: |
-      Fuktmodellen er et beslutningsstøtteverktøy for å kunne vurdere risiko for 
-      angrep av hvetebladprikk i høsthvete under danske forhold. Modellen er basert 
-      på antall timer med bladfuktighet. Bladfuktighet er definert som nedbør (0,2 mm) 
-      eller 85 % luftfuktighet i minst 30 min/time målt fra den nærmeste værstasjonen.
+  description: |
+    Fuktmodellen er et beslutningsstøtteverktøy for å kunne vurdere risiko for 
+    angrep av hvetebladprikk i høsthvete under danske forhold. Modellen er basert 
+    på antall timer med bladfuktighet. Bladfuktighet er definert som nedbør (0,2 mm) 
+    eller 85 % luftfuktighet i minst 30 min/time målt fra den nærmeste værstasjonen.
+    
+    Værdata brukes fra de siste 3 dagene og prognosen for de neste 3 dagene fremover. 
+    I tillegg legges det inn dato for når utviklingsstadium BBCH 31 eller 32 inntreffer. 
+    Modellen beregner forventet dato for de andre utviklingsstadiene, som kan justeres manuelt ved avvik.
+    
+    Det er også viktig å legge inn data for evt. gjennomførte sprøytinger. Etter sprøyting med 
+    fungicider som er effektive mot bladflekksjukdommer (*) går modellen ut fra at plantene er 
+    beskyttet i en periode på 10 dager.
 
-      Værdata brukes fra de siste 3 dagene og prognosen for de neste 3 dagene fremover. 
-      I tillegg legges det inn dato for når utviklingsstadium BBCH 31 eller 32 inntreffer. 
-      Modellen beregner forventet dato for de andre utviklingsstadiene, som kan justeres manuelt ved avvik.
-
-      Det er også viktig å legge inn data for evt. gjennomførte sprøytinger. Etter sprøyting med 
-      fungicider som er effektive mot bladflekksjukdommer (*) går modellen ut fra at plantene er 
-      beskyttet i en periode på 10 dager.
-
-      Antall timer med bladfuktighet som utløser et varsel og prosent luftfuktighet som definerer en 
-      fuktig time kan justeres manuelt pga. aktuelle informasjon fra det aktuelle feltet for eksempel 
-      sortsresistens, sjukdomspress i åkeren, forgrøde.
-    created_by: ''
-    age: ''
-    assumptions: ''
-    peer_review: ''
-  citation:      # Optional. Use the DOI as identifier (list)
+    Antall timer med bladfuktighet som utløser et varsel og prosent luftfuktighet som definerer en 
+    fuktig time kan justeres manuelt pga. aktuelle informasjon fra det aktuelle feltet for eksempel 
+    sortsresistens, sjukdomspress i åkeren, forgrøde.
+  citation: null # Optional. Use the DOI as identifier (list)
   # Where has this model been considered valid
   valid_spatial:
     # Using country codes to get GeoJSON. Saves a lot of duplication.
     # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
     countries:
-    - NOR
-    - DNK
+      - NOR
+      - DNK
     # Optionally, use a custom polygon
     geoJSON: |-
       {}
   input:
-    weather_parameters:
+   weather_parameters: 
     - parameter_code: 2001 # Precipitation
       interval: 3600 # Hourly
     - parameter_code: 3002 # Relative humidity
-      interval: 3600
+      interval: 3600 
     - parameter_code: 3101 # Leaf wetness
       interval: 3600
-  execution:
+  execution: 
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/SEPTORIAHU/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     input_schema_hidden_properties:
-    - modelId
+      - modelId
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
@@ -121,60 +119,58 @@ models:
         "required": ["modelId","configParameters"]
       }
     # Definition of the result parameters specific for this DSS model
-  output:
+  output: 
     warning_status_interpretation: |-
       Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
       bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
     chart_heading: Septoria humidity model in wheat
     chart_groups:
-    - id: G1
-      title: Disease development
-      result_parameter_ids:
-      - HPHPP
-      - THPHPP
-      - SPP
+      - id: G1
+        title: Disease development
+        result_parameter_ids: 
+          - HPHPP
+          - THPHPP
+          - SPP
     result_parameters:
       # the id is used with the model_id as the namespace
-    - id: HPH
-      title: Humid period hour (consecutive humid hours)
-      description: Humid period hour (consecutive humid hours)
-      chart_info:
-        default_visible: false
-        unit: Hour
-        chart_type: spline
-        color: '#444444'
-    - id: HPHPP
-      title: Humid period hour (consecutive humid hours) corrected for protection
-        period
-      description: Humid period hour (consecutive humid hours) corrected for protection
-        period
-      chart_info:
-        default_visible: true
-        unit: Hour
-        chart_type: spline
-        color: '#000000'
-    - id: THPHPP
-      title: Threshold for consecutive humid hours
-      description: Threshold for consecutive humid hours
-      chart_info:
-        default_visible: true
-        unit: Hour
-        chart_type: spline
-        color: '#ff0000'
-    - id: HH
-      title: Current hour is humid hour? 1 = true, 0 = false
-      description: Current hour is humid hour? 1 = true, 0 = false
-    - id: HHS
-      title: Humid hour sum for sliding middle
-      description: Humid hour sum for sliding middle
-    - id: SPP
-      title: Crop is protected after spraying
-      description: Indicates the protection period after spraying
-      chart_info:
-        default_visible: true
-        unit: Yes/no
-        chart_type: spline
-        color: '#0000ff'
+      - id: HPH
+        title: Humid period hour (consecutive humid hours)
+        description: Humid period hour (consecutive humid hours)
+        chart_info:
+          default_visible: false
+          unit: "Hour"
+          chart_type: spline 
+          color: "#444444"
+      - id: HPHPP
+        title: Humid period hour (consecutive humid hours) corrected for protection period
+        description: Humid period hour (consecutive humid hours) corrected for protection period
+        chart_info:
+          default_visible: true
+          unit: "Hour"
+          chart_type: spline 
+          color: "#000000"
+      - id: THPHPP
+        title: Threshold for consecutive humid hours
+        description: Threshold for consecutive humid hours
+        chart_info:
+          default_visible: true
+          unit: "Hour"
+          chart_type: spline 
+          color: "#ff0000"
+      - id: HH
+        title: Current hour is humid hour? 1 = true, 0 = false
+        description: Current hour is humid hour? 1 = true, 0 = false
+      - id: HHS
+        title: Humid hour sum for sliding middle
+        description: Humid hour sum for sliding middle
+      - id: SPP
+        title: Crop is protected after spraying
+        description: Indicates the protection period after spraying
+        chart_info:
+          default_visible: true
+          unit: "Yes/no"
+          chart_type: spline 
+          color: "#0000ff"
 - name: CPO model
   id: CPO
   version: 1.0
@@ -182,7 +178,7 @@ models:
   - name: Lise N. Jørgensen
     email: lisen.jorgensen@agro.au.dk
     organization: Aarhus University
-  pests:
+  pests: 
   - SEPTTR # Zymoseptoria tritici
   - PUCCST # Puccinia striiformis
   - PUCCRE # Puccinia recondita
@@ -201,83 +197,78 @@ models:
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
   description_URL: TODO
-  description:
-    other: |
-      The system has been developed by Aarhus University and SEGES and covers main diseases and pest in cereal crops.
-      The models have been developed for guidance related to leaf and stem diseases in cereals including
-      winter Wheat, spring barley, winter barley, spring oat, winter triticale and winter rye.
-      The system also includes models for pest control in cereals.
-      The models require information from field registration typically in the period from GS 30-31 to GS 65-71
-      (assessments of frequency of plants attacked) and for some diseases also precipitation is required
-      (days with more than 1 mm rain). Before getting information on need for treatments – information on crop,
-      cultivars susceptibility and growth stage (BBCH) is required.
-
-      The growers need to check the crops at weekly intervals or as a minimum follow the risk based on precipitation
-      or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
-      recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
-
-      The models have been validated in Denmark and has also been tested in the Baltic and Nordic
-      countries. It is expected to be valid in the northern part of Europe, given that the monitoring part of
-      the system is followed.
-    created_by: ''
-    age: ''
-    assumptions: ''
-    peer_review: |
-      1. Hansen, J.G., Secher, B.J., Jørgensen, LN. & Welling, B. 1994. Threshold for control of
-      Septoria spp. in winter wheat based on precipitation and growth stage. Plant Pathology
-      43, 183-189.
-
-      2. Secher, B.J., Jørgensen, L.N, Murali N.S. & Boll P.S. (1995). Field Validation of a
-      Decision Support System for Control of Pests and Diseases in Cereals in Denmark.
-      Pesticide Science, 45, 195-199.
-
-      3. Henriksen. K.E.; Jørgensen, L.N. & Nielsen, G.C.(2000) PC-Plant Protection –a tool to
-      reduce fungicide input in winter wheat, winter barley and spring barley in Denmark.
-      Brighton Crop Protection Conference. Pest and diseases. 835-840.
-
-      4. Jørgensen, L.N. & Henriksen, K E. (2002) Control of diseases in different winter wheat
-      varieties using thresholds and appropriate dosages. Petria vol 12 (1/2) 87-94
-
-      5. Hagelskjær, L.& Jørgensen, LN, 2003 A web-based decision support system for
-      integrated management of diesases and pest s in cereals. EPPO Bulletin 33, 467-471.
-
-      6. Jørgensen, LN; Matzen, M, Nielsen, GC, Jalli, M; Ronis; Djule, A; Anderson, B; Ficke, A., Djule, A
-      (2020) Validation of risk models for control of leaf blotch diseases in wheat in the Nordic and
-      Baltic countries European Journal of Plante Pathology,. https://doi.org/10.1007/si 0658-020-02025-6
-      7. Jørgensen, LN; Matzen, N, Heick, T M, Madsen, HP; Kristjansen, H S; Kirkegaard, S;
-      Almskou-Dahlgaard, A; Kristoffersen, R (2020). Control strategies in different cultivars.
-      Applied Crop Protection 2019.DCA rapport, 167, 58-71.
-      https://dcapub.au.dk/djfpublikation/index.asp?action=show&id=1325
-  citation:
+  description: |
+    The system has been developed by Aarhus University and SEGES and covers main diseases and pest in cereal crops.
+    The models have been developed for guidance related to leaf and stem diseases in cereals including
+    winter Wheat, spring barley, winter barley, spring oat, winter triticale and winter rye.
+    The system also includes models for pest control in cereals.
+    The models require information from field registration typically in the period from GS 30-31 to GS 65-71
+    (assessments of frequency of plants attacked) and for some diseases also precipitation is required
+    (days with more than 1 mm rain). Before getting information on need for treatments – information on crop,
+    cultivars susceptibility and growth stage (BBCH) is required.
+    
+    The growers need to check the crops at weekly intervals or as a minimum follow the risk based on precipitation
+    or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+    recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+    
+    The models have been validated in Denmark and has also been tested in the Baltic and Nordic
+    countries. It is expected to be valid in the northern part of Europe, given that the monitoring part of
+    the system is followed.
+  citation: |
+    1. Hansen, J.G., Secher, B.J., Jørgensen, LN. & Welling, B. 1994. Threshold for control of
+    Septoria spp. in winter wheat based on precipitation and growth stage. Plant Pathology
+    43, 183-189.
+    
+    2. Secher, B.J., Jørgensen, L.N, Murali N.S. & Boll P.S. (1995). Field Validation of a
+    Decision Support System for Control of Pests and Diseases in Cereals in Denmark.
+    Pesticide Science, 45, 195-199.
+    
+    3. Henriksen. K.E.; Jørgensen, L.N. & Nielsen, G.C.(2000) PC-Plant Protection –a tool to
+    reduce fungicide input in winter wheat, winter barley and spring barley in Denmark.
+    Brighton Crop Protection Conference. Pest and diseases. 835-840.
+    
+    4. Jørgensen, L.N. & Henriksen, K E. (2002) Control of diseases in different winter wheat
+    varieties using thresholds and appropriate dosages. Petria vol 12 (1/2) 87-94
+    
+    5. Hagelskjær, L.& Jørgensen, LN, 2003 A web-based decision support system for
+    integrated management of diesases and pest s in cereals. EPPO Bulletin 33, 467-471.
+    
+    6. Jørgensen, LN; Matzen, M, Nielsen, GC, Jalli, M; Ronis; Djule, A; Anderson, B; Ficke, A., Djule, A
+    (2020) Validation of risk models for control of leaf blotch diseases in wheat in the Nordic and
+    Baltic countries European Journal of Plante Pathology,. https://doi.org/10.1007/si 0658-020-02025-6
+    7. Jørgensen, LN; Matzen, N, Heick, T M, Madsen, HP; Kristjansen, H S; Kirkegaard, S;
+    Almskou-Dahlgaard, A; Kristoffersen, R (2020). Control strategies in different cultivars.
+    Applied Crop Protection 2019.DCA rapport, 167, 58-71.
+    https://dcapub.au.dk/djfpublikation/index.asp?action=show&id=1325
   valid_spatial:
     # Using country codes to get GeoJSON. Saves a lot of duplication.
     # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
     countries:
-    - NOR
-    - DNK
-    - SWE
-    - FIN
-    - EST
-    - LVA
-    - LTU
-    - POL
-    - DEU
-    - NLD
-    - BEL
-    - GBR
-    - IRL
+      - NOR
+      - DNK
+      - SWE
+      - FIN
+      - EST
+      - LVA
+      - LTU
+      - POL
+      - DEU
+      - NLD
+      - BEL
+      - GBR
+      - IRL
     # Optionally, use a custom polygon
     geoJSON: |-
       {}
   input:
-    weather_parameters:
+   weather_parameters: 
     - parameter_code: 2001 # Precipitation
       interval: 86400 # Daily
-  execution:
+  execution: 
     type: ONTHEFLY
     endpoint: https://devtest-plantevaernonline.vfltest.dk/cp/Applications/Disease/IPMModel.aspx
     form_method: post # Could be get or post
-    content_type: application/json
+    content_type: application/json 
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
@@ -296,7 +287,7 @@ models:
         "required": ["CropId","Susceptibility","GrowthStage","Severity","WeatherData"]
       }
     # Definition of the result parameters specific for this DSS model
-  output:
+  output: 
     warning_status_interpretation: |-
       The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
       precipitation
@@ -304,9 +295,7 @@ models:
       recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
     result_parameters:
       # the id is used with the model_id as the namespace
-    - id: TREATMENT_ID
-      title: The risk assessment
-      description: The CPO's traffic light counterpart. 0 = No need for treatment.
-        1 = Treat if other problem needs treatment. 2 = Treat if other problem has
-        treatmentId = 2 3 = Need for treatment
+      - id: TREATMENT_ID
+        title: The risk assessment
+        description: The CPO's traffic light counterpart. 0 = No need for treatment. 1 = Treat if other problem needs treatment. 2 = Treat if other problem has treatmentId = 2 3 = Need for treatment
 

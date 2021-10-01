@@ -1,0 +1,358 @@
+---
+# General info about the models
+id: adas.datamanipulation
+version: 0.0.6
+name: Models
+url: http://web1.adas.co.uk/adas_datamanipulation/algorithms
+organization: 
+ name: ADAS
+ country: England
+ address: Titan 1 Offices
+ postal_code: "WV10 9RT"
+ city: Wolverhampton
+ email: Hannah.Griffiths@adas.co.uk
+ url: https://www.adas.uk/
+languages:
+- English
+# From here on we get model specific
+models:
+- name: CIBSE hourly temperature for a single day
+  id: CIBSEsingleday
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: D.H.C Chow, G.J. Levermore
+    email: D.Chow@shu.ac.uk
+    organization: Sheffield Hallam University
+
+  keywords: algorithm, temperature
+  type_of_output: hourly temperatures
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-CIBSEsingleday
+  description: |
+    This model calculates hourly tempertaure values based on the CIBSE model for a single day (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in the day using the CIBSE Guide A2 (1982). 
+    The model then uses these predicted times aswell as minimum and maximum air tempertaures to fit the data via sinusoidal curves.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/CIBSEsingleday
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      { 
+         "type": "object",
+         "required": ["Date","Tmin","Tmax"]
+         "properties": {
+            "Date": {"type": "string", "format": "date"},
+            "Tmin": {"type": "number"},
+            "Tmax": {"type": "number"}
+          },
+      }
+  output: 
+    warning_status_interpretation: ""
+    result_parameters:
+    # the id is used with the model_id as the namespace
+    - id: TMH
+      title: Hourly temperatures
+      description: The hourly tempertaures are provided for each hour of the day. 
+###########
+- name: CIBSE hourly temperature for multiple days
+  id: CIBSEmultipledays
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: D.H.C Chow, G.J. Levermore
+    email: D.Chow@shu.ac.uk
+    organization: Sheffield Hallam University
+
+  keywords: algorithm, temperature
+  type_of_output: hourly temperatures
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-CIBSEmultipledays
+  description: |
+    This model calculates hourly tempertaure values based on the CIBSE model for multiple days (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in each day using the CIBSE Guide A2 (1982). 
+    Maximum temperature is then linked, using a sinusoidal curve to the minimum temperature of the following day. Capping is introduced in this model whereby if the generated value is higher than the maximum temperature then it is reduced to the maximum tempertaure,
+    and if lower than the minium temperature the generated value is changed to the minimum temperature.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/CIBSEmultipledays
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+      {
+        "type": "object",
+        "required": ["Temperature"],
+        "properties": {
+            "Temperature": {
+                "type": "object",
+                "properties": {
+                    "Date": {"type": "string","format": "date"},
+                    "Tmin": {"type": "number"},
+                    "Tmax": {"type": "number"}
+                },
+             "required": ["Date", "Tmin", "Tmax"],
+            }
+        }
+      }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMH
+        title: Hourly temperature
+        description: The hourly tempertaures are provided for each hour of each day. 
+###########
+- name: Sin14R-1 hourly temperature for a single day
+  id: Sin14R-1singleday
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: D.H.C Chow, G.J. Levermore
+    email: D.Chow@shu.ac.uk
+    organization: Sheffield Hallam University
+
+  keywords: algorithm, temperature
+  type_of_output: hourly temperatures
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-Sin14R-1singleday
+  description: |
+    This model calculates hourly tempertaure values based on the Sin14R-1 model for a single day (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in the day, based upon sunrise and sunset times for the given location. 
+    Sunrise and sunset times are dependent on the users inputs for latitude, longtiude and GMT offset.
+    The model assumes that maximum temperature always occured at hour 14, and minimum temperature an hour before sunrise.
+    The model then uses these predicted times aswell as minimum and maximum air tempertaures to fit the data via sinusoidal curves.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/Sin14R-1singleday
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+     {
+        "type": "object",
+         "required": ["Latitude","Longitude","Date", "Tmin", "Tmax", "GMT_Offset"]
+         "properties": {
+                "Latitude": {"type":"number"},
+                "Longitude": {"type":"number"},
+                "Date": {"type": "string", "format": "date"},
+                "Tmin": {"type": "number"},
+                "Tmax": {"type": "number"},
+                "GMT_Offset": {"type": "number"}
+          }
+     }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMH
+        title: Hourly temperature
+        description: The hourly tempertaures are provided for each hour of the day. 
+###########
+- name: Sin14R-1 hourly temperature for multiple days
+  id: Sin14R-1multipledays
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: D.H.C Chow, G.J. Levermore
+    email: D.Chow@shu.ac.uk
+    organization: Sheffield Hallam University
+
+  keywords: algorithm, temperature
+  type_of_output: hourly temperatures
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-Sin14R-1multipledays
+  description: |
+    This model calculates hourly tempertaure values based on the Sin14R-1 model for multiple days (Chow & Levermore, 2007). The model first allocates times for when  maximum and minimum temperatures occur in each day, based upon sunrise and sunset times for the given location.
+    Sunrise and sunset times are dependent on the users inputs for latitude, longtiude and GMT offset.
+    The model assumes that maximum temperature always occured at hour 14, and minimum temperature an hour before sunrise. 
+    Maximum temperature is then linked, using a sinusoidal curve to the minimum temperature of the following day. Capping is introduced in this model whereby if the generated value is higher than the maximum temperature then it is reduced to the maximum tempertaure,
+    and if lower than the minium temperature the generated value is changed to the minimum temperature. 
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/Sin14R-1multipledays
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+     {
+        "type": "object",
+        "required": ["Latitude", "Longitude", "TemperatureClass"],
+        "properties": {
+            "Latitude": {"type": "number"},
+            "Longitude": {"type": "number"},
+            "TemperatureClasses"{
+                "type": "object",
+                "properties": {
+                    "Date": {"type": "string","format": "date"},
+                    "Tmin": {"type": "number"},
+                    "Tmax": {"type": "number"},
+                    "GMT_Offset": {"type":"number"}
+                }
+            required": ["Date", "Tmin", "Tmax", "GMT_Offset"]
+          }
+       }
+     }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: TMH
+        title: Hourly temperature
+        description: The hourly tempertaures are provided for each hour of each day. 
+###########
+- name: Hourly Relative Humidiy
+  id: Hourly_RH
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: Emanueke Eccel
+    email: Emanuele.eccel@iasma.it
+    organization: IASMA Research and Innovation Centre
+
+  keywords: algorithm, relative humidity
+  type_of_output: hourly temperatures
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-RH_Hourly
+  description: |
+    This model simulates hourly realtive humidity from hourly temperature (Eccel, 2012). The assumption is made that minimum temperature is a first guess estimate of dew point temperature.
+    The model then expresses relative humidity as the ratio between actual water vapour and saturation vapour.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/RH_Hourly
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+     {
+        "type": "object",
+        "required": ["TemperatureClasses"],
+        "properties": {
+            "TemperatureClasses": {
+                "type": "object",
+                "properties": {
+                    "Date": {"type": "string","format": "date"},
+                    "Hour": {"type": "number"},
+                    "Temperature": {"type": "number"}
+                },
+             "required": ["Date", "Hour", "Temperature"]
+            }
+        }
+     }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: RHH
+        title: Hourly relative humidity
+        description: The hourly relative humidity is provided for each hour of the day. 
+###########
+- name: Leaf Wetness Duration_RH
+  id: LeafWetnessDuration_RH
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: R.J. Wichink Kruit, A.F.G. Jacobs, A.A.M. Holtslag
+    email: wichink@hotmail.com
+    organization: Wageningen University and Research Centre(WUR)
+
+  keywords: algorithm
+  type_of_output: Leaf Wetness Value
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-LeafWetnessDuration_RH
+  description: |
+    This is a simple relative humidity (RH) threshold model for calcualtion of hourly leaf wetness duration (LWD). 
+    It compares a single RH obsevation with a threshold (currently 87%) and if the observation is greater than the threshold, the hour is assumed to contribute to (LWD), so returns an hourly LWD value of 1.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/LeafWetnessDuration?RH={RH}
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+     {
+        "type": "number"
+     }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: LWD_RH
+        title: Leaf Wetness Duration, Relative Humidity
+        description: Whether a given observation is greater than the threshold (87%)
+###########
+- name: Leaf Wetness Duration
+  id: LeafWetnessDuration
+  version: 0.0.6
+  authors: # List of the model authors
+  - name: R.J. Wichink Kruit, A.F.G. Jacobs, A.A.M. Holtslag
+    email: wichink@hotmail.com
+    organization: Wageningen University and Research Centre(WUR)
+
+  keywords: algorithm
+  type_of_output: Leaf Wetness Value
+  description_URL: http://web1.adas.co.uk/adas_datamanipulation/algorithms/Help/Api/POST-api-LeafWetnessDuration
+  description: |
+    
+    This is a simple relative humidity (RH) threshold model for calcualtion of hourly leaf wetness duration (LWD). 
+    It compares each RH observation in a datted (date and time (hour)) list with a threhsold (currently 87%), and if the observation exceeds the threshold, the value for the hour return is 1, 0 otherwise.
+  citation: null # Optional. Use the DOI as identifier (list)
+  # Where has this model been considered valid
+  valid_spatial:
+    countries: []
+    geoJSON: |-
+      {}
+  execution: 
+    type: ONTHEFLY
+    endpoint:  http://web1.adas.co.uk/adas_datamanipulation/algorithms/api/LeafWetnessDuration
+    form_method: post # Could be get or post
+    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    input_schema: |
+     {
+        "type": "number"
+     }
+     {
+        "type": "object",
+        "required": ["Relative humidity"],
+        "properties": {
+            "TemperatureClasses": {
+                "type": "object",
+                "properties": {
+                    "Date": {"type": "string","format": "date"},
+                    "RH": {"type": "number"},
+                },
+             "required": ["Date", "RH"]
+            }
+        }
+     }
+  output:
+    warning_status_interpretation: ""
+    result_parameters:
+      # the id is used with the model_id as the namespace
+      - id: LWD
+        title: Leaf Wetness Duration
+        description: Whether each observation in a list is greater than the relative humidty threshold (87%)  
