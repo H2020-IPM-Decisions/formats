@@ -52,7 +52,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: https://ipmdecisions.nibio.no/weatherdata/dwd/
+    endpoint: https://dwd.ipmdecisions.nibio.no
     needs_data_control: false
     temporal:
       historic: #  
@@ -124,7 +124,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: https://ipmdecisions.nibio.no/weatherdata/dwd-eu/
+    endpoint: https://dwd-eu.ipmdecisions.nibio.no
     needs_data_control: false
     temporal:
       historic: #  
@@ -196,7 +196,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: https://ipmdecisions.nibio.no/weatherdata/meteofrance/
+    endpoint: https://meteofrance.ipmdecisions.nibio.no
     needs_data_control: false
     temporal:
       historic: #  
