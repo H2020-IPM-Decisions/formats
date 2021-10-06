@@ -660,8 +660,7 @@ models:
               "counting08":{"title":"Number of eggs, plant 8", "type":"integer", "minimum": 0},
               "counting09":{"title":"Number of eggs, plant 9", "type":"integer", "minimum": 0},
               "counting10":{"title":"Number of eggs, plant 10","type":"integer", "minimum": 0}
-            },
-            "required": []
+            }
           }
         }
       }
