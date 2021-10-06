@@ -49,8 +49,6 @@ models:
     endpoint: https://gaiasense.neuropublic.gr/np_dws/ws/dispatcher.php
     form_method: get
     content_type: application/json
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -66,6 +64,9 @@ models:
         },
         "required": [ "id", "from", "to", "token", "datatype", "locid", "model" ]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |
       Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.

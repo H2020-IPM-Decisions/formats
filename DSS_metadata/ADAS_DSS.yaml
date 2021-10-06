@@ -88,6 +88,8 @@ models:
         "required": ["Weather"]
       }
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       No Risk indicates that the daily count of cutworm in their third instar is zero. No Action Required.
@@ -153,6 +155,8 @@ models:
         "required": ["Observation","Yield"]
       }
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Low Risk suggests you should revist regularly as risk can change rapidly. It indicates that the number of aphids per tiller is below the economic threshold for that specific crop stage.
@@ -230,6 +234,8 @@ models:
         "required": ["Weather"]
       }
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Phase One indicates there is currently a low risk but should revist regularly as risk can change rapidly.
@@ -312,6 +318,8 @@ models:
         "required": ["Input","Growth Stage"]
       }
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Migration Risk is Low indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
@@ -396,6 +404,8 @@ models:
         "required": ["Weather"]
       }
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Low Risk indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
@@ -459,6 +469,8 @@ models:
         "required": ["threshold","observation"]
       }    
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Risk Rating 0. Observation is below threshold - no action required.
@@ -539,6 +551,8 @@ models:
       }
 
     # Definition of the result parameters specific for this DSS model
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: |-
       Risk rating and associated action inputted by the user.

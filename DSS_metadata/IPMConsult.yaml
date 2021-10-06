@@ -175,6 +175,8 @@ models:
     type: LINK
     endpoint: http://www.ipmwise.dk/
 
+    input_schema_categories:
+      hidden:
   citation:
 - name: VIPS-ugras Norway
   id: ipmwise.no
@@ -315,6 +317,8 @@ models:
   execution:
     type: LINK
     endpoint: http://vipsugras.ipmwise.com
+    input_schema_categories:
+      hidden:
 - name: IPMwise Spain
   id: ipmwise.es
   version: 4.0
@@ -501,6 +505,8 @@ models:
     type: LINK
     endpoint: http://www.ipmwise.es
 
+    input_schema_categories:
+      hidden:
   citation:
 - name: IPMwise demo version
   id: ipmwise.demo
@@ -650,4 +656,6 @@ models:
   execution:
     type: LINK
     endpoint: http://demo.ipmwise.com/
+    input_schema_categories:
+      hidden:
   citation:

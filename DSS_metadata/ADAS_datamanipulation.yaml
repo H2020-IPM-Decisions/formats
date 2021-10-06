@@ -56,6 +56,8 @@ models:
             "Tmax": {"type": "number"}
           },
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -112,6 +114,8 @@ models:
             }
         }
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -166,6 +170,8 @@ models:
                  "GMT_Offset": {"type": "number"}
            }
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -227,6 +233,8 @@ models:
            }
         }
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -282,6 +290,8 @@ models:
              }
          }
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -325,6 +335,8 @@ models:
       {
          "type": "number"
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:
@@ -383,6 +395,8 @@ models:
              }
          }
       }
+    input_schema_categories:
+      hidden:
   output:
     warning_status_interpretation: ''
     result_parameters:

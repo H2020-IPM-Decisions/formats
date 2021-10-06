@@ -70,9 +70,6 @@ models:
     endpoint: https://coremanager.vips.nibio.no/models/PSILARTEMP/run/ipmd
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    input_schema_hidden_properties:
-    - modelId
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
     input_schema: |
       {
         "type":"object",
@@ -94,6 +91,10 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
+    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
   output:
     warning_status_interpretation: |-
       Green warning indicates that the flight period has not yet begun.
@@ -208,8 +209,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -231,6 +230,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Green warning indicates that the flight period has not yet begun and oviposition is not expected.
@@ -364,8 +366,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -387,6 +387,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
@@ -453,8 +456,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -501,6 +502,9 @@ models:
           }
         }
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
@@ -607,8 +611,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -663,6 +665,9 @@ models:
           }
         }
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
@@ -761,8 +766,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -784,6 +787,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Risk < 1 = no warning (Green)
@@ -869,8 +875,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -893,6 +897,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
@@ -980,8 +987,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -1003,6 +1008,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       When accumulated risk < 150, warning symbol is green
@@ -1100,8 +1108,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -1144,6 +1150,9 @@ models:
           "fieldObs_SEPTAP": {"title": "Septoria apiicola quantification", "properties": {"observed":{"title":"observed", "type":"boolean"}}}
         }
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Green = No risk of infection.
@@ -1222,8 +1231,6 @@ models:
     form_method: post # Could be get or post
     content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema_hidden_properties:
-    - modelId
     input_schema: |
       {
         "type":"object",
@@ -1245,6 +1252,9 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
+    input_schema_categories:
+      hidden:
+      - modelId
   output:
     warning_status_interpretation: |-
       Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
