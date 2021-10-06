@@ -94,7 +94,6 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Green warning indicates that the flight period has not yet begun.
@@ -232,7 +231,6 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Green warning indicates that the flight period has not yet begun and oviposition is not expected.
@@ -389,7 +387,6 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
@@ -504,7 +501,6 @@ models:
           }
         }
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
@@ -667,7 +663,6 @@ models:
           }
         }
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
@@ -1233,7 +1228,7 @@ models:
       {
         "type":"object",
         "properties": {
-          "modelId": {"type": "string", "pattern":"^PSILARTEMP$", "title": "Model Id", "default":"PSILARTEMP", "description":"Must be PSILARTEMP"},
+          "modelId": {"type": "string", "pattern":"^BREMIALACT$", "title": "Model Id", "default":"BREMIALACT", "description":"Must be BREMIALACT"},
           "configParameters": {
             "title":"Configuration parameters",
             "type": "object",
@@ -1250,7 +1245,6 @@ models:
         },
         "required": ["modelId","configParameters"]
       }
-    # Definition of the result parameters specific for this DSS model
   output:
     warning_status_interpretation: |-
       Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
