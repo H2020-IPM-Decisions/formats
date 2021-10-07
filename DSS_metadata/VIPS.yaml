@@ -560,7 +560,7 @@ models:
   - HYLERA # EPPO code for Cabbage root fly (Delia radicum)
   - HYLEFL # EPPO code for turnip fly (Delia floralis)
   crops:
-  - BROSL # EPPO code for cabbage (head cabbage, Brassica oleracea var. capitata)
+  - BRSOL # EPPO code for cabbage (head cabbage, Brassica oleracea var. capitata)
   - BRSOB # EPPO code for cauliflower (Brassica oleracea var. botrytis)
   - BRSOK # EPPO code for broccoli (Brassica oleracea var. italica)
   type_of_decision: Short-term tactical
