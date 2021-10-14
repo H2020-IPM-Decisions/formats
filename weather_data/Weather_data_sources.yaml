@@ -1,5 +1,5 @@
-# TEST YAML sample of weather datasource meta data to be used by the plaform
-# (c) 2020 Tor-Einar Skog <tor-einar.skog@nibio.no>
+# Weather datasource meta data to be used by the plaform
+# (c) 2021 Tor-Einar Skog <tor-einar.skog@nibio.no>
 ---
 datasources:
   - 
@@ -39,6 +39,45 @@ datasources:
        - 3001 # Instantaneous RH at 2m (%)
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
+  - 
+    id: dk.dmi.pointweather
+    name: "DMI Pointweather service"
+    description: "Seasonal weather data and forecasts for Denmark. Grid based"
+    public_URL: "https://dmiweatherservice-plant.dlbr.dk/DMIWeatherService.svc"
+    organization: 
+      name: SEGES
+      country: Denmark
+      address: Agro Food Park 15
+      postal_code: "8200"
+      city: Aarhus N
+      email: info@seges.dk
+      url: https://www.seges.dk/
+    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/dmipoint/
+    needs_data_control: false
+    temporal:
+      historic: 
+        start: "2021-01-01" # Start == null => No measured/historic/observational data
+        end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
+      forecast: 5 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    access_type: location
+    spatial: 
+      # Using country codes to get GeoJSON. Saves a lot of duplication.
+      # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+      # e.g.
+      # - DNK
+      # - SWE
+      countries:
+        - DNK
+      # "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+      geoJSON: null
+    parameters:
+      common:
+       - 1002
+       - 1112
+       - 2001
+       - 3002
+       - 3101 
+       - 4002
   - 
     id: net.ipmdecisions.dwd.forecast.germany
     name: "Deutsche Wetterdienst location forecast by IPM Decisions"
