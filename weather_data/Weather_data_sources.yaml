@@ -223,6 +223,79 @@ datasources:
        - 2001 # Precipitation (mm)
        - 4002 # Instantaneous wind speed at 2m
   - 
+    id: net.ipmdecisions.dwd.euroweather
+    name: "Euroweather seasonal gridded weather data and forecasts  by IPM Decisions"
+    description: "Seasonal data and 72 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
+    public_URL: "http://github.com/H2020-IPM-Decisions/Euroweather-frontend"
+    organization: 
+      name: The Norwegian Meteorological Institute
+      country: Norway
+      address: Postboks 43 Blindern
+      postal_code: "0371"
+      city: Oslo
+      email: david.melchior@met.no
+      url: https://www.met.no/en
+    endpoint: http://euroweather.ipmdecisions.nibio.no
+    needs_data_control: false
+    temporal:
+      historic: #  
+        start: "2021-01-01" # Start == null => No measured/historic/observational data
+        end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
+      forecast: 3 # 0 = no forecast. All other positive integers indicate the number of days ahead
+    access_type: location
+    spatial: 
+      # Using country codes to get GeoJSON. Saves a lot of duplication.
+      # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
+      # e.g.
+      # - NOR
+      # - SWE
+      countries: null
+      # "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
+      geoJSON: |- 
+        {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "properties": {},
+            "geometry": {
+              "type": "Polygon",
+              "coordinates": [
+                [
+                  [
+                    -23.3125,
+                    29.5625
+                  ],
+                  [
+                    45.0,
+                    29.5625
+                  ],
+                  [
+                    45.0,
+                    70.3125
+                  ],
+                  [
+                    -23.3125,
+                    70.3125
+                  ],
+                  [
+                    -23.3125,
+                    29.5625
+                  ]
+                ]
+              ]
+            }
+          }
+         ]
+        }
+    parameters:
+      common:
+       - 1001 # Instantaneous temperature at 2m (Celcius)
+       - 3001 # Instantaneous RH at 2m (%)
+       - 2001 # Precipitation (mm)
+       - 4002 # Instantaneous wind speed at 2m
+
+  - 
     id: net.ipmdecisions.meteofrance.forecast
     name: "MeteoFrance location forecast by IPM Decisions"
     description: "40 hour weather forecasts for France and surroundings. 2.5 km resolution. Pulls data from MeteoFrance's Public Data service (https://donneespubliques.meteofrance.fr). Made available by a custom adapter created by Met Norway and NIBIO."
