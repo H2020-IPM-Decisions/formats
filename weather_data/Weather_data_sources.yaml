@@ -235,7 +235,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: http://euroweather.ipmdecisions.nibio.no
+    endpoint: http://euroweather.ipmdecisions.nibio.no/weather_data
     needs_data_control: false
     temporal:
       historic: #  
