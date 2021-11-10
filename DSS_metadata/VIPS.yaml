@@ -774,7 +774,7 @@ models:
             "type": "object",
             "title":"Configuration parameters",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
               "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
@@ -883,7 +883,7 @@ models:
             "type": "object",
             "title":"Configuration parameters",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
               "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
               "sprayingDates": {"type": "array", "minItems":0, "maxItems":3, "title": "Spraying dates","items":{"type":"string","format":"date"}}
@@ -995,7 +995,7 @@ models:
             "type": "object",
             "title":"Configuration parameters",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
               "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
               "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
             },
@@ -1116,7 +1116,7 @@ models:
             "title":"Configuration parameters",
             "type": "object",
             "properties": {
-              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)"},
+              "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
               "startDateGrowth": {"type": "string", "format":"date", "title": "Start date of growth (YYYY-MM-DD)"},
               "endDateCalculation": {"type": "string", "format":"date", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
