@@ -226,7 +226,7 @@ datasources:
     id: net.ipmdecisions.dwd.euroweather
     name: "Euroweather seasonal gridded weather data and forecasts  by IPM Decisions"
     description: "Seasonal data and 72 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
-    public_URL: "http://github.com/H2020-IPM-Decisions/Euroweather-frontend"
+    public_URL: "https://github.com/H2020-IPM-Decisions/Euroweather-frontend"
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
