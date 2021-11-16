@@ -80,8 +80,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo", "options":{"infoText":"The time zone information is used when hourly temperature values need to be converted to daily."}},
-              "timeStart": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type":"string","format": "date","default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type":"string","format": "date","default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone","timeStart","timeEnd"]
           },
@@ -219,8 +219,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type": "string","format": "date","default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone"]
           },
@@ -376,8 +376,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone"]
           },
@@ -466,8 +466,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "startDateCalculation": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "endDateCalculation": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
+              "startDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "endDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
                 "title": "Field observations",
                 "type": "array",
@@ -621,8 +621,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "startDateCalculation": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "endDateCalculation": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
+              "startDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "endDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
                 "title": "Field observations",
                 "type": "array",
@@ -775,8 +775,8 @@ models:
             "title":"Configuration parameters",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-10-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone","timeStart","timeEnd"]
           },
@@ -884,9 +884,9 @@ models:
             "title":"Configuration parameters",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
-              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"},
-              "sprayingDates": {"type": "array", "minItems":0, "maxItems":3, "title": "Spraying dates","items":{"type":"string","format":"date"}}
+              "timeStart": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"},
+              "sprayingDates": {"type": "array", "minItems":0, "maxItems":3, "title": "Spraying dates","items":{"type":"string","format":"date", "default":"{CURRENT_YEAR}-06-01"}}
             },
             "required": ["timeZone","timeStart","timeEnd"]
           },
@@ -996,8 +996,8 @@ models:
             "title":"Configuration parameters",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
-              "timeStart": {"type": "string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type": "string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-03-01",  "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type": "string","format": "date", "default": "{CURRENT_YEAR}-07-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
             "required": ["timeZone","timeStart","timeEnd"]
           },
@@ -1117,8 +1117,8 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)","default":"Europe/Oslo"},
-              "startDateGrowth": {"type": "string", "format":"date", "title": "Start date of growth (YYYY-MM-DD)"},
-              "endDateCalculation": {"type": "string", "format":"date", "title": "End date of calculation (YYYY-MM-DD)"},
+              "startDateGrowth": {"type": "string", "format":"date", "default": "{CURRENT_YEAR}-04-01", "title": "Start date of growth (YYYY-MM-DD)"},
+              "endDateCalculation": {"type": "string", "format":"date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
                 "title": "Field observations",
                 "type": "array",
@@ -1240,10 +1240,10 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "timeStart": {"type":"string","format": "date", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type":"string","format": "date", "title": "End date of calculation (YYYY-MM-DD)"}
+              "timeStart": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-04-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "timeEnd": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"}
             },
-            "required": ["timeZone","timeStart","timeEnd"]
+            "required": ["Zone","timeStart","timeEnd"]
           },
           "weatherData": {
             "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
