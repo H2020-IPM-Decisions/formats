@@ -293,7 +293,7 @@ datasources:
        - 1001 # Instantaneous temperature at 2m (Celcius)
        - 3001 # Instantaneous RH at 2m (%)
        - 2001 # Precipitation (mm)
-       - 4002 # Instantaneous wind speed at 2m
+       - 4012 # Instantaneous wind speed at 10
 
   - 
     id: net.ipmdecisions.meteofrance.forecast
