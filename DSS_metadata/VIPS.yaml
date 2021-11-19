@@ -621,7 +621,7 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "startDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
+              "startDateGrowth": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-03-01", "title": "Start date of calculation (YYYY-MM-DD)"},
               "endDateCalculation": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"},
               "fieldObservations": {
                 "title": "Field observations",
