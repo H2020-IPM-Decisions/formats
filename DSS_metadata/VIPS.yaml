@@ -1216,14 +1216,20 @@ models:
       {}
   input:
     weather_parameters:
-    - parameter_code: 1002 # = Mean air temp at 2m
-      interval: 86400 # Sampling interval in seconds (3600 * 24 = 86400)
+    - parameter_code: 1004 # = Max air temp at 2m
+      interval: 3600 # Hourly sampling interval in seconds
+    - parameter_code: 3103 # Leaf wetness duration AT GROUND LEVEL. Measured in minutes with wetness per period 
+      interval: 3600
+    - parameter_code: 5001 # Global radiation in W/sqm. 
+      interval: 3600 
+    - parameter_code: 3002 # Mean RH at 2m
+      interval: 3600 
     weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: configParameters.timeStart ## Could be path.to.property OR e.g. XXXX-01-01
+      value: XXXX-04-01 ## Could be path.to.property OR e.g. XXXX-01-01
     weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: configParameters.timeEnd ## Could be path.to.property OR e.g. XXXX-12-31
+      value: XXXX-09-01 ## Could be path.to.property OR e.g. XXXX-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/run/ipmd
@@ -1240,10 +1246,10 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "timeStart": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-04-01", "title": "Start date of calculation (YYYY-MM-DD)"},
-              "timeEnd": {"type":"string","format": "date", "default": "{CURRENT_YEAR}-09-01", "title": "End date of calculation (YYYY-MM-DD)"}
+              "longitude": {"type":"number", "title": "Longitude (WGS84 decimal degrees)", "default": "0.0"},
+              "latitude": {"type":"number", "title": "Latitude (WGS84 decimal degrees)", "default": "0.0"}
             },
-            "required": ["Zone","timeStart","timeEnd"]
+            "required": ["timeZone","longitude","latitude"]
           },
           "weatherData": {
             "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
