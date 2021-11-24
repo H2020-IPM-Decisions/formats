@@ -121,6 +121,15 @@ models:
     input_schema_categories:
       hidden:
       - modelId
+      internal: 
+      - configParameters.sprayingProtectionDays
+      - configParameters.thresholdRelativeHumidity
+      - configParameters.thresholdLeafWetness
+      - configParameters.thresholdPrecipitation
+      - configParameters.slidingHoursPast
+      - configParameters.slidingHoursAhead
+      - configParameters.thresholdHumidPeriodHours
+      - configParameters.leafLifeTime
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
   output:
     warning_status_interpretation: |-
