@@ -1,362 +1,336 @@
-# General info about the DSS
+#General info about the DSS
 id: adas.dss
-version: 0.0.1
+version: 0.0.2
 name: Models
-url: http://web1.adas.co.uk/adas_dss
-organization:
+url: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss
+organization: 
   name: ADAS
   country: England
   address: Titan 1 Offices
-  postal_code: WV10 9RT
+  postal_code: 'WV10 9RT'
   city: Wolverhampton
   email: Hannah.Griffiths@adas.co.uk
   url: https://www.adas.uk/
 languages:
 - English
-# From here on we get model specific
-# There may be many DSS models per DSS
-# They should have their separate list entry
-# We use EPPO codes (https://gd.eppo.int/)
-# for pests and crops
-# We use these parameters/codes for weather data: 
-# https://github.com/H2020-IPM-Decisions/formats/blob/master/weather_data/weather_parameters_draft_v2.yaml
 models:
 - name: Cutworm Model
   id: DASGPA
-  version: 0.0.1
-  authors: # List of the model authors
+  version: 0.0.3
+  authors: 
   - name: J. Bowden, J. Cochrane, B.J. Emmett, T.E. Minall, P.L Sherlock
     email: NA
-    organization: Rothamsted Experimental Statton
-  pests:
-  - DASGPA # EPPO code for cutworm
-  crops: []
-  keywords: foo, bar, mechanistic, regression
+    organization: Rothamsted Experimental Station
+  pests: 
+  - DASGPA 
+  crops: 
+  - 3LETC
+  - 3BEEC
+  - SOLTU 
+  - BEAVV
+  - BRSRR
+  - BRSNA
+  - DAUCS
+  - PAVSA
+  - ALLCE
+  - ALLPO
+  - CICIN
+  - 1ASPG
+  - APUGV
+  - LYPES
+  - FRAAN  
+  #lettuce crops, beet crops, potato, mangold, turnip, swede, carrot, parsnip, onion, leek, chicory, asparagus, celery, tomato, strawberry
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
-  description_URL: http://web1.adas.co.uk/adas_dss/dasgpa/Help/Api/POST-api-DASGPA
-  description:
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/dasgpa/Help/Api/POST-api-DASGPA
+  description: 
     other: |
       This model assesses Cutworm risk in crops based on the work of Bowden et al., (1982). The model was originally devised to estimate an index of larval survival to third instar, based on temperature rate of development relationships and mortality due to daily rainfall.
-      If no start date is inputted into the model the default will be used.The default is defined as the first day after 1st June where temperature exceeds 12 degrees.
+      The default model start date is defined as the first day after 1st June where temperature exceeds 12 degrees. The model will end on the 31st October.
       Any spray dates can be inputted into the model and are deemed to be 100% effective at removing cutworm from the model.
-      The model will return the number of batches that survive to the third instar for the last three days of inputted weather data, the asscoiated risk and the recommended action.
+      The model will return the number of batches that survive to the third instar, the asscoiated risk and the recommended action.
     created_by: ''
     age: ''
     assumptions: ''
-    peer_review: 10.1111/j.1744-7348.1983.tb02663.x
-  citation:                                    # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+    peer_review: ''
+  citation: 
   valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries:
+    countries: 
     - GBR
-    # Optionally, use a custom polygon
     geoJSON: |-
       {}
-  execution:
+  input:
+   weather_parameters: 
+   - parameter_code: 1002 
+     interval: 86400 
+   - parameter_code: 2001 
+     interval: 86400 
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-06-01 
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-10-31 
+  execution: 
     type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/dasgpa/api/DASGPA
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/dasgpa/api/DASGPA
+    form_method: post 
+    content_type: application/json 
     input_schema: |
       {
         "type":"object",
-        "properties": {
-           
-          "Weather": {
-            "type": "object",
-            "properties": {
-              "Date": {"type": "string", "format": "date"},
-              "Temperature": {"type": "number"},
-              "Rainfall": {"type": "number"}
-            },
-            "required": ["Date","Temperature","Rainfall"]
-          },
-          "Start Date": {"type": "string", "format": "date"},
-          
-          "Spray": {
-            
-            "type": "object",
-            "properties":{
-               "Date": {"type": "string", "format": "date"}
+        "properties": { 
+            "modelId": {"type": "string", "pattern":"^DASGPA$", "title": "Model Id", "default":"DASGPA", "description":"Must be DASGPA"},
+            "weatherData": {
+              "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+            },        
+            "optionalData" :{  
+              "title":"Optional parameters for the DSS",            
+              "type": "object",
+              "properties": {
+                "sprayDates": {
+                  "title": "Spray Dates",	
+                  "type": "object",
+                  "properties":{
+                    "date": {"type":"string","format": "date", "title": "Date of Spray (YYYY-MM-DD)"}
+                    }
+                }
+              }
             }
-          }
         },
-        "required": ["Weather"]
+        "required": ["modelId","weatherData"]
       }
-    # Definition of the result parameters specific for this DSS model
+     
     input_schema_categories:
       hidden:
-  output:
+      - modelId
+  output: 
     warning_status_interpretation: |-
-      No Risk indicates that the daily count of cutworm in their third instar is zero. No Action Required.
-      Low Risk indicates that the daily count of cutworm in their third instar is between 1 and 2. Currently low risk but should revist regularly as risk can change rapidly.
-      Medium Risk indicates that the daily count of cutworm in their third instar is between 3 and 4.Risk assessment is medium. Should check field to obtain first hand information about the need to take action.
-      High Risk indicates that there are over 4 cutworm in their third instar. Risk assessment is high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take..
+      Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
+      Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
+      Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
+    chart_heading: Larval Batches Surviving to Third Instar.
+    chart_groups:
+    - id: G1
+      title: Instar Count
+      result_parameter_ids:
+      - Third_Instar_Count
     result_parameters:
-      # the id is used with the model_id as the namespace
     - id: Third_Instar_Count
-      title: Number of cutworm in their third instar.
-      description: Number of cutowrm in their third instar, associated risk and recommended
-        action.
-##########
-- name: Grain Apid Model
-  id: MACSAV
-  version: 0.0.1
-  authors: # List of the model authors
-  - name: Hans Larsson
-    email: NA
-    organization: Swedish University of Agricultural Sciences
-  pests:
-
-  - MACSAV # EPPO Sitobion avenae / grain aphid
-  crops:
-  - TRZAW # EPPO for winter wheat
-  keywords: foo, bar, mechanistic, regression
-  type_of_decision: Short-term tactical
-  type_of_output: Risk indication
-  description_URL: http://web1.adas.co.uk/adas_dss/macsav/Help/Api/POST-api-MACSAV
-  description:
-    other: |
-      This is simple threshold comparison DSS for the grain aphid, Sitobion avenae, based on the work of Larsson (2004) in southern Sweden. 
-      It compares a provided aphid observation value (aphids per tiller) and provided yield (t/ha) to economic thresholds, for three different crop stages (GS59, GS69 and GS75).
-      An object is returned containing the risk and recommended action for each of the crop growth stages.
-    created_by: ''
-    age: ''
-    assumptions: ''
-    peer_review: 10.1016/j.cropro.2004.08.011
-  citation:                              # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
-  valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries:
-    - GBR, SWE
-    # Optionally, use a custom polygon
-    geoJSON: |-
-      {}
-  execution:
-    type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/macsav/api/MACSAV
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema: |
-      {
-        "type":"object",
-        "properties": {
-            
-          "Observation": {"type": "number"},
-          "Yield": {"type": "number"}
-        },
-        "required": ["Observation","Yield"]
-      }
-    # Definition of the result parameters specific for this DSS model
-    input_schema_categories:
-      hidden:
-  output:
-    warning_status_interpretation: |-
-      Low Risk suggests you should revist regularly as risk can change rapidly. It indicates that the number of aphids per tiller is below the economic threshold for that specific crop stage.
-      High Risk suggests you should walk around your field  as soon as possible to enable you to make a decision on which action to take. It indicates that the number of aphids per tiller is above the economic threshold for that specific crop stage.
-    result_parameters:
-      # the id is used with the model_id as the namespace
-    - id: Action_Response
-      title: Action_Response
-      description: Message to inform the risk and what action is required as a result
-        of the yield levels, number of aphids and crop stage.
+      title: Larval Batches Surviving to Third Instar.
+      description: Number of larval batches surviving to third instar.      
+      chart_info:
+        default_visible: true
+        unit: 'count'
+        chart_type: column
+        color: green
 ##########
 - name: Orange Wheat Blossom Midge Model
   id: SITDMO
-  version: 0.0.1
-  authors: # List of the model authors
+  version: 0.0.3
+  authors: 
   - name: Guillaume Jacquemin, Sandrine Chavalle, Michel D Proft
     email: g.jacquemin@cra.wallonie.be, s.chavalle@cra.wallonie.be, m.deproft@cra.wallonie.be
     organization: Walloon Agricultural Research Centre
-  pests:
-  - SITDMO # EPPO code for orange wheat blossom midge (Sitodiplosis mosellana)
-  crops:
-  - TRZAX # EPPO code for Triticum aestivum (wheat hybrid)
-  keywords: foo, bar, mechanistic, regression
+  pests: 
+  - SITDMO  
+  crops: 
+  - TRZAX   
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
-  description_URL: http://web1.adas.co.uk/adas_dss/sitdmo/Help/Api/POST-api-SITDMO
-  description:
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/sitdmo/Help/Api/POST-api-SITDMO
+  description: 
     other: |
-      This is a simple Phase Indication DSS based on the work of Jacquemin et al., (2013). 
+      This is a simple Phase Indication DSS based on the work of Jacquemin et al., (2013).   
       It uses daily temperature (degrees celsius) and rainfall (mm) data to identify emergence in the Orange Wheat Blossom Midge. 
       Optional parameters can be inputted to set the thresholds at each of the phases of the Orange Wheat Blossom Midge Lifecycle. If not inputted, the defaults will be set.
-      The model only runs between the months May and June and will therefore ignore any weather inputted before or after that time.
+      The model only runs between the months May and June but requires weather data from the 1st of January.
       The model will return, what Phase the insect is in. If the insect has emerged it will also provide the dates of the emergence. It will also provide a risk and the recommended action.
     created_by: ''
     age: ''
     assumptions: ''
-    peer_review: 10.1016/j.cropro.2013.12.021
-  citation:                              # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+    peer_review: ''
+  citation: 
   valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries:
-    - GBR, BEL
-    # Optionally, use a custom polygon
+    countries: 
+    - GBR
+    - BEL
     geoJSON: |-
       {}
-  execution:
+  input:
+   weather_parameters: 
+   - parameter_code: 1002 
+     interval: 86400 
+   - parameter_code: 2001 
+     interval: 86400 
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-01-01 
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-06-30 
+  execution: 
     type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/sitdmo/api/SITDMO
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/sitdmo/api/SITDMO
+    form_method: post 
+    content_type: application/json 
     input_schema: |
       {
         "type":"object",
-        "properties": {
-            
-          "Weather": {
+        "properties": {  
+          "modelId": {"type": "string", "pattern":"^SITDMO$", "title": "Model Id", "default":"SITDMO", "description":"Must be SITDMO"},
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          },		
+          "optionalData" :{
+            "title":"Optional parameters for the DSS",
             "type": "object",
             "properties": {
-              "Date": {"type": "string", "format": "date"},
-              "Temperature": {"type": "number"},
-              "Rainfall": {"type": "number"}
-            },
-            "required": ["Date","Temperature","Rainfall"]
-          },
-          "Temperature Threshold Phase 1": {"type": "number", "default":"3"},
-          "Degree Day Threshold Phase 1": {"type": "number", "default":"250"},
-          "Temperature Threshold Phase 2": {"type": "number", "default":"13"},
-          "Rainfall Threshold Phase 2": {"type": "number", "default":"0"},
-          "Temperature Threshold Phase 3": {"type": "number", "default":"7"},
-          "Degree Day Threshold Phase 3": {"type": "number", "default":"160"}
+              "Temperature Threshold Phase 1": {"type": "number", "default":"3"},
+              "Degree Day Threshold Phase 1": {"type": "number", "default":"250"},
+              "Temperature Threshold Phase 2": {"type": "number", "default":"13"},
+              "Rainfall Threshold Phase 2": {"type": "number", "default":"0"},
+              "Temperature Threshold Phase 3": {"type": "number", "default":"7"},
+              "Degree Day Threshold Phase 3": {"type": "number", "default":"160"}
+            }
+          }  
         },
-        "required": ["Weather"]
+        "required": ["modelId","weatherData"]
       }
-    # Definition of the result parameters specific for this DSS model
     input_schema_categories:
       hidden:
-  output:
+      - modelId
+  output: 
     warning_status_interpretation: |-
-      Phase One indicates there is currently a low risk but should revist regularly as risk can change rapidly.
-
-      Phase Two indicates that the risk assessment is medium. Should check field to obtain first hand information about the need to take action.
-      Phase Three indicates that the risk assessment is high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take.
-      Emerged Risk indictaed that the risk assessment is very high, you should walk around your field  as soon as possible to enable you to make a decision on which action to take.
+      Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
+      Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
+      Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
+    chart_heading: ''
+    chart_groups:
+    - id: ''
+      title: ''
+      result_parameter_ids: 
+      - ''    
     result_parameters:
-      # the id is used with the model_id as the namespace
-    - id: Emergence
-      title: Emergence
-      description: What Phase the insect is in. If the insect has emerged it will
-        also provide the dates of the emergence. It will also provide the assocated
-        risk and recommended action.
+    - id: ''
+      title: ''
+      description: ''    
+      chart_info:
+        default_visible: false
+        unit: ''
+        chart_type: scatter
+        color: ''
 ##########
 - name: Pollen Beetle Model
   id: MELIAE
-  version: 0.0.1
-  authors: # List of the model authors
+  version: 0.0.3
+  authors: 
   - name: Hannah Griffiths
     email: Hannah.Griffiths@adas.co.uk
     organization: ADAS
-  pests:
-  - MELIAE # EPPO code for pollen beetle
-  crops:
+  pests: 
+  - MELIAE 
+  crops: 
   - BRSNN # EPPO code for rapeseed
-  keywords: foo, bar, mechanistic, regression
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
-  description_URL: http://web1.adas.co.uk/adas_dss/meliae/Help/Api/POST-api-MELIAE
-  description:
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/meliae/Help/Api/POST-api-MELIAE
+  description: 
     other: |
-      This model is based on the work of Ferguson et al., (2015) to predict both migration and damage risk of the Pollen Beetle.
+      This model is based on the work of Ferguson et al., (2015) to predict migration risk Pollen Beetle.
       Daily maximum air temperature is used to predict Migration Risk. The default value of 15 degrees celsius is used, as that is the temperature advised in the UK at which pollen beetles will fly. 
-      Number of beetles per plant is used to predict Damage Risk. Control threshold levels of pollen beetle numbers are used as thresholds. These defaults are set to 2,5 and 15.
       Threshold however can also be overwritten by the user.
       The model can only be used between growth stage 51 and 59.
-      The model returns the Migration Risk alongside the Damage Risk for the last three days of the inputted weather data.
     created_by: ''
     age: ''
     assumptions: ''
-    peer_review: DOI 10.1002/ps.4069
-  citation:                     # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+    peer_review: ''
+  citation: 
   valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
     countries: []
-    # Optionally, use a custom polygon
     geoJSON: |-
       {}
-  execution:
+  input:
+   weather_parameters: 
+   - parameter_code: 1004 
+     interval: 86400
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-03-01
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-05-31 
+  execution: 
     type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/meliae/api/MELIAE
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/meliae/api/MELIAE
+    form_method: post 
+    content_type: application/json 
     input_schema: |
       {
         "type":"object",
-        "properties": {
-            
-          "Input": {
+        "properties": {  
+         "modelId": {"type": "string", "pattern":"^MELIAE$", "title": "Model Id", "default":"MELIAE", "description":"Must be MELIAE"},	
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          },
+          "growthStage": {"type": "number"},
+          "optionalData" :{   
+            "title":"Optional parameters for the DSS", 
             "type": "object",
             "properties": {
-              "Date": {"type": "string", "format": "date"},
-              "Max Temperature": {"type": "number"},
-              "Beetle Count (per plant)": {"type": "number"}
-            },
-            "required": ["Date","Max Temperature","Beetle Count (per plant)"]
-          },
-          "Growth Stage": {"type": "number"},
-          "Temperature Threshold": {"type": "number",  "default":"15"},
-          "1st Beetle Threshold": {"type": "number",  "default":"2"},
-          "2nd Beetle Threshold": {"type": "number",  "default":"5"},
-          "3rd Beetle Threshold": {"type": "number",  "default":"15"},
-          
+              "Temperature Threshold": {"type": "number", "default":"15"}
+            }
           }
         },
-        "required": ["Input","Growth Stage"]
-      }
-    # Definition of the result parameters specific for this DSS model
+        "required": ["modelId", "weatherData", "growthStage"]
+      }  
     input_schema_categories:
       hidden:
-  output:
+      - modelId
+  output: 
     warning_status_interpretation: |-
-      Migration Risk is Low indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-      Migration Risk is High indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
-
-      Damage Risk is Low indicates that the number of beetles per plant is below the first threshold. Recommends to revist regularly as risk can change rapidly. Recommends to revist regularly as risk can change rapidly
-      Damage Risk is Medium indicates that the number of beetles per plant is between the first and the second threshold. You should check field to obtain first hand information about the need to take action.
-
-      Damage Risk is High indicates that the number of beetles per plant is between the second and the third threshold. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-
-      Damage Risk is Very High indicates that the number of beetles per plant is above the third threshold. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+      Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
+      Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
+    chart_heading: ''
+    chart_groups:
+    - id: ''
+      title: ''
+      result_parameter_ids: 
+      - ''    
     result_parameters:
-      # the id is used with the model_id as the namespace
-    - id: Risk
-      title: Migration and Damage Risk.
-      description: Migration and Damage Risk and the recommended action.
-##########
+    - id: ''
+      title: ''
+      description: ''    
+      chart_info:
+        default_visible: false
+        unit: ''
+        chart_type: scatter
+        color: ''
+##########        
 - name: Saddle Gall Midge Model
   id: HAPDMA
-  version: 0.0.1
-  authors: # List of the model authors
+  version: 0.0.3
+  authors: 
   - name: Charlotte Rowley, Andew Cherrill, Simon R. Leather, Tome W. Pope
     email: crowley@harper-adams.ac.uk
     organization: Centre for Integrated Pest Management
-  pests:
-  - HAPDMA # EPPO code for Saddle Gall Midge (Haplodiplosis marginata)
-  crops:
-  - TRZAS, HORVS #EPPO for spring wheat and spring barley
-  keywords: foo, bar, mechanistic, regression
+  pests: 
+  - HAPDMA
+  crops: 
+  - TRZAS
+  - HORVS
+  #EPPO for spring wheat and spring barley
+  keywords: none
   type_of_decision: Short-term tactical
   type_of_output: Risk indication
-  description_URL: http://web1.adas.co.uk/adas_dss/hapdma/Help/Api/POST-api-HAPDMA
-  description:
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/hapdma/Help/Api/POST-api-HAPDMA
+  description: 
     other: |
-      A simple DSS which predicts the dates of emergence for the Saddle Gall Midge based on a model derived by (Rowley et., 2017). Rainfall events followed by an accummulation of 512 degree days above 0 degrees C can be used to predict peaks.
+      A simple DSS which predicts the dates of emergence for the Saddle Gall Midge based on a model derived by Rowley et al., 2017. Rainfall events followed by an accummulation of 512 degree days above 0 degrees C can be used to predict peaks.
       Cumulative emergence as a function of degree day accumulations was best described using a probit model.
-
       The model will start on the date of first rainfall on or after the 1st March and will end at the end of July.
       A Rainfall event is described as daily rainfall over the rainfall threshold (default 1mm) following 3 days without precipitation.
       Optional parameters can be inputted to set the thresholds. If not inputted, the defaults described above will be set.
@@ -364,200 +338,314 @@ models:
     created_by: ''
     age: ''
     assumptions: ''
-    peer_review: 10.1016/j.cropro.2017.08.025
-  citation:                              # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+    peer_review: ''
+  citation: 
   valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries:
+    countries: 
     - GBR
-    # Optionally, use a custom polygon
     geoJSON: |-
       {}
-  execution:
+  input:
+   weather_parameters: 
+   - parameter_code: 1002 
+     interval: 3600 
+   - parameter_code: 2001 
+     interval: 3600 
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-03-01
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-07-31 
+  execution: 
     type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/hapdma/api/HAPDMA
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/hapdma/api/HAPDMA
+    form_method: post #
+    content_type: application/json 
     input_schema: |
       {
-        "type":"object",
-        "properties": {
-            
-          "Weather": {
-            "type": "object",
-            "properties": {
-              "Date": {"type": "string", "format": "date"},
-              "Hour": {"type": "number"},
-              "Hourly Temperature": {"type": "number"},
-              "Hourly Rainfall": {"type": "number"}
+          "type":"object",
+          "properties": {  
+            "modelId": {"type": "string", "pattern":"^HAPDMA$", "title": "Model Id", "default":"HAPDMA", "description":"Must be HAPDMA"},	
+            "weatherData": {
+              "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
             },
-            "required": ["Date","Hour", "Hourly Temperature","Hourly Rainfall"]
+            "optionalData" :{
+              "title":"Optional parameters for the DSS",
+              "type": "object",
+              "properties": {
+                "Rainfall Threshold": {"type": "number", "default":"1"},
+                "Dry Day Threshold": {"type": "number", "default":"3"},
+                "Temperature Threshold": {"type": "number", "default":"0"},
+                "Degree Days": {"type": "number", "default":"512"}
+              }
+            }
           },
-          "Rainfall Threshold": {"type": "number, "default":"1"},
-          "Dry Day Threshold": {"type": "number", "default":"3"},
-          "Temperature Threshold": {"type": "number", "default":"0"},
-          "Degree Days": {"type": "number", "default":"512"}
-        },
-        "required": ["Weather"]
+          "required": ["modelId","weatherData"]
       }
-    # Definition of the result parameters specific for this DSS model
     input_schema_categories:
       hidden:
-  output:
+      - modelId
+  output: 
     warning_status_interpretation: |-
-      Low Risk indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-      Medium Risk indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-      High Risk indicates that there is up to 90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-
-      Very High Risk indicates that there is over 90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+      Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
+      Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
+      Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
+    chart_heading: Cumulative Emergence
+    chart_groups:
+    - id: G1
+      title: Emergence
+      result_parameter_ids:
+      - Cumulative_Emergence
     result_parameters:
-      # the id is used with the model_id as the namespace
-    - id: Emergence
-      title: Dates of Peak Emegerence and Cumulative Emergence.
-      description: Dates of Peak Emegerence and Cumulative Emergence, risk and recommended
-        action.
+    - id: Cumulative_Emergence
+      title: Cumulative Emergence.
+      description: Cumulative percentage emergence as a function of degree day accumulations.   
+      chart_info:
+        default_visible: true
+        unit: 'count'
+        chart_type: line
+        color: green
 ##########
-- name: Threshold Comparison DSS
-  id: ThresholdComparisonDSS
-  version: 0.0.1
-  authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-  keywords: foo, bar, mechanistic, regression, algorithm
+- name: Codling Moth Model
+  id: CARPPO
+  version: 0.0.3
+  authors: 
+  - name: Petros T. Damos, Nikos A. Kouloussis, Dimitris S. Koveos
+    email: petrosdamos@gmail.com
+    organization: Laboratory of Applied Zoology and Parasitology, School of Agriculture, Faculty of Agriculture, Forestry and Natural Environment, Thessaloniki, Greece
+  pests: 
+  - CARPPO  
+  crops: 
+  - MABSD ##EPPO for apple plant
+  keywords: none
   type_of_decision: Short-term tactical
-  type_of_output: Risk Indictation
-  description_URL: http://web1.adas.co.uk/adas_dss/genericthresholds/Help/Api/POST-api-ThresholdComparisonDSS
-  description:
+  type_of_output: Risk indication
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/carppo/Help/Api/POST-api-CARPPO
+  description: 
     other: |
-      This is an agnostic simple threshold comparison DSS. 
-      It compares a provided observation value with a provided threshold value. 
-      This DSS can therefore be used to represent a threshold-based DSS for any pest where there is a single threshold for action.
-      An object is returned that contains two items:
-              1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
-              2) an action message.
+      This is a simple risk based DSS for the Codling Moth, Cydia pomonella, based on the work of Damos et al., (2018) in Greece. A 3-paramater non-linear regression model was constructed to fit cummulative moth captures as a function of accumulated day degrees (Biofix 1st January) for all three of the male flights.
+      The model requires minimum and maximum temperature from the 1st of January as an input, and will return the male flight, associated risk and recommended action.
     created_by: ''
     age: ''
     assumptions: ''
     peer_review: ''
-  citation:      # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
+  citation: 
   valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries: []
-    # Optionally, use a custom polygon
+    countries: 
+    - ALB, AND, BIH, HRV, GRC, ITA, MLT, MNE, MKD, PRT, SMR, SRB, SVN, ESP
     geoJSON: |-
       {}
-  execution:
+  input:
+   weather_parameters: 
+   - parameter_code: 1003 # = Min air temp at 2m
+     interval: 86400 
+   - parameter_code: 1004 # = Max air temp at 2m
+     interval: 86400 
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-01-01
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-09-30
+  execution: 
     type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/genericthresholds/api/ThresholdComparisonDSS
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/carppo/api/carppo
+    form_method: post 
+    content_type: application/json 
     input_schema: |
       {
         "type":"object",
-        "properties": {
-            
-          "threshold": {"type": "number"},
-          "observation": {"type": "number"}
-        },
-        "required": ["threshold","observation"]
-      }    
-    # Definition of the result parameters specific for this DSS model
-    input_schema_categories:
-      hidden:
-  output:
-    warning_status_interpretation: |-
-      Risk Rating 0. Observation is below threshold - no action required.
-      Risk Rating 5. Observation exceeds threshold. Immediate remedial action is recommended.    
-    result_parameters:
-      # the id is used with the model_id as the namespace
-    - id: Risk
-      title: Risk
-      description: Risk and recommended action is provided.
-##########
-- name: Threshold DSS
-  id: ThresholdDSS
-  version: 0.0.1
-  authors: # List of the model authors
-  - name: Hannah Griffiths
-    email: Hannah.Griffiths@adas.co.uk
-    organization: ADAS
-  keywords: foo, bar, mechanistic, regression, algorithm
-  type_of_decision: Short-term tactical
-  type_of_output: Risk Indictation
-  description_URL: http://web1.adas.co.uk/adas_dss/genericthresholds/Help/Api/POST-api-ThresholdDSS
-  description:
-    other: |
-      This is an agnostic simple threshold comparison DSS. 
-      It compares a provided observation value with a provided threshold value. 
-      This DSS can therefore be used to represent a threshold-based DSS for any pest where there is a single threshold for action.
-      An object is returned that contains two items:
-              1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
-              2) an action message.
-
-      This represents a threshold-based DSS where there are multiple thresholds for different types of action.
-      The code compares a provided observation with a set of provided action thresholds, where different actions are required depending on which threshold is exceeded.
-      An object consisting of the following is required:
-         An observation (of type double)
-         A list of risk classes where each risk class consists of:
-                 1) A risk level (an integer number, ideally between 1 and 5 inclusive),
-                 2) An action (text), and
-                 3) A threshold (of type double) for the action.
-      An object is returned that contains two items:
-         1) A risk rating (5 if threshold exceeded, 0 otherwise) and,
-         2) an action message.
-    created_by: ''
-    age: ''
-    assumptions: ''
-    peer_review: ''
-  citation:      # Optional. Use the DOI as identifier (list)
-  # Where has this model been considered valid
-  valid_spatial:
-    # Using country codes to get GeoJSON. Saves a lot of duplication.
-    # ISO-3166-1 Three-letter country codes https://en.wikipedia.org/wiki/ISO_3166-1#Current_codes
-    countries: []
-    # Optionally, use a custom polygon
-    geoJSON: |-
-      {}
-  execution:
-    type: ONTHEFLY
-    endpoint: http://web1.adas.co.uk/adas_dss/genericthresholds/api/ThresholdDSS
-    form_method: post # Could be get or post
-    content_type: application/json # Regular forms: application/x-www-form-urlencoded , Regular forms with files (<input type="file">): multipart/form-data
-    # The input template should adhere to the JSON Schema standard: https://json-schema.org/
-    input_schema: |
-      {
-        "type":"object",
-        "properties": {
-           "observation": {"type": "number"}
-            
-          "RiskClassList": {
+        "properties": {  
+          "modelId": {"type": "string", "pattern":"^CARPPO$", "title": "Model Id", "default":"CARPPO", "description":"Must be CARPPO"},		
+          "weatherData": {
+            "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+          },	
+          "optionalData" :{
+            "title":"Optional parameters for the DSS",
             "type": "object",
-            "properties": {
-              "Risk": {"type": "number"},
-              "Action": {"type": "string"},
-              "Threshold": {"type": "number"}
-            },
-            "required": ["Risk","Action","Threshold"]
-          }
+            "properties": {		  
+              "Lower Temperature Threshold": {"type": "number", "default":"10.1"},	
+              "Upper Temperature Threshold": {"type": "number", "default": "34.3"},
+              "First Flight: Parameter a": {"type": "number", "default": "98.7583"},
+              "First Flight: Parameter b": {"type": "number", "default": "69.5118"},        
+              "First Flight: Parameter y": {"type": "number", "default": "468.8300"},         
+              "Second Flight: Parameter a": {"type": "number", "default": "98.7505"},
+              "Second Flight: Parameter b": {"type": "number", "default": "99.9595"},
+              "Second Flight: Parameter y": {"type": "number", "default": "1130.9937"},
+              "Third Flight: Parameter a": {"type": "number", "default": "106.1449"},
+              "Third Flight: Parameter b": {"type": "number", "default": "110.2595"},        
+              "Third Flight: Parameter y": {"type": "number", "default": "1815.8485"} 
+            }
+          }            
         },
-        "required": ["oberservation", "RiskClassList"]
-      }
-
-    # Definition of the result parameters specific for this DSS model
+        "required": ["modelId", "weatherData"]
+      }  
     input_schema_categories:
       hidden:
-  output:
+      - modelId
+  output: 
     warning_status_interpretation: |-
-      Risk rating and associated action inputted by the user.
+      This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
+      Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
+      The timing of treatment might need to be adjusted depending on the type of insecticide used. 
+      In southern Eurpose there can be three flights in a season.     
+      The predcition is about timing and does not predict the number of codling moths.
+      Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
+      Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
+      Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
+    chart_heading: Cumulative Captures
+    chart_groups:
+    - id: G1
+      title: Cumulative Captures
+      result_parameter_ids: 
+      - First_Flight_Cumulative_Captures
+      - Second_Flight_Cumulative_Captures
+      - Third_Flight_Cumulative_Captures   
+    result_parameters:
+    - id: First_Flight_Cumulative_Captures
+      title: First Flight Cumulative Captures
+      description: The cumulative captures of the Codling Moth during their first flight.   
+      chart_info:
+        default_visible: true
+        unit: "Count"
+        chart_type: line 
+        color: green
+    - id: Second_Flight_Cumulative_Captures
+      title: Second Flight Cumulative Captures
+      description: The cumulative captures of the Codling Moth during their second flight.
+      chart_info:
+        default_visible: true
+        unit: "Count"
+        chart_type: line  
+        color: red          
+    - id: Third_Flight_Cumulative_Captures
+      title: Third Flight Cumulative Captures
+      description: The cumulative captures of the Codling Moth during their third flight.
+      chart_info:
+        default_visible: true
+        unit: "Count"
+        chart_type: line 
+        color: blue
+###########
+- name: TSUM Model
+  id: RHOPPA
+  version: 0.0.1
+  authors: 
+  - name: AHDB
+    email: NA
+    organization: AHDB
+  pests: 
+  - RHOPPA  
+  crops: 
+  - TRZAW
+  - HORVW #EPPO for winter wheat and winter barley
+  keywords: none
+  type_of_decision: Short-term tactical
+  type_of_output: Risk indication
+  description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/rhoppa/Help/Api/POST-api-RHOPPA
+  description: 
+    other: |
+      This is a simple risk DSS for predicting BYDV risk from aphids. Second generation aphids move away from the plant originally colonised and are therefore likely to be a greater risk. 
+      Second generation aphids are likely to be present when the acculmulated daily air tempertures, above a baseline tempertature of 3 degrees, reached T-Sum 170. 
+    created_by: ''
+    age: ''
+    assumptions: ''
+    peer_review: ''
+  citation: 
+  valid_spatial:
+    countries: 
+    - GBR
+    geoJSON: |-
+      {}
+  input:
+   weather_parameters: 
+   - parameter_code: 1002 
+     interval: 3600
+   weather_data_period_start: 
+     determined_by: FIXED_DATE 
+     value: XXXX-09-01
+   weather_data_period_end: 
+     determined_by: FIXED_DATE 
+     value: XXXX-08-31
+  execution: 
+    type: ONTHEFLY
+    endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/rhoppa/api/RHOPPA
+    form_method: post 
+    content_type: application/json 
+    input_schema: |
+      {
+          "type":"object",
+          "properties": {  
+            "modelId": {"type": "string", "pattern":"^RHOPPA$", "title": "Model Id", "default":"RHOPPA", "description":"Must be RHOPPA"},
+            "weatherData": {
+              "$ref": "https://ipmdecisions.nibio.no/api/wx/rest/schema/weatherdata"
+            },       
+            "optionalData" :{ 
+              "title":"Optional parameters for the DSS",
+              "type": "object",
+              "properties": {
+                "sprayDates": {
+                  "title": "Spray Dates",
+                  "type": "object",
+                  "properties":{
+                    "Date": {"type":"string","format": "date", "title": "Date of Spray (YYYY-MM-DD)"}
+                  }
+               }           
+              }
+            }
+          },
+          "required": ["modelId","weatherData"]
+        }  
+    input_schema_categories:
+      hidden:
+      - modelId
+  output: 
+    warning_status_interpretation: |-
+      Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
+      Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
+      Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
+    chart_heading: TSUM Model
+    chart_groups:
+    - id: G1
+      title: TSUM
+      result_parameter_ids: 
+      - T-Sum
+      - Proportion_1
+      - Proportion_2
+      - Proportion_3 
     result_parameters:
       # the id is used with the model_id as the namespace
-    - id: Risk
-      title: Risk
-      description: Risk and recommended action is provided.
+      - id: T-Sum
+        title: T-Sum
+        description: Cumulative day degrees over 3 degrees celsius.
+        chart_info:
+          default_visible: true
+          unit: "Count"
+          chart_type: line 
+          color: "orange"         
+      - id: Proportion_1
+        title: Proportion of day where temperature exceeds 11 degrees C
+        description: Proportion of day where temperature exceeds 11 degrees C
+        chart_info:
+          default_visible: true
+          unit: "Count"
+          chart_type: line 
+          color: "green"     
+      - id:  Proportion_2
+        title: Proportion of day where temperature was below 6 degrees C
+        description: Proportion of day where temperature was below 6 degrees C
+        chart_info:
+          default_visible: true
+          unit: "Count"
+          chart_type: line 
+          color: "red"  
+      - id: Proportion_3
+        title: Proportion of day where temperature was below 3 degrees C
+        description: Proportion of day where temperature was below 3 degrees C
+        chart_info:
+          default_visible: true
+          unit: "Count"
+          chart_type: line 
+          color: "blue"  
+##########
