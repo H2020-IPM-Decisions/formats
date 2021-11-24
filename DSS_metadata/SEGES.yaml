@@ -89,11 +89,11 @@ models:
             "type": "object",
             "properties": {
               "timeZone": {"type": "string", "title": "Time zone (e.g. Europe/Oslo)", "default":"Europe/Oslo"},
-              "dateGs31": {"type":"string","format": "date", "title": "Date of growth stage 31 (YYYY-MM-DD)"},
-              "date3rdUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 3rd upper leaf emerging (GS32) (YYYY-MM-DD)"},
-              "date2ndUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 2nd upper leaf emerging (GS33) (YYYY-MM-DD)"},
-              "dateUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of upper leaf emerging (GS37-39) (YYYY-MM-DD)"},
-              "dateGs75": {"type":"string","format": "date", "title": "Date of all kernels fully developed (GS75) (YYYY-MM-DD)"},
+              "dateGs31": {"type":"string","format": "date", "title": "Date of growth stage 31 (YYYY-MM-DD)", "default": "{CURRENT_YEAR}-06-04"},
+              "date3rdUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 3rd upper leaf emerging (GS32) (YYYY-MM-DD)", "default": "{CURRENT_YEAR}-06-14"},
+              "date2ndUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of 2nd upper leaf emerging (GS33) (YYYY-MM-DD)", "default": "{CURRENT_YEAR}-06-24"},
+              "dateUpperLeafEmerging": {"type":"string","format": "date", "title": "Date of upper leaf emerging (GS37-39) (YYYY-MM-DD)", "default": "{CURRENT_YEAR}-07-04"},
+              "dateGs75": {"type":"string","format": "date", "title": "Date of all kernels fully developed (GS75) (YYYY-MM-DD)", "default": "{CURRENT_YEAR}-06-30"},
               "dateSpraying1": {"type":"string","format": "date", "title": "Date of first spraying"},
               "dateSpraying2": {"type":"string","format": "date", "title": "Date of second spraying"},
               "sprayingProtectionDays": {"type":"integer", "title":"Number of days the crop is protected", "default": 10, "minimum": 0},
@@ -178,7 +178,7 @@ models:
         color: '#0000ff'
 - name: CPO model
   id: CPO
-  version: 1.0
+  version: "1.0"
   authors: # List of the model authors
   - name: Lise N. Jørgensen
     email: lisen.jorgensen@agro.au.dk
@@ -298,13 +298,14 @@ models:
       }
     # Definition of the result parameters specific for this DSS model
     input_schema_categories:
-      hidden:
+      hidden: []
   output:
     warning_status_interpretation: |-
       The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
       precipitation
       or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
       recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+    chart_groups: []
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: TREATMENT_ID
