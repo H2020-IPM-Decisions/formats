@@ -16,6 +16,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/yr/
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -53,6 +54,7 @@ datasources:
       email: opendata@per.gov.ie
       url: https://data.gov.ie/
     endpoint: http://metwdb-openaccess.ichec.ie/metno-wdb2ts/locationforecast
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -90,6 +92,7 @@ datasources:
       email: info@seges.dk
       url: https://www.seges.dk/
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/dmipoint/
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: 
@@ -129,6 +132,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://dwd.ipmdecisions.nibio.no
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -201,6 +205,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://dwd-eu.ipmdecisions.nibio.no
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -273,6 +278,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://euroweather.ipmdecisions.nibio.no/weather_data
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -346,6 +352,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://meteofrance.ipmdecisions.nibio.no
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -419,6 +426,7 @@ datasources:
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/forecasts
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -461,6 +469,7 @@ datasources:
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/
+    authentication_type: NONE
     needs_data_control: false
     temporal:
       historic: #  
@@ -711,7 +720,8 @@ datasources:
       city: Ås
       email: berit.nordskog@nibio.no
       url: https://www.nibio.no/
-    endpoint: "https://lmt.nibio.no/services/rest/ipmdecisions/getdata/"
+    endpoint: https://lmt.nibio.no/services/rest/ipmdecisions/getdata/
+    authentication_type: NONE
     needs_data_control: true
     temporal:
       historic: #  
@@ -867,7 +877,7 @@ datasources:
       email: info@meteobot.com
       url: https://meteobot.com/en/
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/meteobot/
-    authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
+    authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
       historic: #  
@@ -1439,7 +1449,7 @@ datasources:
       email: mb@fruitweb.info
       url: https://www.fruitweb.info/en/
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/davisfruitweb/
-    authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
+    authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
       historic: #  
@@ -1480,7 +1490,7 @@ datasources:
       email: office@metos.at
       url: https://metos.at
     endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/metos/
-    authentication_required: true # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
+    authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
       historic: #  
@@ -1515,7 +1525,7 @@ datasources:
       or email us at contact@meteo-concept.fr
     public_URL: https://api.meteo-concept.com/
     endpoint: https://api.meteo-concept.com/api/ipmdecisions/observations/station/
-    authentication_required: true
+    authentication_type: BEARER_TOKEN
     needs_data_control: true
     access_type: stations
     temporal:
