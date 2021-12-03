@@ -74,6 +74,12 @@ models:
       interval: 3600
     - parameter_code: 3101 # Leaf wetness
       interval: 3600
+    weather_data_period_start: # DEFAULT is FIXED_DATE=XXXX-01-01
+      determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+      value: configParameters.dateGs31 ## Could be path.to.property OR e.g. XXXX-01-01
+    weather_data_period_end: # DEFAULT is FIXED_DATE=XXXX-12-31
+      determined_by: FIXED_DATE ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
+      value: XXXX-12-31 ## Could be path.to.property OR e.g. XXXX-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/SEPTORIAHU/run/ipmd
