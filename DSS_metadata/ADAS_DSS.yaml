@@ -68,10 +68,10 @@ models:
      interval: 86400 
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-06-01 
+     value: "{CURRENT_YEAR}-06-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-10-31 
+     value: "{CURRENT_YEAR}-10-31"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/dasgpa/api/DASGPA
@@ -167,10 +167,10 @@ models:
      interval: 86400 
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-01-01 
+     value: "{CURRENT_YEAR}-01-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-06-30 
+     value: "{CURRENT_YEAR}-06-30"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/sitdmo/api/SITDMO
@@ -259,10 +259,10 @@ models:
      interval: 86400
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-03-01
+     value: "{CURRENT_YEAR}-03-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-05-31 
+     value: "{CURRENT_YEAR}-05-31"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/meliae/api/MELIAE
@@ -353,10 +353,10 @@ models:
      interval: 3600 
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-03-01
+     value: "{CURRENT_YEAR}-03-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-07-31 
+     value: "{CURRENT_YEAR}-07-31"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/hapdma/api/HAPDMA
@@ -444,10 +444,10 @@ models:
      interval: 86400 
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-01-01
+     value: "{CURRENT_YEAR}-01-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-09-30
+     value: "{CURRENT_YEAR}-09-30"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/carppo/api/carppo
@@ -564,10 +564,10 @@ models:
      interval: 3600
    weather_data_period_start: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-09-01
+     value: "{CURRENT_YEAR}-09-01"
    weather_data_period_end: 
      determined_by: FIXED_DATE 
-     value: {CURRENT_YEAR}-08-31
+     value: "{CURRENT_YEAR}-08-31"
   execution: 
     type: ONTHEFLY
     endpoint: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/rhoppa/api/RHOPPA

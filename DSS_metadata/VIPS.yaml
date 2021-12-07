@@ -1226,10 +1226,10 @@ models:
       interval: 3600 
     weather_data_period_start: # DEFAULT is FIXED_DATE={CURRENT_YEAR}-01-01
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: {CURRENT_YEAR}-04-01 ## Could be path.to.property OR e.g. {CURRENT_YEAR}-01-01
+      value: "{CURRENT_YEAR}-04-01" ## Could be path.to.property OR e.g. {CURRENT_YEAR}-01-01
     weather_data_period_end: # DEFAULT is FIXED_DATE={CURRENT_YEAR}-12-31
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: {CURRENT_YEAR}-09-01 ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
+      value: "{CURRENT_YEAR}-09-01" ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/run/ipmd
