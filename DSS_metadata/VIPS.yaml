@@ -1,7 +1,7 @@
 # General info about the DSS
 id: no.nibio.vips
 version: '2.0'
-name: VIPS
+name: VIPSbabaluba
 url: https://www.vips-landbruk.no/
 organization:
   name: NIBIO
@@ -29,6 +29,7 @@ models:
   - name: Berit Nordskog
     email: berit.nordskog@nibio.no
     organization: NIBIO
+  platform_validated: true
   pests:
   - PSILRO # EPPO code for carrot rust fly
   crops:
@@ -157,6 +158,7 @@ models:
   - name: Tor Johansen
     email: tor.johansen@nibio.no
     organization: NIBIO
+  platform_validated: true
   pests:
   - HYLERA # EPPO code for Cabbage Fly
   crops:
@@ -716,6 +718,7 @@ models:
   - name: Ragnhild Nærstad
     email: ragnhild.naerstad@syngenta.com
     organization: Syngenta
+  platform_validated: true
   pests:
   - PHYTIN # EPPO code for Potato late blight (Phytophthora infestans)
   crops:
