@@ -97,12 +97,42 @@ models:
       - modelId
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
   output:
-    warning_status_interpretation: |-
-      Green warning indicates that the flight period has not yet begun.
-      Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
-      Red warning indicates peak flight period.
-      Grey warning indicates that the flight period of the 1st generation is over.
-      Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+    warning_status_interpretation:
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun.
+        Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+        Red warning indicates peak flight period.
+        Grey warning indicates that the flight period of the 1st generation is over.
+        Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun.
+        Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+        Red warning indicates peak flight period.
+        Grey warning indicates that the flight period of the 1st generation is over.
+        Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun.
+        Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+        Red warning indicates peak flight period.
+        Grey warning indicates that the flight period of the 1st generation is over.
+        Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun.
+        Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+        Red warning indicates peak flight period.
+        Grey warning indicates that the flight period of the 1st generation is over.
+        Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun.
+        Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.
+        Red warning indicates peak flight period.
+        Grey warning indicates that the flight period of the 1st generation is over.
+        Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.
+      recommended_action: ''
     chart_heading: Accumulated day degrees
     chart_groups:
     - id: G1
@@ -236,12 +266,37 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Green warning indicates that the flight period has not yet begun and oviposition is not expected.
-      Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
-      Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
-      Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
-    ### Experimental fields!!! (adding chart parameters)
+    warning_status_interpretation: ### Experimental fields!!! (adding chart parameters)
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+        Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+        Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+        Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+        Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+        Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+        Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+        Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+        Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+        Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+        Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+        Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+        Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+      recommended_action: ''
+    - explanation: |-
+        Green warning indicates that the flight period has not yet begun and oviposition is not expected.
+        Yellow warning indicates that the flight period is beginning and that the first oviposition is close. Check for eggs in the field.
+        Red warning indicates that it is likely that oviposition has begun. The requirement for the flight period has been reached.
+        Grey warning indicates that the flight period of the 1st generation is over and the warning has ended.
+      recommended_action: ''
     chart_heading: Day degrees
     chart_groups:
     - id: G1
@@ -393,11 +448,37 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
-      Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
-      Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
-      Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+    warning_status_interpretation:
+    - explanation: |-
+        Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+        Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+        Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+        Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+        Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+        Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+        Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+        Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+        Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+        Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+        Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+        Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+        Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that there is no danger of attack. Green rectangles are shown prior to the start of oviposition (SUMDG < 158).
+        Yellow rectangles (prior to red rectangles) indicate that oviposition has begun and that the farmer should make observations in the field. Yellow rectangles are first shown when the soil temperature has reached 158 day-degrees (SUMDG=158). Yellow rectangles are also shown later in the season, after a red warning, to indicate that it is beyond the optimal time for treatment (the small larval instars). The larvae are too big for effective chemical control (they seek shelter from the sun inside the heads).
+        Red rectangles indicate the optimal time for treatment (when when registration in the field indicates attack). At this time most of the larvae are small and easily targeted on the outer leaves.
+        Grey rectangles indicate that the warning has ended. The larvae are so big that chemical control is very difficult or no longer possible.
+      recommended_action: ''
     chart_heading: Accumulated day degrees
     chart_groups:
     - id: G1
@@ -508,14 +589,52 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+    warning_status_interpretation:
+    - explanation: |-
+        Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
 
-      Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+        Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
 
-      Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+        Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
 
-      The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+        The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+
+        Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+
+        Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+
+        The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+
+        Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+
+        Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+
+        The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+
+        Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+
+        Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+
+        The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold has not been reached and there is no need for treatment.
+
+        Yellow rectangles indicate that carrot rust flies have been caught on traps at the edge of the field and it may be necessary to treat. The field should be checked to evaluate whether treatment is necessary.
+
+        Red rectangles indicate that carrot rust flies have been caught on traps in the field. The field should be checked to evaluate whether treatment is necessary.
+
+        The damage threshold for the first observation on sticky traps is 1 fly. Attack will vary from field to field, we recommend therefore that observations are made in addition in the farmer’s own field. Control measures should be used as soon as possible after the first observation in the farmer’s own field (if the plants are dry, without precipitation and the plants have reached the first true-leaf stage. Consider, based on previous experience and the size and shape of the field whether the entire field or only the border rows should be treated.
+      recommended_action: ''
     chart_heading: Trap countings
     chart_groups:
     - id: G1
@@ -670,13 +789,47 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
-      Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
-      This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
-      Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
-      The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
-      The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+    warning_status_interpretation:
+    - explanation: |-
+        Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+        Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+        This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+        Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+        The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+        The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+        Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+        This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+        Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+        The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+        The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+        Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+        This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+        Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+        The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+        The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+        Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+        This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+        Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+        The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+        The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+      recommended_action: ''
+    - explanation: |-
+        Green rectangles indicate that the damage threshold for cabbage based on the time from planting until the registration has not been reached and control measures are not needed.
+        Red rectangles indicate that the damage threshold f for cabbage based on the time from planting until the registration has been reached and it may be necessary to use control measures. The field should be checked to evaluate whether treatment is necessary.
+        This model does not use yellow rectangles. The warning goes directly from green to red when the damage threshold is exceeded.
+        Blue rectangles indicate that there are missing observations. An observation is valid for 8 days. If there are more than 8 days before a new observation is registered in the system, the model will give a blue warning.
+        The damage thresholds are related to the plants developmental stage and tell how many eggs that can be on a plant before there will be a reduction in growth and yield.
+        The warning should tell the best time for treatment in relation to the damage thresholds. If the number of eggs registered exceeds the damage threshold, treatment against the maggots is recommended, if the plants are not protected by other means. Observe the ”days-to-harvest”. If the seeds (cauliflower or broccoli) were treated against maggots, treatment early in the season is not necessary.
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Egg count
@@ -793,11 +946,37 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Risk < 1 = no warning (Green)
-      Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
-      Risk > 2,5 = warning issued (Red)
-      When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+    warning_status_interpretation:
+    - explanation: |-
+        Risk < 1 = no warning (Green)
+        Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+        Risk > 2,5 = warning issued (Red)
+        When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+      recommended_action: ''
+    - explanation: |-
+        Risk < 1 = no warning (Green)
+        Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+        Risk > 2,5 = warning issued (Red)
+        When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+      recommended_action: ''
+    - explanation: |-
+        Risk < 1 = no warning (Green)
+        Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+        Risk > 2,5 = warning issued (Red)
+        When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+      recommended_action: ''
+    - explanation: |-
+        Risk < 1 = no warning (Green)
+        Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+        Risk > 2,5 = warning issued (Red)
+        When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+      recommended_action: ''
+    - explanation: |-
+        Risk < 1 = no warning (Green)
+        Risk > 1 and < 2,5 = possible warning coming up if conditions persists (Yellow)
+        Risk > 2,5 = warning issued (Red)
+        When a warning is issued, any control measure should be considered based on cultivar resistance, choice of fungicide and time of last application. Risk of infection is highest after several consecutive days with warnings, and especially if late blight has been observed in the area.
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Risk
@@ -903,9 +1082,22 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
-
+    warning_status_interpretation:
+    - explanation: |-
+        The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+      recommended_action: ''
+    - explanation: |-
+        The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+      recommended_action: ''
+    - explanation: |-
+        The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+      recommended_action: ''
+    - explanation: |-
+        The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+      recommended_action: ''
+    - explanation: |-
+        The model will be green (no risk) until it reaches 15. From this value the warning will be yellow (possible risk) until the threshold is reached, and the warning turns red (risk of infection).
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Aggregated Daily Disease Severity Value
@@ -1014,12 +1206,42 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      When accumulated risk < 150, warning symbol is green
+    warning_status_interpretation:
+    - explanation: |-
+        When accumulated risk < 150, warning symbol is green
 
-      When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
+        When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
 
-      When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+        When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+      recommended_action: ''
+    - explanation: |-
+        When accumulated risk < 150, warning symbol is green
+
+        When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
+
+        When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+      recommended_action: ''
+    - explanation: |-
+        When accumulated risk < 150, warning symbol is green
+
+        When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
+
+        When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+      recommended_action: ''
+    - explanation: |-
+        When accumulated risk < 150, warning symbol is green
+
+        When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
+
+        When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+      recommended_action: ''
+    - explanation: |-
+        When accumulated risk < 150, warning symbol is green
+
+        When accumulated risk > 150, warning symbol is yellow if the daily risk is below 7 and red if it is above 7
+
+        When a late blight warning has been issued, cultivar suseptibility, selection of fungicide and time of application should be considered before spraying. Risk of getting an infection is highest if warnings are issued two days ore more in a row, and when late blight has been observed in the area. 
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Infection risk
@@ -1156,10 +1378,32 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Green = No risk of infection.
-      Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
-      Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+    warning_status_interpretation:
+    - explanation: |-
+        Green = No risk of infection.
+        Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+        Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+      recommended_action: ''
+    - explanation: |-
+        Green = No risk of infection.
+        Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+        Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+      recommended_action: ''
+    - explanation: |-
+        Green = No risk of infection.
+        Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+        Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+      recommended_action: ''
+    - explanation: |-
+        Green = No risk of infection.
+        Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+        Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+      recommended_action: ''
+    - explanation: |-
+        Green = No risk of infection.
+        Yellow = Weather conditions favorable for infection risk. No known sources of inoculum in the region.
+        Red = Risk of infection and infections of Septoria late blight has been reported in the nearby region. Disease reports and field inspections are performed in collaboration with advisors in the Norwegian Agricultural Advisory service.
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Results
@@ -1224,15 +1468,15 @@ models:
     - parameter_code: 3103 # Leaf wetness duration AT GROUND LEVEL. Measured in minutes with wetness per period 
       interval: 3600
     - parameter_code: 5001 # Global radiation in W/sqm. 
-      interval: 3600 
+      interval: 3600
     - parameter_code: 3002 # Mean RH at 2m
-      interval: 3600 
+      interval: 3600
     weather_data_period_start: # DEFAULT is FIXED_DATE={CURRENT_YEAR}-01-01
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: "{CURRENT_YEAR}-04-01" ## Could be path.to.property OR e.g. {CURRENT_YEAR}-01-01
+      value: '{CURRENT_YEAR}-04-01' ## Could be path.to.property OR e.g. {CURRENT_YEAR}-01-01
     weather_data_period_end: # DEFAULT is FIXED_DATE={CURRENT_YEAR}-12-31
       determined_by: INPUT_SCHEMA_PROPERTY ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: "{CURRENT_YEAR}-09-01" ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
+      value: '{CURRENT_YEAR}-09-01' ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/run/ipmd
@@ -1264,13 +1508,47 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |-
-      Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
-      Thus, spraying should only be considered after considering the likelihood of the disease being present.
-      When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
-      given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
-      Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
-      actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+    warning_status_interpretation:
+    - explanation: |-
+        Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
+        Thus, spraying should only be considered after considering the likelihood of the disease being present.
+        When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
+        given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
+        Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
+        actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+      recommended_action: ''
+    - explanation: |-
+        Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
+        Thus, spraying should only be considered after considering the likelihood of the disease being present.
+        When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
+        given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
+        Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
+        actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+      recommended_action: ''
+    - explanation: |-
+        Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
+        Thus, spraying should only be considered after considering the likelihood of the disease being present.
+        When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
+        given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
+        Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
+        actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+      recommended_action: ''
+    - explanation: |-
+        Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
+        Thus, spraying should only be considered after considering the likelihood of the disease being present.
+        When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
+        given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
+        Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
+        actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+      recommended_action: ''
+    - explanation: |-
+        Downy mildew in lettuce normally occurs in the second half of the summer, and not every year in lettuce producing regions.
+        Thus, spraying should only be considered after considering the likelihood of the disease being present.
+        When the model indicates a high risk of infection, spraying should be considered given a) the likelihoold of the disease being present,
+        given the time in the season, b) the lettuce variant's resilience towards the disease and c) the time since the last spraying.
+        Normally you don't spray more often than every 10th day, but if the infection risk is considered high over a longer period and 
+        actual field observations being made, one can consider a new treatment as early as 7 days since the last spraying.
+      recommended_action: ''
     chart_groups:
     - id: G1
       title: Results

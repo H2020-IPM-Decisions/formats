@@ -68,8 +68,22 @@ models:
       hidden:
       - modelId
   output:
-    warning_status_interpretation: |
-      Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+    warning_status_interpretation:
+    - explanation: |
+        Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+      recommended_action: ''
+    - explanation: |
+        Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+      recommended_action: ''
+    - explanation: |
+        Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+      recommended_action: ''
+    - explanation: |
+        Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+      recommended_action: ''
+    - explanation: |
+        Values return are Risk Percentages. Lower percentages , translate into lower risk of infection.
+      recommended_action: ''
     chart_heading: Downy mildew risk index
     result_parameters:
     - id: TMDD4C

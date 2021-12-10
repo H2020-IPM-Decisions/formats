@@ -80,7 +80,7 @@ models:
       value: configParameters.dateGs31 ## Could be path.to.property OR e.g. {CURRENT_YEAR}-01-01
     weather_data_period_end: # DEFAULT is FIXED_DATE={CURRENT_YEAR}-12-31
       determined_by: FIXED_DATE ## Could be INPUT_SCHEMA_PROPERTY or FIXED_DATE
-      value: "{CURRENT_YEAR}-12-31" ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
+      value: '{CURRENT_YEAR}-12-31' ## Could be path.to.property OR e.g. {CURRENT_YEAR}-12-31
   execution:
     type: ONTHEFLY
     endpoint: https://coremanager.vips.nibio.no/models/SEPTORIAHU/run/ipmd
@@ -128,7 +128,7 @@ models:
     input_schema_categories:
       hidden:
       - modelId
-      internal: 
+      internal:
       - configParameters.sprayingProtectionDays
       - configParameters.thresholdRelativeHumidity
       - configParameters.thresholdLeafWetness
@@ -139,9 +139,27 @@ models:
       - configParameters.leafLifeTime
     # The input template should adhere to the JSON Schema standard: https://json-schema.org/
   output:
-    warning_status_interpretation: |-
-      Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
-      bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+    warning_status_interpretation:
+    - explanation: |-
+        Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+        bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+      recommended_action: ''
+    - explanation: |-
+        Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+        bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+      recommended_action: ''
+    - explanation: |-
+        Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+        bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+      recommended_action: ''
+    - explanation: |-
+        Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+        bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+      recommended_action: ''
+    - explanation: |-
+        Når antall timer med bladfuktighet i en mottakelig sort nærmer seg 20, vil risikokurven gå over i et rødt område og direkte 
+        bekjempingstiltak skal vurderes pga. økt infeksjonsrisiko. 
+      recommended_action: ''
     chart_heading: Septoria humidity model in wheat
     chart_groups:
     - id: G1
@@ -194,7 +212,7 @@ models:
         color: '#0000ff'
 - name: CPO model
   id: CPO
-  version: "1.0"
+  version: '1.0'
   authors: # List of the model authors
   - name: Lise N. Jørgensen
     email: lisen.jorgensen@agro.au.dk
@@ -316,11 +334,37 @@ models:
     input_schema_categories:
       hidden: []
   output:
-    warning_status_interpretation: |-
-      The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
-      precipitation
-      or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
-      recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+    warning_status_interpretation:
+    - explanation: |-
+        The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
+        precipitation
+        or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+        recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+      recommended_action: ''
+    - explanation: |-
+        The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
+        precipitation
+        or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+        recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+      recommended_action: ''
+    - explanation: |-
+        The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
+        precipitation
+        or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+        recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+      recommended_action: ''
+    - explanation: |-
+        The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
+        precipitation
+        or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+        recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+      recommended_action: ''
+    - explanation: |-
+        The growers need to check the crops at weekly intervals or as a minimum follow the risk based on
+        precipitation
+        or regional monitoring data for risk evaluation. In the Danish system fungicides and dose rates are
+        recommended. In the IPM-decision system only a recommendation to treat or not to treat is given.
+      recommended_action: ''
     chart_groups: []
     result_parameters:
       # the id is used with the model_id as the namespace

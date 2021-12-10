@@ -59,7 +59,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
     # the id is used with the model_id as the namespace
     - id: TMH
@@ -117,7 +127,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: TMH
@@ -173,7 +193,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: TMH
@@ -236,7 +266,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: TMH
@@ -293,7 +333,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: RHH
@@ -338,7 +388,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: LWD_RH
@@ -398,7 +458,17 @@ models:
     input_schema_categories:
       hidden:
   output:
-    warning_status_interpretation: ''
+    warning_status_interpretation:
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
+    - explanation: ''
+      recommended_action: ''
     result_parameters:
       # the id is used with the model_id as the namespace
     - id: LWD
