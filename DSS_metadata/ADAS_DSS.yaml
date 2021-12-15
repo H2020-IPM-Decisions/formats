@@ -314,16 +314,16 @@ models:
       - modelId
   output:
     warning_status_interpretation:
-    - explanation: |-
+    - explanation: ''
       recommended_action: ''
     - explanation: |-
         Missing data.
       recommended_action: Review error message.
     - explanation: |-
-      recommended_action: ''
-    - explanation: |-
         Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. 
       recommended_action: Revisit regularly as risk can change rapidly.
+    - explanation: ''
+      recommended_action: ''
     - explanation: |-
         Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops.
       recommended_action: Walk around your field to enable you to decide on which action to take.
@@ -421,9 +421,9 @@ models:
       - modelId
   output:
     warning_status_interpretation:
-    - explanation: |-
+    - explanation: ''
       recommended_action: ''
-    - explanation: |- 
+    - explanation: |-
         Missing data.
       recommended_action: Review error message.
     - explanation: |-
