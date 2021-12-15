@@ -1,6 +1,6 @@
 #General info about the DSS
 id: adas.dss
-version: 0.0.2
+version: 0.0.3
 name: Models
 url: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss
 organization:
@@ -49,7 +49,7 @@ models:
       This model assesses Cutworm risk in crops based on the work of Bowden et al., (1982). The model was originally devised to estimate an index of larval survival to third instar, based on temperature rate of development relationships and mortality due to daily rainfall.
       The default model start date is defined as the first day after 1st June where temperature exceeds 12 degrees. The model will end on the 31st October.
       Any spray dates can be inputted into the model and are deemed to be 100% effective at removing cutworm from the model.
-      The model will return the number of batches that survive to the third instar, the asscoiated risk and the recommended action.
+      The model will return the number of batches that survive to the third instar, the associated risk and the recommended action.
     created_by: ''
     age: ''
     assumptions: ''
@@ -108,30 +108,19 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
-        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
       recommended_action: ''
+    - explanation: |- 
+        Missing data.
+      recommended_action: Review error message.
     - explanation: |-
-        Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
-        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
-      recommended_action: ''
+        Green warning indicates that the number of larval batches surviving to third instar is zero.
+      recommended_action: No Action Required.
     - explanation: |-
-        Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
-        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
-      recommended_action: ''
+        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. 
+      recommended_action: Should check field to obtain first-hand information about the need to take action. 
     - explanation: |-
-        Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
-        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
-      recommended_action: ''
-    - explanation: |-
-        Green warning indicates that the number of larval batches surviving to third instar is zero. No Action Required.
-        Yellow warning indicates that the larval batches surviving to third instar is between 1 and 4. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there are over 4 larval batches surviving to third instar. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.  
-      recommended_action: ''
+        Red warning indicates that there are over 4 larval batches surviving to third instar. 
+      recommended_action: Advised to walk around your field as soon as possible to enable you to make a decision on which action to take.  
     chart_heading: Larval Batches Surviving to Third Instar.
     chart_groups:
     - id: G1
@@ -227,30 +216,19 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
       recommended_action: ''
+    - explanation: |- 
+        Missing data.
+      recommended_action: Review error message.
     - explanation: |-
-        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk.
+      recommended_action: Revisit regularly as risk can change rapidly.
     - explanation: |-
-        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. 
+      recommended_action: Should check field to obtain first-hand information about the need to act.
     - explanation: |-
-        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
-    - explanation: |-
-        Green warning indicates that Orange Wheat Blossom Midge is in Phase 1 of development. There is currently a low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that Orange Wheat Blossom Midge is in Phase 2 of development. Should check field to obtain first hand information about the need to take action.
-        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged. Advised to walk around your field  as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Red warning indicates that Orange Wheat Blossom Midge is in Phase 3 of development or have emerged.
+      recommended_action: Advised to walk around your field as soon as possible to enable you to decide on which action to take.
     chart_heading: ''
     chart_groups:
     - id: ''
@@ -337,25 +315,18 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
       recommended_action: ''
     - explanation: |-
-        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
+        Missing data.
+      recommended_action: Review error message.
+    - explanation: |-
       recommended_action: ''
     - explanation: |-
-        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. 
+      recommended_action: Revisit regularly as risk can change rapidly.
     - explanation: |-
-        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
-      recommended_action: ''
-    - explanation: |-
-        Green Warning indicates that the maximum temperature is lower than threshold at which pollen beetles fly at air temperatures to crops. Recommends to revist regularly as risk can change rapidly.
-        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops. You should walk around your field to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Red Warning indicates that the maximum temperature is higher than threshold at which pollen beetles fly at air temperatures to crops.
+      recommended_action: Walk around your field to enable you to decide on which action to take.
     chart_heading: ''
     chart_groups:
     - id: ''
@@ -391,12 +362,12 @@ models:
   description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/hapdma/Help/Api/POST-api-HAPDMA
   description:
     other: |
-      A simple DSS which predicts the dates of emergence for the Saddle Gall Midge based on a model derived by Rowley et al., 2017. Rainfall events followed by an accummulation of 512 degree days above 0 degrees C can be used to predict peaks.
+      A simple DSS which predicts the dates of emergence for the Saddle Gall Midge based on a model derived by Rowley et al., 2017. Rainfall events followed by an accumulation of 512 degree days above 0 degrees C can be used to predict peaks.
       Cumulative emergence as a function of degree day accumulations was best described using a probit model.
       The model will start on the date of first rainfall on or after the 1st March and will end at the end of July.
       A Rainfall event is described as daily rainfall over the rainfall threshold (default 1mm) following 3 days without precipitation.
       Optional parameters can be inputted to set the thresholds. If not inputted, the defaults described above will be set.
-      The model will return the dates of peak emergence, cummulative emergence, the associated risk and recommended action.
+      The model will return the dates of peak emergence, cumulative emergence, the associated risk and recommended action.
     created_by: ''
     age: ''
     assumptions: ''
@@ -451,30 +422,19 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
       recommended_action: ''
+    - explanation: |- 
+        Missing data.
+      recommended_action: Review error message.
     - explanation: |-
-        Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
-      recommended_action: ''
+        Green warning indicates that there is below 10% cumulative emergence. Currently low risk.
+      recommended_action: Revisit regularly as risk can change rapidly.
     - explanation: |-
-        Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
-      recommended_action: ''
+        Yellow warning indicates that there is up to 50% cumulative emergence.
+      recommended_action: Check field to obtain first hand information about the need to take action.
     - explanation: |-
-        Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
-      recommended_action: ''
-    - explanation: |-
-        Green warning indicates that there is below 10% cumulative emergence. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that there is up to 50% cummulative emergence. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that there is up to or over  90% cummulative emergence. You should walk around your field as soon as possible to enable you to make a decision on which action to take. 
-      recommended_action: ''
+        Red warning indicates that there is up to or over 90% cumulative emergence.
+      recommended_action: Walk around your field as soon as possible to enable you to decide on which action to take.
     chart_heading: Cumulative Emergence
     chart_groups:
     - id: G1
@@ -509,7 +469,7 @@ models:
   description_URL: https://app-rsk-adas-dss-dev-001.azurewebsites.net/dss/carppo/Help/Api/POST-api-CARPPO
   description:
     other: |
-      This is a simple risk based DSS for the Codling Moth, Cydia pomonella, based on the work of Damos et al., (2018) in Greece. A 3-paramater non-linear regression model was constructed to fit cummulative moth captures as a function of accumulated day degrees (Biofix 1st January) for all three of the male flights.
+      This is a simple risk based DSS for the Codling Moth, Cydia pomonella, based on the work of Damos et al., (2018) in Greece. A 3-paramater non-linear regression model was constructed to fit cumulative moth captures as a function of accumulated day degrees (Biofix 1st January) for all three of the male flights.
       The model requires minimum and maximum temperature from the 1st of January as an input, and will return the male flight, associated risk and recommended action.
     created_by: ''
     age: ''
@@ -572,55 +532,34 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
-        Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
-        The timing of treatment might need to be adjusted depending on the type of insecticide used. 
-        In southern Eurpose there can be three flights in a season.     
-        The predcition is about timing and does not predict the number of codling moths.
-        Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
-        Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
-        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
       recommended_action: ''
+    - explanation: |- 
+        Missing data.
+      recommended_action: Review error message.
     - explanation: |-
         This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
         Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
         The timing of treatment might need to be adjusted depending on the type of insecticide used. 
-        In southern Eurpose there can be three flights in a season.     
-        The predcition is about timing and does not predict the number of codling moths.
-        Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
-        Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
-        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
-      recommended_action: ''
+        In southern Europe there can be three flights in a season.     
+        The prediction is about timing and does not predict the number of codling moths.
+        Green warning indicates that cumulative catches are below 10% or above 65% in all the flights.
+      recommended_action: The risk is low, and no action is required but it is recommended to revisit regularly as risk can change rapidly.
     - explanation: |-
         This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
         Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
         The timing of treatment might need to be adjusted depending on the type of insecticide used. 
-        In southern Eurpose there can be three flights in a season.     
-        The predcition is about timing and does not predict the number of codling moths.
-        Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
-        Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
-        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
-      recommended_action: ''
+        In southern Europe there can be three flights in a season.     
+        The prediction is about timing and does not predict the number of codling moths.
+        Yellow warning indicates that cumulative catches are between 10% and 35% in at least one of the flights. 
+      recommended_action: The risk is moderate, and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
     - explanation: |-
         This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
         Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
         The timing of treatment might need to be adjusted depending on the type of insecticide used. 
-        In southern Eurpose there can be three flights in a season.     
-        The predcition is about timing and does not predict the number of codling moths.
-        Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
-        Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
-        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
-      recommended_action: ''
-    - explanation: |-
-        This decision tool predicts the timing of flights of Cydia pomella (colding moth) to help time insecticide treatment.    
-        Typically it is more effective to treat early in the flight, rather than waiting for the peak of the flight (maximum risk).   
-        The timing of treatment might need to be adjusted depending on the type of insecticide used. 
-        In southern Eurpose there can be three flights in a season.     
-        The predcition is about timing and does not predict the number of codling moths.
-        Green warning indicates that cumulative catches are below 10% or above 65% in all of the flights. The risk is low, and no action is required but it is recommened to revisit regularly as risk can change rapidly.
-        Yellow warnig indicates that cumulative catches are between 10% and 35% in at least one of the flights. The risk is moderate and you should walk around your field as soon as possible to enable you to make a decision on which action to take.
-        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. The risk is high and you should immediately take a decision for action to manage the pest.
-      recommended_action: ''
+        In southern Europe there can be three flights in a season.     
+        The prediction is about timing and does not predict the number of codling moths.
+        Red warning indicates that cumulative catches are between 35% and 65% in at least one of the flights. 
+      recommended_action: The risk is high and you should immediately take a decision for action to manage the pest.
     chart_heading: Cumulative Captures
     chart_groups:
     - id: G1
@@ -677,10 +616,9 @@ models:
   description:
     other: |
       This is a simple risk DSS for predicting BYDV risk from aphids. Second generation aphids move away from the plant originally colonised and are therefore likely to be a greater risk. 
-      Second generation aphids are likely to be present when the acculmulated daily air tempertures, above a baseline tempertature of 3 degrees, reached T-Sum 170. 
     created_by: ''
     age: ''
-    assumptions: ''
+    assumptions: Second generation aphids are likely to be present when the accumulated daily air temperatures, above a baseline temperature of 3 degrees, reached T-Sum 170.
     peer_review: ''
   citation:
   valid_spatial:
@@ -733,30 +671,19 @@ models:
   output:
     warning_status_interpretation:
     - explanation: |-
-        Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
       recommended_action: ''
+    - explanation: |- 
+        Missing data.
+      recommended_action: Review error message.
     - explanation: |-
-        Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Green risk status: T-SUM is below 50. Low risk of spread of BYDV in crops at this time. 
+      recommended_action: Review risk status every 7 days during vulnerable crop growth stages regularly as risk conditions can change rapidly.
     - explanation: |-
-        Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Yellow risk status: T-SUM is between 50 and 100. 
+      recommended_action: Review risk status within next 3 days. Field inspections recommended within the next 3-5 days to assess aphid infestations and consider treatment where winged aphids are easily found.
     - explanation: |-
-        Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
-    - explanation: |-
-        Green warning indicates that T-SUM is below 150. Currently low risk but should revist regularly as risk can change rapidly.
-        Yellow warning indicates that T-SUM is between 150 and 170. You should check field to obtain first hand information about the need to take action.
-        Red warning indicates that T-SUM is 170 and over. You should walk around your field as soon as possible to enable you to make a decision on which action to take.
-      recommended_action: ''
+        Red risk status: T-SUM is 100 and over.
+      recommended_action: Review risk status daily. Field inspections recommended within the next 1-3 days to assess aphid infestations and consider treatment where winged aphids are easily found.
     chart_heading: TSUM Model
     chart_groups:
     - id: G1
