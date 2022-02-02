@@ -7,6 +7,7 @@ datasources:
     name: "Met Norway Locationforecast"
     description: "9-day forecasts for the entire planet. 2.5 km resolution in the Nordic-Baltic region, 9km elsewhere"
     public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
+    priority: 0 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
@@ -23,6 +24,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -43,8 +46,9 @@ datasources:
   - 
     id: ie.gov.data
     name: "Met Éireann Locationforecast"
-    description: 9-day forecasts for the Ireland. 
+    description: 9-day forecasts for Ireland. 
     public_URL: "https://api.met.no/weatherapi/locationforecast/1.9/documentation"
+    priority: 8 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: Met Éireann Open Data Unit
       country: Ireland
@@ -61,6 +65,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 9 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -83,6 +89,7 @@ datasources:
     name: "DMI Pointweather service"
     description: "Seasonal weather data and forecasts for Denmark. Grid based"
     public_URL: "https://dmiweatherservice-plant.dlbr.dk/DMIWeatherService.svc"
+    priority: 8 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: SEGES
       country: Denmark
@@ -99,6 +106,9 @@ datasources:
         start: "2021-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 5 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
+        - 86400
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -123,6 +133,7 @@ datasources:
     name: SLU Lantmet service
     description: Seasonal weather data and forecasts for Sweden. Grid based
     public_URL: https://www.slu.se/faltforsk
+    priority: 8 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: SLU Fältforsk
       country: Sweden
@@ -139,6 +150,9 @@ datasources:
         start: "2021-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 1 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
+        - 86400
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -166,6 +180,7 @@ datasources:
     name: "Deutsche Wetterdienst location forecast by IPM Decisions"
     description: "27 hour weather forecasts for Germany and surrounding areas. 2.5 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-DWD"
+    priority: 7 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
@@ -182,6 +197,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 1 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -239,6 +256,7 @@ datasources:
     name: "Deutsche Wetterdienst EU Area location forecast by IPM Decisions"
     description: "30 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-DWD-EU"
+    priority: 5 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
@@ -255,6 +273,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 1 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -312,6 +332,7 @@ datasources:
     name: "Euroweather seasonal gridded weather data and forecasts  by IPM Decisions"
     description: "Seasonal data and 72 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Euroweather-frontend"
+    priority: 1 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
@@ -325,9 +346,12 @@ datasources:
     needs_data_control: false
     temporal:
       historic: #  
-        start: "2021-01-01" # Start == null => No measured/historic/observational data
+        start: "{CURRENT_YEAR}-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 3 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
+        - 86400
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -386,6 +410,7 @@ datasources:
     name: "MeteoFrance location forecast by IPM Decisions"
     description: "40 hour weather forecasts for France and surroundings. 2.5 km resolution. Pulls data from MeteoFrance's Public Data service (https://donneespubliques.meteofrance.fr). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Location-Weather-Adapter-MeteoFrance"
+    priority: 2 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
       country: Norway
@@ -402,6 +427,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 2 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -460,6 +487,7 @@ datasources:
     name: "FMI weather forecasts"
     description: "36 hour forecasts for Finland from the Finnish Meteorological Institute"
     public_URL: "https://en.ilmatieteenlaitos.fi/open-data"
+    priority: 8 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Finnish Meteorological Institute
       country: Finland
@@ -476,6 +504,8 @@ datasources:
         start: null # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 2 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: location
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -503,6 +533,7 @@ datasources:
     name: Finnish Meteorological Institute measured data
     description: Weather station network covering Finland. Data availability varies between the stations. The oldest station is from 1844
     public_URL: https://en.ilmatieteenlaitos.fi/
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Finnish Meteorological Institute
       country: Finland
@@ -519,6 +550,8 @@ datasources:
         start: "2020-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: stations
     spatial:
       # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
@@ -755,6 +788,7 @@ datasources:
     name: "Landbruksmeteorologisk tjeneste"
     description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
     public_URL: "https://lmt.nibio.no/"
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: NIBIO
       country: Norway
@@ -771,6 +805,9 @@ datasources:
         start: "2010-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
+        - 86400
     access_type: stations
     # Spatial is GEOJson defined. "Sphere" simply means the whole globe (NOT part of GEOJson spec!)
     # If the resource is a gridded service, the Spatial property is a polygon or a set of polygons
@@ -911,6 +948,7 @@ datasources:
     name: MeteoBot API
     description: Network of privately owned weather stations. Access requires permission from each weather station's owner
     public_URL: https://meteobot.com/en/
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: Prointegra
       country: Bulgaria
@@ -927,6 +965,8 @@ datasources:
         start: 2020-01-01 # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: stations
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -1483,6 +1523,7 @@ datasources:
     name: Fruitweb
     description: Network of privately owned weather stations of several types; Davis, Metos and self manufactured. Access requires permission from each weather station's owner
     public_URL: https://fruitweb.info
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: fruitweb GmbH
       country: Germany
@@ -1499,6 +1540,8 @@ datasources:
         start: 2020-01-01 # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: stations
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -1524,6 +1567,7 @@ datasources:
     name: Metos
     description: Network of privately owned weather stations of several types; Davis, Metos and self manufactured. Access requires permission from each weather station's owner
     public_URL: https://metos.at
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: Pessl Instruments GmbH
       country: Austria
@@ -1540,6 +1584,8 @@ datasources:
         start: 2020-01-01 # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 0 # 0 = no forecast. All other positive integers indicate the number of days ahead
+      intervals: # Array of accepted interval requests
+        - 3600
     access_type: stations
     spatial: 
       # Using country codes to get GeoJSON. Saves a lot of duplication.
@@ -1567,6 +1613,7 @@ datasources:
       high density of agricultural stations in Brittany. Visit www.meteodata.fr and www.meteo-concept.fr
       or email us at contact@meteo-concept.fr
     public_URL: https://api.meteo-concept.com/
+    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     endpoint: https://api.meteo-concept.com/api/ipmdecisions/observations/station/
     authentication_type: BEARER_TOKEN
     needs_data_control: true
@@ -1575,7 +1622,9 @@ datasources:
       forecast: 0
       historic:
         start: '2015-01-01'
-        end:
+        end: null
+      intervals: # Array of accepted interval requests
+        - 3600
     parameters:
       common:
       - 1001
