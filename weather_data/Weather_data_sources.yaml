@@ -788,7 +788,7 @@ datasources:
     name: "Landbruksmeteorologisk tjeneste"
     description: "Weather station network covering major agricultural areas of Norway. Data before 2010 are available by request. Email lmt@nibio.no"
     public_URL: "https://lmt.nibio.no/"
-    priority: 10 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
+    priority: 0 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization TODO BUMP UP TO 10 AFTER FIX
     organization: 
       name: NIBIO
       country: Norway
