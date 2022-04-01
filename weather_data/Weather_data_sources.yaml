@@ -422,6 +422,7 @@ datasources:
     endpoint: https://meteofrance.ipmdecisions.nibio.no
     authentication_type: NONE
     needs_data_control: false
+    active: false
     temporal:
       historic: #  
         start: null # Start == null => No measured/historic/observational data
