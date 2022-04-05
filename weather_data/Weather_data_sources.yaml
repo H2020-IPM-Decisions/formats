@@ -332,6 +332,7 @@ datasources:
     name: "Euroweather seasonal gridded weather data and forecasts  by IPM Decisions"
     description: "Seasonal data and 72 hour weather forecasts for EU. 7 km resolution. Pulls data from DWD's Open Data server (https://www.dwd.de/EN/ourservices/opendata/opendata.html). Made available by a custom adapter created by Met Norway and NIBIO."
     public_URL: "https://github.com/H2020-IPM-Decisions/Euroweather-frontend"
+    
     priority: 1 # From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     organization: 
       name: The Norwegian Meteorological Institute
@@ -342,6 +343,7 @@ datasources:
       email: david.melchior@met.no
       url: https://www.met.no/en
     endpoint: https://euroweather.ipmdecisions.nibio.no/weather_data
+    #endpoint: http://localhost:5000/weather_data
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -401,6 +403,8 @@ datasources:
     parameters:
       common:
        - 1001 # Instantaneous temperature at 2m (Celcius)
+       - 1003 # Minimum temperature (Celcius) - ONLY DAILY VALUES
+       - 1004 # Maximum temperature (Celcius) - ONLY DAILY VALUES
        - 3001 # Instantaneous RH at 2m (%)
        - 2001 # Precipitation (mm)
        - 4012 # Instantaneous wind speed at 10
