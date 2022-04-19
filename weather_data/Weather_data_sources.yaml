@@ -348,7 +348,7 @@ datasources:
     needs_data_control: false
     temporal:
       historic: #  
-        start: "{CURRENT_YEAR}-01-01" # Start == null => No measured/historic/observational data
+        start: "{CURRENT_YEAR-1}-01-01" # Start == null => No measured/historic/observational data
         end: null #null => Recent data available (continuously updated) UNLESS OF COURSE start == null
       forecast: 3 # 0 = no forecast. All other positive integers indicate the number of days ahead
       intervals: # Array of accepted interval requests
