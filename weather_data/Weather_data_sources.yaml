@@ -16,7 +16,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/yr/
+    endpoint: "{WEATHER_API_URL}/api/wx/rest/weatheradapter/yr/"
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -98,7 +98,7 @@ datasources:
       city: Aarhus N
       email: info@seges.dk
       url: https://www.seges.dk/
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/dmipoint/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/dmipoint/"
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -142,7 +142,7 @@ datasources:
       city: Uppsala
       email: lantmet@slu.se
       url: https://www.slu.se/faltforsk
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/lantmet/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/lantmet/"
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -501,7 +501,7 @@ datasources:
       city: Helsinki
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/forecasts
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/fmi/forecasts"
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -547,7 +547,7 @@ datasources:
       city: Helsinki
       email: webmaster@fmi.fi
       url: https://en.ilmatieteenlaitos.fi/
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/fmi/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/fmi/"
     authentication_type: NONE
     needs_data_control: false
     temporal:
@@ -962,7 +962,7 @@ datasources:
       city: Varna
       email: info@meteobot.com
       url: https://meteobot.com/en/
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/meteobot/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/meteobot/"
     authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
@@ -1537,7 +1537,7 @@ datasources:
       city: Jork
       email: mb@fruitweb.info
       url: https://www.fruitweb.info/en/
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/davisfruitweb/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/davisfruitweb/"
     authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
@@ -1581,7 +1581,7 @@ datasources:
       city: Weis
       email: office@metos.at
       url: https://metos.at
-    endpoint: https://ipmdecisions.nibio.no/api/wx/rest/weatheradapter/metos/
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/metos/"
     authentication_type: CREDENTIALS # This implies http POST and sending parameters x-www-form-urlencoded, adding parameter credentials={"username":"XXX", "password":"XXX"}
     needs_data_control: true
     temporal:
