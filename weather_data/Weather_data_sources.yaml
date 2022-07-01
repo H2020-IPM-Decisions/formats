@@ -1618,7 +1618,7 @@ datasources:
       high density of agricultural stations in Brittany. Visit www.meteodata.fr and www.meteo-concept.fr
       or email us at contact@meteo-concept.fr
     public_URL: https://api.meteo-concept.com/
-    priority: 0 # TODO SET TO 10 when adapter ready From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
+    priority: 10 # TODO SET TO 10 when adapter ready From 0 (lowest) - 10 (highest) When more than one datasource relevant, use this value for prioritization
     endpoint: https://api.meteo-concept.com/api/ipmdecisions/observations/station/
     authentication_type: BEARER_TOKEN
     needs_data_control: true
