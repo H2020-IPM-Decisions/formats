@@ -16,7 +16,7 @@ datasources:
       city: Oslo
       email: david.melchior@met.no
       url: https://www.met.no/en
-    endpoint: "{WEATHER_API_URL}/api/wx/rest/weatheradapter/yr/"
+    endpoint: "{WEATHER_API_URL}/rest/weatheradapter/yr/"
     authentication_type: NONE
     needs_data_control: false
     temporal:
