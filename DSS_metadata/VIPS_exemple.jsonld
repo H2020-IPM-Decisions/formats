@@ -1,0 +1,133 @@
+{
+  "@context":{
+    
+    "schema":"https://schema.org/",
+    "ipm":"https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md/",
+    
+    "id":{"@id":"schema:identifier"},
+    "Person":{"@id":"schema:Person"},
+    "Organization":{"@id":"schema:Organization"},
+    
+    "name":{"@id": "schema:name"},
+    "version":{"@id": "schema:version"},
+    "url":{"@id":"schema:url"},
+    "organization":{"@id":"schema:Organization"},
+    "address":{"@id":"schema:address"},
+    "country":{"@id":"schema:Country"},
+    "postal_code":{"@id":"schema:postalCode"},
+    "city":{"@id":"schema:City"},
+    "email":{"@id":"schema:email"},
+    "languages":{"@id":"schema:availableLanguage"},
+    
+    "DSS_Model":{"@id":"ipm:DSS_Model","@type":"DSS_Model"},
+    "authors":{"@id":"schema:author"},
+    "pests":{"@id":"ipm:pests"},
+    "crops":{"@id":"ipm:crops"},
+    "Keywords":{"@id":"schema:Keywords"},
+    "type_of_decision":{"@id":"ipm:type_of_decision"},
+    "type_of_output":{"@id":"ipm:type_of_output"},
+    "description":{"@id":"schema:description"},
+    "citation":{"@id":"schema:citation"},
+    "valid_spatial":{"@id":"schema:countriesSupported"},
+    "input":{"@id":"ipm:input"},
+    "weather":{"@id":"ipm:weather"},
+    "parameter_code":{"@id":"ipm:parameter_code"},
+    "interval":{"@id":"ipm:interval"},
+    "execution":{"@id":"ipm:excecution"},
+    "input_schema":{"@id":"ipm:input_schema"},
+    "endpoint":{"@id":"ipm:endpoint"},
+    "form_method":{"@id":"ipm:form_method"},
+    "content_type":{"@id":"ipm:content_type"},
+    "affiliation":{"@id":"schema:affiliation"},
+    "output":{"@id":"ipm:output"},
+    "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
+    "result_parameters":{"@id":"ipm:result_parameters"},
+    "title":{"@id":"ipm:title"}
+    
+
+  },
+  "@id":"no.nibio.vips",
+  "name":"VIPS",
+  "version":"2.0",
+  "url":"https://www.vips-landbruk.no/",
+  "organization":{
+    "@type":"Organization",
+    "name":"NIBIO",
+    "address":"Postboks 115",
+    "country": "Norway",
+    "postal_code":"1431",
+    "city":"Ås",
+    "email": "berit.nordskog@nibio.no",
+    "url": "https://www.nibio.no/"
+  },
+  "languages": ["Norwegian","English"],
+  "DSS_Model":
+  [
+    {
+      "@id":"PSILARTEMP",
+      "@type":"DSS_Model",
+      "id":"PSILARTEMP",
+      "name":"Carrot rust fly temperature model",
+      "version":"1.0",
+      "authors":{
+        "@type":"Person",
+        "name":"Berit Nordskog",
+        "email": "berit.nordskog@nibio.no",
+        "affiliation": "NIBIO"},
+      "pests":{
+        "name":"PSILRO",
+        "url":"https://gd.eppo.int/taxon/PSILRO"},
+      "crops": {
+        "name":"DAUCS",
+        "url":"https://gd.eppo.int/taxon/DAUCS"},
+      "Keywords":["foo", "bar", "mechanistic", "regression"],
+      "type_of_decision":"Short-term tactical",
+      "type_of_output":"Risk indication",
+      "url":"https://www.vips-landbruk.no/forecasts/models/PSILARTEMP/",
+      "description": "The warning system model «Carrot rust fly temperature» is based on a Finnish temperature-based model (Markkula et al, 1998; Tiilikkala & Ojanen, 1999; Markkula et al, 2000). The model determines the start of the flight period for the 1st and 2nd generation of carrot rust fly based on accumulated degree-days (day-degrees) over a base temperature of 5,0 °C. VIPS uses the model for the 1st generation only.Standard air temperature (temperature measured 2 m above ground) is used in the model. Degree-days are defined for this model as the sum of the difference between a base temperature of 5,0 °C and the mean temperature for all days with a temperature >5,0 °C, in other words (daily mean temperature – 5,0 °C) from 1 March (beginning when the ground has thawed).",
+      "citation":null,
+      "valid_spatial":"NOR",
+      "input":{
+        "weather":{
+          "parameter_code":1002,
+          "interval":86400},
+        "execution":{
+           "type": "ONTHEFLY",
+           "endpoint":"https://ipmdecisions.nibio.no/vipscore/models/PSILARTEMP/run/ipmd",
+           "form_method": "post",
+           "content_type": "application/json"
+         }
+      },
+      "output":{
+        "warning_status_interpretation":"Green warning indicates that the flight period has not yet begun.Yellow warning indicates that the flight period is beginning and that flies can be coming into the field.Red warning indicates peak flight period.Grey warning indicates that the flight period of the 1st generation is over.Be aware that in areas with field covers (plastic, single or double non-woven covers, etc.) with early crops the preceding season (either on the current field or neighboring fields), the flight period can start earlier due to higher soil temperature under the covers.",
+        "result_parameters":{
+          "id": "TMDD5C",
+          "title":"Accumulated day degrees",
+          "description":"The accumulated day degrees with a base temperature of 5 degrees celcius"}
+      }
+    },
+    {
+      "@id":"NAERSTADMO",
+      "@type":"DSS_Model",
+      "id":"NAERSTADMO",
+      "name":"Nærstad model",
+      "version": 1.0,
+      "authors": {
+        "@type":"Person",
+        "name": "Ragnhild Nærstad",
+        "email": "ragnhild.naerstad@syngenta.com",
+        "affiliation": "Syngenta"},
+      "pests":{
+        "name":"PHYTIN",
+        "url":"https://gd.eppo.int/taxon/PHYTIN"},
+      "crops":{
+        "name":"SOLTU",
+        "url":"https://gd.eppo.int/taxon/SOLTU"},
+      "type_of_decision": "Short-term tactical",
+      "type_of_output": "Risk indication",
+      "url": "https://www.vips-landbruk.no/forecasts/models/NAERSTADMO/",
+      "description": "The model is based on several years of experiments where trap plants have been placed next to a potato field infected with late blight. Infections on these plants have been correlated with weather conditions the day of exposure, and this is the data the model is based on. The model predicts if there are favourable conditions for spore production and the following spread, survival and infection of these spores. The model produces an infection risk, and a value of 2.5 corresponds to one spot of late blight on each trap plant exposed. This value of 2.5 is the threshold where the model issues a warning.",
+      "citation": null,
+      "valid_spatial": ["NOR","SWE"]}
+  ]
+}

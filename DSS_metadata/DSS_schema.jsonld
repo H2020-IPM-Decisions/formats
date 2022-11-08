@@ -1,0 +1,52 @@
+{
+    "@context":{
+        "schema": "http://www.schema.org/",
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/Json_LD_Documentation.md",
+        "codemeta":"https://codemeta.github.io/terms/",
+ 
+        "Person":{"@id":"schema:Person","@type":"schema:Person"},
+        "SoftwareApplication": {"@id": "schema:SoftwareApplication","@type":"schema:SoftwareApplication"},
+ 
+        "id":{"@id":"schema:identifier","@type":"@id"},
+        "name":{"@id": "schema:name"},
+        "version":{"@id": "schema:version"},
+        "url":{"@id":"schema:url","@type":"@id"},
+        "organization":{"@id":"schema:Organization"},
+        "address":{"@id":"schema:streetAddress"},
+        "country":{"@id":"schema:addressCountry"},
+        "postal_code":{"@id":"schema:postalCode"},
+        "city":{"@id":"schema:addressLocality"},
+        "email":{"@id":"schema:email"},
+        "languages":{"@id":"schema:availableLanguage","@container":"@list"},
+
+        "codeRepository":{"@id":"schema:codeRepository","@type":"@id"},
+        "programmingLanguage":{"@id":"schema:programmingLanguage"},
+        "runtimePlatform":{"@id":"schema:runtimePlateform"},
+        "downloadUrl": {"@id":"schema:downlaodUrl"},
+        "installUrl":{"@id":"schema:installUrl"},
+        "operatingSystem":{"@id":"schema:operatingSystem"},
+        "authors":{"@id":"schema:author","@container":"@list"},
+        "citation":{"@id":"schema:citation","@container":"@list"},
+        "contributor":{"@id":"schema:contributor"},
+        "dateCreated":{"@id":"schema:dateCreated","@type":"schema:Date"},
+        "dateModified":{"@id":"schema:dateModified","@type":"schema:Date"},
+        "datePublished":{"@id":"schema:datePublished","@type":"schema:Date"},
+        "fileFormat":{"@id":"schema:fileFormat"},
+        "funder": {"@id":"schema:funder"},
+        "Keywords":{"@id":"schema:Keywords"},
+        "license":{"@id":"schema:licence"},
+        "description":{"@id":"schema:description"},
+        "softwareRequirements":{"@id":"schema:softwareRequirements"},
+
+        "DSS_Model":{"@id":"ipm:models","@type":"DSS_Model"},
+
+        "maintainer":{"@id":"codemeta:maintainer","@type":"@id"},
+        "contIntegration":{"@id":"codemeta:contIntegration"},
+        "buildInstructions": {"@id":"codemeta:buildInstructions"},
+        "developmentStatus": {"@id":"codemeta:developementStatus"},
+        "issueTracker":{"@id":"codemeta:issueTracker"},
+        "readme":{"@id":"codemeta:readme"} 
+    
+
+    }
+}

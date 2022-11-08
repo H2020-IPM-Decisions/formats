@@ -1,0 +1,40 @@
+{
+    "@context":{
+        "schema": "http://schema.org/",
+        "ipm": "https://raw.githubusercontent.com/H2020-IPM-openalea/formats/master/schema_Terms_from_VIPS.md",
+        
+        "DSS_Model":{"@id":"ipm:DSS_model","@type":"DSS_Model","@container":"@list"},
+            
+        "id":{"@id":"schema:identifier","@type":"@id"},
+        "name": {"@id":"schema:name"},
+        "version":{"@id":"schema:version"},
+            
+        "authors":{"@id":"schema:author","@container":"@list"},
+        "email":{"@id":"schema:email"},
+        "organization":{"@id":"schema:Organization"},
+            
+        "pests":{"@id":"ipm:pests","@container":"@list"},
+        "crops":{"@id":"ipm:crops","@container":"@list"},
+        "Keywords":{"@id":"schema:Keywords"},
+        "type_of_decision":{"@id":"ipm:type_of_decision"},
+        "type_of_output":{"@id":"ipm:type_of_output"},
+        "url":{"@id":"schema:url"},
+        "description":{"@id":"schema:description"},
+        "citation":{"@id":"schema:citation"},
+        "valid_spatial":{"@id":"schema:countriesSupported"},
+    
+        "input":{"@id":"ipm:input"},
+        "weather":{"@id":"ipm:weather","@container":"@list"},
+        "parameter_code":{"@id":"ipm:parameter_code","@type":"schema:Integer"},
+        "interval":{"@id":"ipm:interval","@type":"schema:Integer"},
+        "execution":{"@id":"ipm:execution"},
+        "endpoint":{"@id":"ipm:endpoint"},
+        "form_method":{"@id":"ipm:form_method"},
+        "content_type":{"@id":"ipm:content_type"},
+        "input_schema":{"@id":"ipm:input_schema"},
+        "output":{"@id":"ipm:output"},
+        "warning_status_interpretation":{"@id":"ipm:warning_status_interpretation"},
+        "result_parameters":{"@id":"ipm:result_parameters"},
+        "title":{"@id":"ipm:title"}        
+    }
+}
